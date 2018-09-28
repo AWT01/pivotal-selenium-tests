@@ -1,4 +1,4 @@
-package com.fundacion.selenium;
+package com.fundacionjala.pivotal;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -45,5 +45,9 @@ public class SeleniumTest  {
 
         //Close the browser
         driver.quit();
+    }
+
+    public String returnStringTest(){
+        return "Test";
     }
 }
