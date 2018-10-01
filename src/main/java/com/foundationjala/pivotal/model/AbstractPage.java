@@ -31,4 +31,9 @@ public abstract class AbstractPage extends AbstractWebDriverEventListener {
   public PageObjectFactory getFactory() {
     return pageObjectFactory;
   }
+
+  public void closeDriver(){
+    this.driver.close();
+    this.driver.quit();
+  }
 }
