@@ -1,0 +1,58 @@
+group 'org.fundacionjala.pivotal'
+version '1.0'
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
+sourceCompatibility = 1.8
+
+allprojects{
+    repositories {
+        mavenCentral()
+    }
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '3.1.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+
+    testCompile group: 'io.cucumber', name: 'cucumber-java', version: '4.0.0'
+    testCompile group: 'io.cucumber', name: 'cucumber-testng', version: '4.0.0'
+    testCompile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '4.0.0'
+}
+
+// Checkstyle configuration
+checkstyle {
+    toolVersion = '8.12'
+}
+
+// FindBugs configuration
+findbugs {
+    toolVersion = '3.0.1'
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+// PMD configuration
+pmd {
+    ruleSets = ["java-basic", "java-braces", "java-unnecessary", "java-unusedcode", "java-strictexception"]
+    toolVersion = '6.0.0'
+}
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
