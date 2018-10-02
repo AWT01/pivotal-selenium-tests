@@ -2,13 +2,11 @@ package com.foundationjala.pivotal.model;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
 public abstract class AbstractPage extends AbstractWebDriverEventListener {
 
   protected WebDriver driver;
-  PageObjectFactory pageObjectFactory;
 
   public AbstractPage() {
     super();
@@ -23,17 +21,7 @@ public abstract class AbstractPage extends AbstractWebDriverEventListener {
     return driver;
   }
 
-  public void initPage(WebDriver driver, PageObjectFactory pageObjectFactory) {
-    this.pageObjectFactory = pageObjectFactory;
-    PageFactory.initElements(driver, pageObjectFactory);
-  }
-
-  public PageObjectFactory getFactory() {
-    return pageObjectFactory;
-  }
-
   public void closeDriver(){
-    this.driver.close();
     this.driver.quit();
   }
 }
