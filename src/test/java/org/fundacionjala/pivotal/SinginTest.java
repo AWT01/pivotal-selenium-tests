@@ -1,10 +1,9 @@
-package com.foundationjala.pivotal;
+package org.fundacionjala.pivotal;
 
-import com.foundationjala.pivotal.model.AbstractPage;
-import com.foundationjala.pivotal.model.PageObjectFactory;
-import com.foundationjala.pivotal.model.pageObject.login.HomePage;
-import com.foundationjala.pivotal.model.pageObject.login.SignInPage;
-import org.openqa.selenium.WebDriver;
+import org.fundacionjala.pivotal.model.AbstractPage;
+import org.fundacionjala.pivotal.model.PageObjectFactory;
+import org.fundacionjala.pivotal.model.pageObject.login.HomePage;
+import org.fundacionjala.pivotal.model.pageObject.login.SignInPage;
 import org.testng.annotations.Test;
 
 /**
@@ -24,9 +23,14 @@ public class SinginTest extends AbstractPage {
     PageObjectFactory.initElements(homePage.getDriver(),signInPage);
     signInPage.setUsernameTextBox("elianor@gmail.com");
     signInPage.clickOnLoginButton();
-    signInPage.setPasswordTextBox("");
+    signInPage.setPasswordTextBox("200105574lo");
     signInPage.clickSignInButton();
+
+    /*StoryPage storyPage = new StoryPage();
+    PageObjectFactory.initElements(homePage.getDriver(),storyPage);
+    storyPage.clickStoryButton();
+    storyPage.clickAddSideBarStoryButton();*/
+
+
   }
 }
-
-

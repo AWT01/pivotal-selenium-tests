@@ -1,11 +1,9 @@
-package com.foundationjala.pivotal.model.pageObject.login;
+package org.fundacionjala.pivotal.model.pageObject.login;
 
-import com.foundationjala.pivotal.model.AbstractPage;
+import org.fundacionjala.pivotal.model.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignInPage extends AbstractPage {
   //Using FindBy for locating elements
@@ -17,25 +15,25 @@ public class SignInPage extends AbstractPage {
 
   // This method is to set Email in the email text box
   public void setUsernameTextBox(String userEmail){
-    wait.until(ExpectedConditions.visibilityOf(usernameTextBox));
+    //wait.until(ExpectedConditions.visibilityOf(usernameTextBox));
     usernameTextBox.sendKeys(userEmail);
   }
 
   // This method is to click on Login Button
   public void clickOnLoginButton(){
-    wait.until(ExpectedConditions.elementToBeClickable(nextButton));
+    //wait.until(ExpectedConditions.elementToBeClickable(nextButton));
     nextButton.click();
   }
 
   // This method is to set Email in the email text box
   public void setPasswordTextBox(String userEmail){
-    wait.until(ExpectedConditions.visibilityOf(passwordTextBox));
+    //wait.until(ExpectedConditions.visibilityOf(passwordTextBox));
     passwordTextBox.sendKeys(userEmail);
   }
 
   // This method is to click on Login Button
   public void clickSignInButton(){
-    wait.until(ExpectedConditions.elementToBeClickable(signInButton));
+    //wait.until(ExpectedConditions.elementToBeClickable(signInButton));
     signInButton.click();
   }
 
