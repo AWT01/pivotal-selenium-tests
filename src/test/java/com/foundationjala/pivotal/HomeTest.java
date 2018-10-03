@@ -7,13 +7,12 @@ import com.foundationjala.pivotal.model.AbstractPage;
 
 public class HomeTest extends AbstractPage {
 
-  WebDriver driver;
+
 
   @Test
   public void init() throws Exception{
-    driver = this.getDriver();
-    HomePage homePage = new HomePage(driver);
-    PageObjectFactory.initElements(driver, HomePage.class);
+
+    HomePage homePage = new HomePage();
     homePage.clickOnSignIn();
     this.closeDriver();
   }

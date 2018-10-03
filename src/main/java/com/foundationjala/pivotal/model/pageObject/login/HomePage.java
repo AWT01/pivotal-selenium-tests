@@ -1,27 +1,20 @@
 package com.foundationjala.pivotal.model.pageObject.login;
 
+import com.foundationjala.pivotal.model.AbstractPage;
 import com.foundationjala.pivotal.model.PageObjectFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage {
-
-  WebDriver driver;
-  //Page URL
-  private static String PAGE_URL="https://www.pivotaltracker.com/";
-
-  public HomePage(WebDriver driver){
-    this.driver=driver;
-    this.driver.get(PAGE_URL);
-    //Initialise Elements
-    PageObjectFactory.initElements(this.driver,this);
-  }
+public class HomePage extends AbstractPage {
 
   @FindBy(how=How.LINK_TEXT, using = "Sign in") WebElement signin;
   // This method to click on Sign In
   public void clickOnSignIn(){
+    wait.until(ExpectedConditions.elementToBeClickable(signin));
     signin.click();
   }
 }
