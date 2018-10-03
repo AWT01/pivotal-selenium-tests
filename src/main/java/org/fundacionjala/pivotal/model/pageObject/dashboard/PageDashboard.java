@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.model.pageObject.Dashboard;
+package org.fundacionjala.pivotal.model.pageObject.dashboard;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +33,7 @@ public class PageDashboard {
      * .
      * @return .
      */
-    public PageFormCreate createNewProject() {
+    public PageFormCreate clickCreateNewProject() {
         createProjectButton.click();
         return new PageFormCreate(getDriver(), driver.getCurrentUrl());
     }
