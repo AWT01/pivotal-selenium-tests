@@ -1,9 +1,14 @@
 package org.fundacionjala.pivotal;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.fundacionjala.pivotal.model.pageObject.WebDriverManager;
+import org.fundacionjala.pivotal.model.pageObject.dashboard.CreateProjectInputs;
 import org.fundacionjala.pivotal.model.pageObject.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.model.pageObject.dashboard.PageFormCreate;
+import org.fundacionjala.pivotal.model.pageObject.dashboard.SettingsPage;
 import org.fundacionjala.pivotal.model.pageObject.login.SignInPage;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -22,8 +27,7 @@ public class CreateProjectTest {
      */
     @BeforeTest
     public void setUp() {
-        dashboard = SignInPage.loginAs("kevin.herrera@fundacion-jala.org", "70723844");
-    }
+        dashboard = SignInPage.loginAs("elianor@gmail.com", "200105574lo");    }
 
     /**
      * .
@@ -32,14 +36,15 @@ public class CreateProjectTest {
     public void testCreateProject() {
         formPage = dashboard.clickCreateNewProject();
 
-        // Create project inteligente
-        formPage.setProjectName("testProject");
-        formPage.getExistingAccount("fundacion jala").click();
-        formPage.createNewAccount("test account");
-        formPage.setProjectPrivacy("public");
-
-        //Implement assertions
-
+        Map<CreateProjectInputs, String> formData = new HashMap<>();
+        formData.put(CreateProjectInputs.PROJECT_NAME, "new test 10");
+        formData.put(CreateProjectInputs.PROJECT_ACCOUNT, "test account");
+        formData.put(CreateProjectInputs.PROJECT_PRIVACY, "public");
+        formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
+        SettingsPage settingsPage = formPage.clickCreateButton();
+        settingsPage.clickMoreButton();
+        //Asserting project name
+        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), "new test 10");
     }
 
     /**

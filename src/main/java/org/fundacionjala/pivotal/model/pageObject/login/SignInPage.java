@@ -66,6 +66,7 @@ public class SignInPage extends AbstractPage {
      */
     public static PageDashboard loginAs(final String username, final String password) {
         HomePage homePage = new HomePage();
+        homePage.getDriver().get(HomePage.HOME_PAGE_URL);
         SignInPage signInPage = homePage.clickOnSignInButton();
         signInPage.setUsernameTextBox(username);
         signInPage.clickOnLoginButton();

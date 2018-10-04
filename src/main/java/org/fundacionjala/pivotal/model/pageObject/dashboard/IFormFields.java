@@ -7,9 +7,6 @@ public interface IFormFields {
 
     /**
      * .
-     * @param projectName .
-     * @param accountName .
-     * @param privacyValue .
      */
-    void setFormFields(String projectName, String accountName, FormParameters.Privacy privacyValue);
+    void fillCreateProjectForm();
 }
