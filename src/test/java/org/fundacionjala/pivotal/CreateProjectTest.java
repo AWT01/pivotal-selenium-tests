@@ -2,12 +2,12 @@ package org.fundacionjala.pivotal;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.fundacionjala.pivotal.model.pageObject.WebDriverManager;
-import org.fundacionjala.pivotal.model.pageObject.dashboard.CreateProjectInputs;
-import org.fundacionjala.pivotal.model.pageObject.dashboard.PageDashboard;
-import org.fundacionjala.pivotal.model.pageObject.dashboard.PageFormCreate;
-import org.fundacionjala.pivotal.model.pageObject.dashboard.SettingsPage;
-import org.fundacionjala.pivotal.model.pageObject.login.SignInPage;
+import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.CreateProjectInputs;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
+import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;

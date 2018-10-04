@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.model.pageObject.dashboard;
+package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
 import org.fundacionjala.pivotal.model.AbstractPage;
 import org.openqa.selenium.WebElement;

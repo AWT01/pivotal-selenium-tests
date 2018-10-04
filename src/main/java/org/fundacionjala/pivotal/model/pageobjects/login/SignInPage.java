@@ -1,7 +1,7 @@
-package org.fundacionjala.pivotal.model.pageObject.login;
+package org.fundacionjala.pivotal.model.pageobjects.login;
 
 import org.fundacionjala.pivotal.model.AbstractPage;
-import org.fundacionjala.pivotal.model.pageObject.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;

@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.model.pageObject.login;
+package org.fundacionjala.pivotal.model.pageobjects.login;
 
 import org.fundacionjala.pivotal.model.AbstractPage;
 import org.openqa.selenium.WebElement;

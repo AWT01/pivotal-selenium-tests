@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.model.pageObject.dashboard;
+package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
 import java.util.EnumMap;
 import java.util.HashMap;
