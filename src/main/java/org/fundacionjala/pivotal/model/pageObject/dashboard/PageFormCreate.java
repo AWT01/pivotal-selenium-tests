@@ -1,22 +1,17 @@
 package org.fundacionjala.pivotal.model.pageObject.dashboard;
 
 import org.fundacionjala.pivotal.logger.LoggerManager;
+import org.fundacionjala.pivotal.model.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author KevinHerrera - AWT-[01].
  * @version 0.1
  */
-public class PageFormCreate {
-    private static final int WAIT_TIME_SECONDS = 30;
-    private WebDriver driver;
-    private WebDriverWait driverWait;
+public class PageFormCreate extends AbstractPage {
 
     @FindBy(css = "tc_modal_container")
     private WebElement formContainer;
@@ -41,26 +36,10 @@ public class PageFormCreate {
 
     /**
      * .
-     * @param driver .
-     * @param url .
-     */
-    public PageFormCreate(final WebDriver driver, final String url) {
-        this.driver = driver;
-        driverWait = new WebDriverWait(this.driver, WAIT_TIME_SECONDS);
-        driver.get(url);
-        //Selenium page factory
-        PageFactory.initElements(driver, this);
-    }
-
-    /**
-     * .
      * @param name .
      */
     public void setProjectName(final String name) {
-        if (!formContainerIsVisible()) {
-            return;
-        }
-        driverWait.until(ExpectedConditions.visibilityOf(projectNameTextField));
+        wait.until(ExpectedConditions.visibilityOf(projectNameTextField));
         projectNameTextField.sendKeys(name);
     }
 
@@ -69,21 +48,25 @@ public class PageFormCreate {
      * @param accountName .
      */
     public void createNewAccount(final String accountName) {
-        if (!formContainerIsVisible()) {
-            return;
-        }
-        driverWait.until(ExpectedConditions.elementToBeClickable(createNewAccountButton));
+        wait.until(ExpectedConditions.elementToBeClickable(createNewAccountButton));
         createNewAccountButton.click();
-        driverWait.until(ExpectedConditions.visibilityOf(newAccountNameTextField));
+        wait.until(ExpectedConditions.visibilityOf(newAccountNameTextField));
         newAccountNameTextField.sendKeys(accountName);
     }
 
+
     /**
      * .
-     * @param value .
+     * @param accountName .
      */
-    public void setProjectPrivacy(final String value) {
-        inputProjectPrivacy.sendKeys("public");
+    public void clickExistingAccount(final String accountName) {
+        WebElement existingAccount = getExistingAccount(accountName);
+        if (existingAccount != null) {
+            wait.until(ExpectedConditions.elementToBeClickable(existingAccount));
+            existingAccount.click();
+        } else {
+            LoggerManager.getInstance().getLogger().info("account doesn't exist");
+        }
     }
 
     /**
@@ -92,9 +75,26 @@ public class PageFormCreate {
      * @return .
      */
     public WebElement getExistingAccount(final String accountName) {
-        WebElement accountListContainer = selectAccountField.findElement(By.className("tc-account-selector__options"));
-        WebElement account = accountListContainer.findElement(By.linkText(accountName));
-        return account;
+        wait.until(ExpectedConditions.elementToBeClickable(selectAccountField));
+        return selectAccountField.findElement(By.linkText(accountName));
+    }
+
+    /**
+     * .
+     * @param value .
+     */
+    public void setProjectPrivacy(final String value) {
+        wait.until(ExpectedConditions.visibilityOf(inputProjectPrivacy));
+        inputProjectPrivacy.sendKeys(value);
+    }
+
+    /**
+     * .
+     * @param parameters .
+     * @return .
+     */
+    public boolean validateFormFields(final FormParameters parameters) {
+        return true;
     }
 
     /**
@@ -102,26 +102,16 @@ public class PageFormCreate {
      * @param projectParams .
      */
     public void fillFormAndCreateProject(final FormParameters projectParams) {
-        if (!formContainerIsVisible()) {
-            return;
-        }
         setProjectName(projectParams.getProjectName());
         WebElement existingAccount = getExistingAccount(projectParams.getAccountName());
         if (existingAccount != null) {
             existingAccount.click();
             LoggerManager.getInstance().getLogger().info("account doesn't exist");
         } else {
+            LoggerManager.getInstance().getLogger().info("creating new account");
             createNewAccount(projectParams.getProjectName());
         }
         setProjectPrivacy(projectParams.getPrivacyValue().name().toLowerCase());
-    }
-
-    /**
-     * .
-     * @return .
-     */
-    public WebDriver getDriver() {
-        return driver;
     }
 
     /**
@@ -152,7 +142,7 @@ public class PageFormCreate {
      * .
      * @return .
      */
-    public WebElement getFromContainer() {
+    public WebElement getFormContainer() {
         return formContainer;
     }
 
@@ -162,16 +152,5 @@ public class PageFormCreate {
      */
     public WebElement getInputProjectPrivacy() {
         return inputProjectPrivacy;
-    }
-
-    /**
-     * .
-     * @return .
-     */
-    public boolean formContainerIsVisible() {
-        if (!formContainer.isDisplayed()) {
-            LoggerManager.getInstance().getLogger().info("form container is not visible");
-        }
-        return formContainer.isDisplayed();
     }
 }
