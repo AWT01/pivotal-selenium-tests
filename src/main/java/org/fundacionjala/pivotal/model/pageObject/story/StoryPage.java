@@ -1,35 +1,52 @@
 package org.fundacionjala.pivotal.model.pageObject.story;
-
 import org.fundacionjala.pivotal.model.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StoryPage extends AbstractPage{
-  //Using FindBy for locating elements
-  @FindBy(how= How.LINK_TEXT, using="[title='Add Story']")
-  WebElement addStoryButton;
-  @FindBy(how=How.LINK_TEXT, using="[data-aid='Sidebar_AddStoryButton']") WebElement sideBarAddStoryButton;
-  //@FindBy(how=How.XPATH, using="//a[@data-aid='project-name'][@value='test']") WebElement projectTest;
-  @FindBy(how=How.CSS, using="a[value='test']") WebElement projectTest;
 
-  //*[@id="elm-root"]/div/div[3]/div[2]/div[1]/section/ol/li/header/div/div/div[2]/a
+  @FindBy(css = "button[title='Add Story']") WebElement sideBarAddStoryButton;
+  @FindBy(css = "[name='story[name]']") WebElement storyTitleText;
+  @FindBy(css = "button[id*='story_close_']") WebElement saveButton;
+  @FindBy(css = "[data-focus-id='TaskAdd']") WebElement enableTaskButton;
+  @FindBy(css = "[placeholder='Add a task']") WebElement addTaskText;
+  @FindBy(css = "button[data-aid='addTaskButton']") WebElement saveTaskEditButton;
 
-  // This method is to click on Login Button
-  public void clickStoryButton(){
-    //wait.until(ExpectedConditions.elementToBeClickable(addStoryButton));
-    projectTest.click();
-  }
-
-  // This method is to click on Login Button
-  public void clickAddStoryButton(){
-    //wait.until(ExpectedConditions.elementToBeClickable(addStoryButton));
-    addStoryButton.click();
-  }
-
-  // This method is to click on Login Button
+  // This method is to click on Login Button.
   public void clickAddSideBarStoryButton(){
-    //wait.until(ExpectedConditions.elementToBeClickable(sideBarAddStoryButton));
+    wait.until(ExpectedConditions.elementToBeClickable(sideBarAddStoryButton));
     sideBarAddStoryButton.click();
   }
+
+  // This method is to set on text story title.
+  public void setStoryTitle(String text){
+    wait.until(ExpectedConditions.visibilityOf(storyTitleText));
+    storyTitleText.sendKeys(text);
+  }
+
+  //This method is to click on button save.
+  public void clickSaveButton(){
+    wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+    saveButton.click();
+  }
+
+  //This method is to click on enable task button
+  public void clickEnableTaskButton(){
+    wait.until(ExpectedConditions.elementToBeClickable(enableTaskButton));
+    enableTaskButton.click();
+  }
+
+  // This method is to set on text to add text task.
+  public void setAddText(String text){
+    wait.until(ExpectedConditions.visibilityOf(addTaskText));
+    addTaskText.sendKeys(text);
+  }
+
+  //This method is to click on enable task button
+  public void clickSaveTaskButton(){
+    wait.until(ExpectedConditions.elementToBeClickable(saveTaskEditButton));
+    saveTaskEditButton.click();
+  }
+
 }
