@@ -1,8 +1,7 @@
 package org.fundacionjala.pivotal.model;
 
-
+import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,47 +9,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * .
  */
 public abstract class AbstractPage extends AbstractWebDriverEventListener {
+    //Page URL
+    public static final String HOME_PAGE_URL = "https://www.pivotaltracker.com/";
+    private static final int WAIT_TIME = 30;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
-  /**
-   * .
-   */
-  protected AbstractPage() {
-    super();
-  }
+    /**
+     * .
+     */
+    protected AbstractPage() {
+        super();
+        initDriver();
+    }
 
-  /**
-   * .
-   *
-   * @return .
-   */
-  public static WebDriver instanceFirefoxDriver() {
-    System.setProperty("webdriver.gecko.driver", "ThirdParty\\Geckodriver\\geckodriver.exe");
-    return new FirefoxDriver();
-  }
+    /**
+     *
+     */
+    public void initDriver() {
+        System.setProperty("webdriver.gecko.driver", "ThirdParty\\Geckodriver\\geckodriver.exe");
+        this.driver = WebDriverManager.getInstance().getDriver();
+        wait = new WebDriverWait(driver, WAIT_TIME);
+        //Initialise Elements
+        PageObjectFactory.initElements(this.driver, this);
+    }
 
-  protected WebDriver driver;
-  //Page URL
-  private static String PAGE_URL = "https://www.pivotaltracker.com/";
-  public WebDriverWait wait;
-
-   public void initDriver() {
-    System.setProperty("webdriver.gecko.driver", "ThirdParty\\Geckodriver\\geckodriver.exe");
-    this.driver = new FirefoxDriver();
-    wait = new WebDriverWait(driver, 30);
-
-    this.driver.get(PAGE_URL);
-    //Initialise Elements
-    PageObjectFactory.initElements(this.driver, this);
-  }
-
-  public WebDriver getDriver() {
-    // Create a new instance of the Firefox driver
-    // Notice that the remainder of the code relies on the interface,
-    // not the implementation.
-    return driver;
-  }
-
-  public void closeDriver() {
-    this.driver.quit();
-  }
+    /**
+     * .
+     * @return .
+     */
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
