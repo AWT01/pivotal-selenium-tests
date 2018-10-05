@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal;
 
-import org.fundacionjala.pivotal.model.pageObject.login.HomePage;
+import org.fundacionjala.pivotal.model.pageobjects.login.HomePage;
 import org.testng.annotations.Test;
 
 /**
