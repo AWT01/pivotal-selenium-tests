@@ -1,12 +1,12 @@
 package org.fundacionjala.pivotal.model.pageobjects.login;
 
-import org.fundacionjala.pivotal.model.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 /**
- * .
+ * Page Object for Pivotal Home Page.
  */
 public class HomePage extends AbstractPage {
     //Page URL

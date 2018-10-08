@@ -1,13 +1,13 @@
 package org.fundacionjala.pivotal.model.pageobjects.login;
 
-import org.fundacionjala.pivotal.model.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- *
+ * Page Object for Pivotal Sign In Page.
  */
 public class SignInPage extends AbstractPage {
 

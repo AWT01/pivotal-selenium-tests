@@ -1,11 +1,13 @@
 package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
-import org.fundacionjala.pivotal.model.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
+ * Page Object for Pivotal Settings Page.
  * @author KevinHerrera - AWT-[01].
  * @version 0.1
  */
@@ -18,8 +20,8 @@ public class SettingsPage extends AbstractPage {
     private WebElement projectNameInputField;
 
     /**
-     * .
-     * @return .
+     * Getter of project name input field on create project settings page.
+     * @return webElement object.
      */
     public WebElement getProjectNameInputField() {
         wait.until(ExpectedConditions.visibilityOf(projectNameInputField));
@@ -28,10 +30,11 @@ public class SettingsPage extends AbstractPage {
 
 
     /**
-     * .
+     * Click on more button inside project page.
      */
     public void clickMoreButton() {
         wait.until(ExpectedConditions.elementToBeClickable(projectMoreButton));
-        projectMoreButton.click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(projectMoreButton).click().perform();
     }
 }

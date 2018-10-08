@@ -1,12 +1,12 @@
-package org.fundacionjala.pivotal.model;
+package org.fundacionjala.pivotal.model.pageobjects;
 
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * .
+ * Parent of Page Objects.
  */
 public abstract class AbstractPage extends AbstractWebDriverEventListener {
     //Page URL
@@ -16,7 +16,7 @@ public abstract class AbstractPage extends AbstractWebDriverEventListener {
     protected WebDriverWait wait;
 
     /**
-     * .
+     * Constructor of class.
      */
     protected AbstractPage() {
         super();
@@ -24,19 +24,19 @@ public abstract class AbstractPage extends AbstractWebDriverEventListener {
     }
 
     /**
-     *
+     * Initilize WebDriver and WebDriverWait.
      */
     public void initDriver() {
         System.setProperty("webdriver.gecko.driver", "ThirdParty\\Geckodriver\\geckodriver.exe");
         this.driver = WebDriverManager.getInstance().getDriver();
         wait = new WebDriverWait(driver, WAIT_TIME);
         //Initialise Elements
-        PageObjectFactory.initElements(this.driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     /**
-     * .
-     * @return .
+     * Return WebDriver object.
+     * @return WebDriver object.
      */
     public WebDriver getDriver() {
         return driver;
