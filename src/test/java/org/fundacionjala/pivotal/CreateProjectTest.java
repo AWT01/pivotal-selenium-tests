@@ -23,12 +23,12 @@ public class CreateProjectTest {
     private PageDashboard dashboard;
 
     /**
-     * Set up of test create project, set the user credentials for pivotaltracker.com inside this method.
+     * Set up of test create project, set valid user credentials for pivotaltracker.com inside this method.
      */
     @BeforeTest
     public void setUp() {
         //Set user credentials before test
-        dashboard = SignInPage.loginAs("kevin.herrera@fundacion-jala.org", "70723844");
+        dashboard = SignInPage.loginAs("aaaaa@aaaaa", "111111");
     }
 
     /**

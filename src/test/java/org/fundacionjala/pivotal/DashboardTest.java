@@ -18,7 +18,7 @@ public class DashboardTest {
      */
     @BeforeTest
     public void signIn() {
-        dashboard = SignInPage.loginAs("*****@*****", "******");
+        dashboard = SignInPage.loginAs("aaaaaa@aaaaa", "111111");
     }
 
     /**

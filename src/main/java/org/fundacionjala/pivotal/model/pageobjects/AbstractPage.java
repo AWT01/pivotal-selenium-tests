@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Parent of Page Objects.
+ * @author Angelica Lopez - AWT-[01].
+ * @version 0.1
  */
 public abstract class AbstractPage extends AbstractWebDriverEventListener {
     //Page URL
