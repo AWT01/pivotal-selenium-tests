@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @version 0.1
  */
 public class SignInPage extends AbstractPage {
-    private static final Logger logger = LogManager.getLogger("Sign in pivotal");
+    private static final Logger LOGGER = LogManager.getLogger("Sign in pivotal");
     //Using FindBy for locating elements
     @FindBy(css = "input[type='text'][id='credentials_username']")
     private WebElement usernameTextBox;
@@ -74,7 +74,7 @@ public class SignInPage extends AbstractPage {
         homePage.getDriver().get(HomePage.HOME_PAGE_URL);
         SignInPage signInPage = homePage.clickOnSignInButton();
         signInPage.setUsernameTextBox(username);
-        logger.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
+        LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
         signInPage.clickOnLoginButton();
         signInPage.setPasswordTextBox(password);
         return signInPage.clickSignInButton();
