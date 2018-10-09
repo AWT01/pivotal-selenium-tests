@@ -23,32 +23,55 @@ public class CreateProjectTest {
     private PageDashboard dashboard;
 
     /**
-     * .
+     * Set up of test create project, set valid user credentials for pivotaltracker.com inside this method.
      */
     @BeforeTest
     public void setUp() {
-        dashboard = SignInPage.loginAs("elianor@gmail.com", "200105574lo");    }
+        //Set user credentials before test
+        dashboard = SignInPage.loginAs("aaaaa@aaaaa", "111111");
+    }
 
     /**
-     * .
+     * test of create project setting the name, account and privacy.
      */
     @Test
     public void testCreateProject() {
         formPage = dashboard.clickCreateNewProject();
-
+        String projectName = "new test " + System.currentTimeMillis();
+        //use of lambda strategy map pattern
         Map<CreateProjectInputs, String> formData = new HashMap<>();
-        formData.put(CreateProjectInputs.PROJECT_NAME, "new test 10");
+        formData.put(CreateProjectInputs.PROJECT_NAME, projectName);
         formData.put(CreateProjectInputs.PROJECT_ACCOUNT, "test account");
         formData.put(CreateProjectInputs.PROJECT_PRIVACY, "public");
         formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
+        //submit data to create new project
         SettingsPage settingsPage = formPage.clickCreateButton();
         settingsPage.clickMoreButton();
-        //Asserting project name
-        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), "new test 10");
+        //Asserting project name in project settings page
+        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
 
     /**
-     * .
+     * test of create project setting the name, and account.
+     */
+    @Test
+    public void testCreateProjectWithoutSetPrivacy() {
+        formPage = dashboard.clickCreateNewProject();
+        String projectName = "new test " + System.currentTimeMillis();
+        //use of lambda strategy map pattern
+        Map<CreateProjectInputs, String> formData = new HashMap<>();
+        formData.put(CreateProjectInputs.PROJECT_NAME, projectName);
+        formData.put(CreateProjectInputs.PROJECT_ACCOUNT, "test account");
+        formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
+        //submit data to create new project
+        SettingsPage settingsPage = formPage.clickCreateButton();
+        settingsPage.clickMoreButton();
+        //Asserting project name in settings project panel
+        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
+    }
+
+    /**
+     * after test, close the driver.
      */
     @AfterTest
     public void closeSession() {

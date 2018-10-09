@@ -4,13 +4,14 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.fundacionjala.pivotal.model.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
+ * Page Object for Pivotal Settings Page.
  * @author KevinHerrera - AWT-[01].
  * @version 0.1
  */
@@ -40,7 +41,7 @@ public class PageFormCreate extends AbstractPage {
     private Map<String, WebElement> accountMap;
 
     /**
-     * .
+     * set project name on create project form.
      * @param name .
      */
     public void setProjectName(final String name) {
@@ -49,7 +50,7 @@ public class PageFormCreate extends AbstractPage {
     }
 
     /**
-     * .
+     * set project account on create project form.
      * @param accountName .
      */
     public void setProjectAccount(final String accountName) {
@@ -62,7 +63,7 @@ public class PageFormCreate extends AbstractPage {
     }
 
     /**
-     * .
+     * set project privacy on create project form.
      * @param value .
      */
     public void setProjectPrivacy(final String value) {
@@ -81,7 +82,7 @@ public class PageFormCreate extends AbstractPage {
     }
 
     /**
-     * .
+     * Create new account inside field "account" on create project form.
      * @param accountName .
      */
     public void createNewAccount(final String accountName) {
@@ -94,8 +95,8 @@ public class PageFormCreate extends AbstractPage {
     }
 
     /**
-     * .
-     * @return .
+     * Submit create project form values.
+     * @return Settings Page Object.
      */
     public SettingsPage clickCreateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(createButton));
@@ -104,7 +105,7 @@ public class PageFormCreate extends AbstractPage {
     }
 
     /**
-     * .
+     * Fill a list of accounts that are inside field "account" on create project form.
      */
     public void fillCurrentAccountsList() {
         wait.until(ExpectedConditions.elementToBeClickable(selectAccountField));
@@ -119,9 +120,9 @@ public class PageFormCreate extends AbstractPage {
     }
 
     /**
-     * .
-     * @param values .
-     * @return .
+     * Create a strategy map for create project form fields: Project name, Project Account and Project Privacy.
+     * @param values map of input to put inside create project form fields.
+     * @return map of lambdas to set create project form fields.
      */
     public Map<CreateProjectInputs, IFormFields> getStrategyFormMap(final Map<CreateProjectInputs, String> values) {
         EnumMap<CreateProjectInputs, IFormFields> strategyMap = new EnumMap<>(CreateProjectInputs.class);

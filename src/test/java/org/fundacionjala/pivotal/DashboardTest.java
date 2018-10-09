@@ -14,15 +14,15 @@ public class DashboardTest {
     private PageDashboard dashboard;
 
     /**
-     * .
+     * Set up of test Dashboard page, set the user credentials for pivotaltracker.com inside method.
      */
     @BeforeTest
     public void signIn() {
-        dashboard = SignInPage.loginAs("elianor@gmail.com", "200105574lo");
+        dashboard = SignInPage.loginAs("aaaaaa@aaaaa", "111111");
     }
 
     /**
-     * .
+     * Test button "Create Project".
      */
     @Test
     public void pressCreateProjectButtonTest() {
@@ -30,7 +30,7 @@ public class DashboardTest {
     }
 
     /**
-     * .
+     * Close driver after test.
      */
     @AfterTest
     public void closeSession() {
