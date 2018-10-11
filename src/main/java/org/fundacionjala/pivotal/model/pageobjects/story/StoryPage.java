@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal.model.pageobjects.story;
 
-import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.MozillaFirefox;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class StoryPage extends AbstractPage {
+public class StoryPage extends MozillaFirefox {
 
     @FindBy(css = "button[title='Add Story']")
     private WebElement sideBarAddStoryButton;

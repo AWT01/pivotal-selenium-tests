@@ -1,14 +1,15 @@
 package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Page Object for Pivotal Settings Page.

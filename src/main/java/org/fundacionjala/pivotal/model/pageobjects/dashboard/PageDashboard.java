@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * @author Kevin Herrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class PageDashboard  extends AbstractPage {
+public class PageDashboard extends AbstractPage {
 
     @FindBy(id = "create-project-button")
     private WebElement createProjectButton;

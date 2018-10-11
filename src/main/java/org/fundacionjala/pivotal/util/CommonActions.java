@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @version 0.1
  */
 public final class CommonActions extends AbstractPage {
-
     /**
      * wait and click action.
      * @param element webelement.
