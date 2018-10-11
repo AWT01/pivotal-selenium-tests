@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.model.pageobjects.login;
 
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -21,7 +22,7 @@ public class HomePage extends AbstractPage {
      * @return .
      */
     public SignInPage clickOnSignInButton() {
-        signin.click();
+        CommonActions.waitAndClick(signin);
         return new SignInPage();
     }
 

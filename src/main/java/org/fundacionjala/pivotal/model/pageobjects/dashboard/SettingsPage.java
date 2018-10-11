@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +25,7 @@ public class SettingsPage extends AbstractPage {
      * @return webElement object.
      */
     public WebElement getProjectNameInputField() {
-        wait.until(ExpectedConditions.visibilityOf(projectNameInputField));
+        CommonActions.waitAnElement(projectNameInputField);
         return projectNameInputField;
     }
 
