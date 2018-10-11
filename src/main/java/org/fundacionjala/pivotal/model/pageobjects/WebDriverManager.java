@@ -1,7 +1,10 @@
 package org.fundacionjala.pivotal.model.pageobjects;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.Set;
 
 /**
  * Webdriver singleton pattern.
@@ -33,4 +36,5 @@ public final class  WebDriverManager {
     public WebDriver getDriver() {
         return driver;
     }
+
 }

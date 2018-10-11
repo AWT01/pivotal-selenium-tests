@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public final class CommonActions extends AbstractPage {
 
+    private CommonActions () {
+
+    }
     /**
      * wait and click action.
      * @param element webelement.
@@ -64,5 +67,24 @@ public final class CommonActions extends AbstractPage {
     public static void waitAnElement(final WebElement element) {
         CommonActions commonActions = new CommonActions();
         commonActions.waitElement(element);
+    }
+
+
+    /**
+     * wait and get text.
+     * @param element webelement
+     */
+    private String waitGet(final WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return element.getText();
+    }
+
+    /**
+     * Static method to wait and get.
+     * @param element webelement
+     */
+    public static String waitAndGetText(final WebElement element) {
+        CommonActions commonActions = new CommonActions();
+        return commonActions.waitGet(element);
     }
 }

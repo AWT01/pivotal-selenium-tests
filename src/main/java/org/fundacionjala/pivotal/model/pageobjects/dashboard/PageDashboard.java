@@ -15,6 +15,8 @@ public class PageDashboard  extends AbstractPage {
     @FindBy(id = "create-project-button")
     private WebElement createProjectButton;
 
+
+
     /**
      * Click on "Create Project" button inside Dashboard page.
      * @return .
@@ -23,4 +25,5 @@ public class PageDashboard  extends AbstractPage {
         CommonActions.waitAndClick(createProjectButton);
         return new PageFormCreate();
     }
+
 }
