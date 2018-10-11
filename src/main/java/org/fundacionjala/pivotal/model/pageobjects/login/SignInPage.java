@@ -5,13 +5,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object for Pivotal Sign In Page.
- * @author Angelica Lopez - AWT-[01].
+ * @authors Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
 public class SignInPage extends AbstractPage {
@@ -32,25 +33,22 @@ public class SignInPage extends AbstractPage {
      * @param userEmail .
      */
     public void setUsernameTextBox(final String userEmail) {
-        wait.until(ExpectedConditions.visibilityOf(usernameTextBox));
-        usernameTextBox.sendKeys(userEmail);
+        CommonActions.WaitAndSetText(usernameTextBox, userEmail);
     }
 
     /**
      * This method is to click on Login Button.
      */
     public void clickOnLoginButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(nextButton));
-        nextButton.click();
+        CommonActions.waitAndClick(nextButton);
     }
 
     /**
      * This method is to set Email in the email text box.
-     * @param userEmail .
+     * @param userPassword .
      */
-    public void setPasswordTextBox(final String userEmail) {
-        wait.until(ExpectedConditions.visibilityOf(passwordTextBox));
-        passwordTextBox.sendKeys(userEmail);
+    public void setPasswordTextBox(final String userPassword) {
+        CommonActions.WaitAndSetText(passwordTextBox, userPassword);
     }
 
     /**
@@ -58,8 +56,7 @@ public class SignInPage extends AbstractPage {
      * @return .
      */
     public PageDashboard clickSignInButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(signInButton));
-        signInButton.click();
+        CommonActions.waitAndClick(signInButton);
         return new PageDashboard();
     }
 

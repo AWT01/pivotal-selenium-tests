@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object for Pivotal Settings Page.
- * @author KevinHerrera - AWT-[01].
+ * @authors KevinHerrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
 public class PageFormCreate extends AbstractPage {
@@ -45,8 +46,7 @@ public class PageFormCreate extends AbstractPage {
      * @param name .
      */
     public void setProjectName(final String name) {
-        wait.until(ExpectedConditions.visibilityOf(projectNameTextField));
-        projectNameTextField.sendKeys(name);
+        CommonActions.WaitAndSetText(projectNameTextField, name);
     }
 
     /**
@@ -69,12 +69,10 @@ public class PageFormCreate extends AbstractPage {
     public void setProjectPrivacy(final String value) {
         switch (value.toLowerCase()) {
             case "public":
-                wait.until(ExpectedConditions.visibilityOf(inputProjectPrivacyPublic));
-                inputProjectPrivacyPublic.click();
+                CommonActions.waitAndClick(inputProjectPrivacyPublic);
                 break;
             case "private":
-                wait.until(ExpectedConditions.visibilityOf(inputProjectPrivacyPrivate));
-                inputProjectPrivacyPrivate.click();
+                CommonActions.waitAndClick(inputProjectPrivacyPrivate);
                 break;
             default:
                 break;
@@ -86,12 +84,9 @@ public class PageFormCreate extends AbstractPage {
      * @param accountName .
      */
     public void createNewAccount(final String accountName) {
-        wait.until(ExpectedConditions.elementToBeClickable(selectAccountField));
-        selectAccountField.click();
-        wait.until(ExpectedConditions.elementToBeClickable(createNewAccountButton));
-        createNewAccountButton.click();
-        wait.until(ExpectedConditions.visibilityOf(newAccountNameTextField));
-        newAccountNameTextField.sendKeys(accountName);
+        CommonActions.waitAndClick(selectAccountField);
+        CommonActions.waitAndClick(createNewAccountButton);
+        CommonActions.WaitAndSetText(newAccountNameTextField, accountName);
     }
 
     /**
@@ -99,8 +94,7 @@ public class PageFormCreate extends AbstractPage {
      * @return Settings Page Object.
      */
     public SettingsPage clickCreateButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(createButton));
-        createButton.click();
+        CommonActions.waitAndClick(createButton);
         return new SettingsPage();
     }
 
@@ -108,8 +102,7 @@ public class PageFormCreate extends AbstractPage {
      * Fill a list of accounts that are inside field "account" on create project form.
      */
     public void fillCurrentAccountsList() {
-        wait.until(ExpectedConditions.elementToBeClickable(selectAccountField));
-        selectAccountField.click();
+        CommonActions.waitAndClick(selectAccountField);
         List<WebElement> accountList = selectAccountField.findElements(
                 By.className("tc-account-selector__option-account-name"));
         accountMap = new HashMap<>();

@@ -1,13 +1,14 @@
 package org.fundacionjala.pivotal.model.pageobjects.story;
 
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object of Create Story on project view of pivotaltracker.com.
- * @author Angelica Lopez - AWT-[01].
+ * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
 public class StoryPage extends AbstractPage {
@@ -34,8 +35,7 @@ public class StoryPage extends AbstractPage {
      * This method is to click on Login Button.
      */
     public void clickAddSideBarStoryButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(sideBarAddStoryButton));
-        sideBarAddStoryButton.click();
+        CommonActions.waitAndClick(sideBarAddStoryButton);
     }
 
     /**
@@ -43,24 +43,21 @@ public class StoryPage extends AbstractPage {
      * @param text story title.
      */
     public void setStoryTitle(final String text) {
-        wait.until(ExpectedConditions.visibilityOf(storyTitleText));
-        storyTitleText.sendKeys(text);
+        CommonActions.WaitAndSetText(storyTitleText, text);
     }
 
     /**
      * This method is to click on button save.
      */
     public void clickSaveButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-        saveButton.click();
+        CommonActions.waitAndClick(saveButton);
     }
 
     /**
      * This method is to click on enable task button.
      */
     public void clickEnableTaskButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(enableTaskButton));
-        enableTaskButton.click();
+        CommonActions.waitAndClick(enableTaskButton);
     }
 
     /**
@@ -68,16 +65,14 @@ public class StoryPage extends AbstractPage {
      * @param text task text.
      */
     public void setAddText(final String text) {
-        wait.until(ExpectedConditions.visibilityOf(addTaskText));
-        addTaskText.sendKeys(text);
+        CommonActions.WaitAndSetText(addTaskText, text);
     }
 
     /**
      * This method is to click on enable task button.
      */
     public void clickSaveTaskButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveTaskEditButton));
-        saveTaskEditButton.click();
+        CommonActions.waitAndClick(saveTaskEditButton);
     }
 
 }
