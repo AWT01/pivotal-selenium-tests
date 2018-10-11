@@ -4,7 +4,6 @@ import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object of Create Story on project view of pivotaltracker.com.
@@ -43,7 +42,7 @@ public class StoryPage extends AbstractPage {
      * @param text story title.
      */
     public void setStoryTitle(final String text) {
-        CommonActions.WaitAndSetText(storyTitleText, text);
+        CommonActions.waitAndSetText(storyTitleText, text);
     }
 
     /**
@@ -65,7 +64,7 @@ public class StoryPage extends AbstractPage {
      * @param text task text.
      */
     public void setAddText(final String text) {
-        CommonActions.WaitAndSetText(addTaskText, text);
+        CommonActions.waitAndSetText(addTaskText, text);
     }
 
     /**

@@ -8,11 +8,10 @@ import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object for Pivotal Sign In Page.
- * @authors Angelica Lopez, Kevin Sanchez - AWT-[01].
+ * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
 public class SignInPage extends AbstractPage {
@@ -33,7 +32,7 @@ public class SignInPage extends AbstractPage {
      * @param userEmail .
      */
     public void setUsernameTextBox(final String userEmail) {
-        CommonActions.WaitAndSetText(usernameTextBox, userEmail);
+        CommonActions.waitAndSetText(usernameTextBox, userEmail);
     }
 
     /**
@@ -48,7 +47,7 @@ public class SignInPage extends AbstractPage {
      * @param userPassword .
      */
     public void setPasswordTextBox(final String userPassword) {
-        CommonActions.WaitAndSetText(passwordTextBox, userPassword);
+        CommonActions.waitAndSetText(passwordTextBox, userPassword);
     }
 
     /**

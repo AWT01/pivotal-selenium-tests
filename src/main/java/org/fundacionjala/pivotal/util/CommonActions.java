@@ -3,31 +3,65 @@ package org.fundacionjala.pivotal.util;
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CommonActions extends AbstractPage {
-    private CommonActions() {
-    }
-    private void waitClick(WebElement element) {
+/**
+ * Class with common actions to execute.
+ * @author Kevin Sanchez AWT - [01].
+ * @version 0.1
+ */
+public final class CommonActions extends AbstractPage {
+
+    /**
+     * wait and click action.
+     * @param element webelement.
+     */
+    private void waitClick(final WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
-    public static void waitAndClick(WebElement webElement) {
+
+    /**
+     * Static method for wait and click.
+     * @param webElement element to click
+     */
+    public static void waitAndClick(final WebElement webElement) {
         CommonActions commonActions = new CommonActions();
         commonActions.waitClick(webElement);
     }
-    private void waitSet(WebElement element, final String textToSet) {
+
+    /**
+     * wait and set text.
+     * @param element webelement
+     * @param textToSet text
+     */
+    private void waitSet(final WebElement element, final String textToSet) {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(textToSet);
     }
-    public static void WaitAndSetText (WebElement element, final String textToSet) {
+
+    /**
+     * Static method to wait and set.
+     * @param element webelement
+     * @param textToSet text
+     */
+    public static void waitAndSetText(final WebElement element, final String textToSet) {
         CommonActions commonActions = new CommonActions();
         commonActions.waitSet(element, textToSet);
     }
-    private void waitElement(WebElement element) {
+
+    /**
+     * wait for a element.
+     * @param element webelement
+     */
+    private void waitElement(final WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
-    public static void waitAnElement(WebElement element) {
+
+    /**
+     * static method to wait an element.
+     * @param element webelement
+     */
+    public static void waitAnElement(final WebElement element) {
         CommonActions commonActions = new CommonActions();
         commonActions.waitElement(element);
     }

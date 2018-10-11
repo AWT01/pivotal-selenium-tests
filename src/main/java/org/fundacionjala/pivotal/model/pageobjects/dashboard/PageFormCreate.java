@@ -9,11 +9,10 @@ import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object for Pivotal Settings Page.
- * @authors KevinHerrera, Kevin Sanchez - AWT-[01].
+ * @author KevinHerrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
 public class PageFormCreate extends AbstractPage {
@@ -46,7 +45,7 @@ public class PageFormCreate extends AbstractPage {
      * @param name .
      */
     public void setProjectName(final String name) {
-        CommonActions.WaitAndSetText(projectNameTextField, name);
+        CommonActions.waitAndSetText(projectNameTextField, name);
     }
 
     /**
@@ -86,7 +85,7 @@ public class PageFormCreate extends AbstractPage {
     public void createNewAccount(final String accountName) {
         CommonActions.waitAndClick(selectAccountField);
         CommonActions.waitAndClick(createNewAccountButton);
-        CommonActions.WaitAndSetText(newAccountNameTextField, accountName);
+        CommonActions.waitAndSetText(newAccountNameTextField, accountName);
     }
 
     /**
