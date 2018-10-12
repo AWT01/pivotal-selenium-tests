@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.util;
 
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -18,8 +19,8 @@ public final class CommonActions extends AbstractPage {
      * wait and click action.
      * @param element webelement.
      */
-    private void waitClick(final WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    private static void waitClick(final WebElement element) {
+        WebDriverManager.getInstance().getWaiter().until(ExpectedConditions.visibilityOf(element));
         element.click();
     }
 
@@ -28,8 +29,7 @@ public final class CommonActions extends AbstractPage {
      * @param webElement element to click
      */
     public static void waitAndClick(final WebElement webElement) {
-        CommonActions commonActions = new CommonActions();
-        commonActions.waitClick(webElement);
+        waitClick(webElement);
     }
 
     /**
@@ -37,8 +37,8 @@ public final class CommonActions extends AbstractPage {
      * @param element webelement
      * @param textToSet text
      */
-    private void waitSet(final WebElement element, final String textToSet) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    private static void waitSet(final WebElement element, final String textToSet) {
+        WebDriverManager.getInstance().getWaiter().until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(textToSet);
     }
 
@@ -48,8 +48,7 @@ public final class CommonActions extends AbstractPage {
      * @param textToSet text
      */
     public static void waitAndSetText(final WebElement element, final String textToSet) {
-        CommonActions commonActions = new CommonActions();
-        commonActions.waitSet(element, textToSet);
+        waitSet(element, textToSet);
     }
 
     /**

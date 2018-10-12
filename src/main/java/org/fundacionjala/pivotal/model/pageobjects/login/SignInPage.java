@@ -86,12 +86,12 @@ public class SignInPage extends AbstractPage {
      */
     public static void newCredentials (String username, String password){
         try {
-            String currentSession = CookieManager.getInstance().getValueOfCookieNamed("lastuser");
+            String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
             LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
             LOGGER.log(Level.INFO, "User logged is: " +
-                    CookieManager.getInstance().getValueOfCookieNamed("lastuser"));
+                    CookieManager.getValueOfCookieNamed("lastuser"));
             if (!username.equals(currentSession)) {
-                CookieManager.getInstance().deleteAllCookies();
+                CookieManager.deleteAllCookies();
                 loginAs(username, password);
             } else {
                 LOGGER.log(Level.INFO, "User: " + username + "is already logged");

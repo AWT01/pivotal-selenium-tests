@@ -7,21 +7,13 @@ import java.util.Set;
 
 public final class CookieManager {
 
-    private static CookieManager thisInstance = new CookieManager();
     private CookieManager () {}
-    /**
-     * Getter of singleton instance.
-     * @return CookieManager object .
-     */
-    public static CookieManager getInstance() {
-        return thisInstance;
-    }
 
     /**
      * This method gets all the cookies
      * @return
      */
-    public Set<Cookie> getAllCookies() {
+    public static Set<Cookie> getAllCookies() {
         return WebDriverManager.getInstance().getDriver().manage().getCookies();
     }
 
