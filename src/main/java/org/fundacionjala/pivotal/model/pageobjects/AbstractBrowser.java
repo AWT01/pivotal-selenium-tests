@@ -4,15 +4,10 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * Parent of Page Objects.
- * @author Angelica Lopez - AWT-[01].
+ * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
 public abstract class AbstractBrowser {
-
-    /**
-     * Initilize WebDriver and WebDriverWait.
-     */
-    public abstract void initDriver();
 
     /**
      * Return WebDriver object.
