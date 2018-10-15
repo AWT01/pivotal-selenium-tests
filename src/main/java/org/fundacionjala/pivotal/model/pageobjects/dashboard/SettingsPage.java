@@ -1,7 +1,7 @@
 package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
+import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;

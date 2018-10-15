@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.model.pageobjects;
+package org.fundacionjala.pivotal.browsers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

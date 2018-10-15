@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal.util;
 
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -35,7 +34,14 @@ public final class CommonActions {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(textToSet);
     }
-
+    /**
+     * wait and get text.
+     * @param element webelement
+     */
+    public static String waitAndGetText(final WebElement element) {
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
+        return element.getText();
+    }
     /**
      * wait for a element.
      * @param element webelement
