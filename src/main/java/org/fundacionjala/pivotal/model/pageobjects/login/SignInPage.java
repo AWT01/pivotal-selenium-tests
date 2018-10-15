@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
+import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;

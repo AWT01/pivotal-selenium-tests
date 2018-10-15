@@ -1,7 +1,7 @@
 package org.fundacionjala.pivotal;
 import org.fundacionjala.pivotal.model.pageobjects.story.StoryPage;
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
+import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

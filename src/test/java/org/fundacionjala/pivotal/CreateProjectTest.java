@@ -1,17 +1,18 @@
 package org.fundacionjala.pivotal;
 
-import java.util.HashMap;
-import java.util.Map;
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.CreateProjectInputs;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
+import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author KevinHerrera - AWT-[01].

@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.model.pageobjects;
 
+import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;

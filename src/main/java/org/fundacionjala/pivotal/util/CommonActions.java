@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal.util;
 
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 

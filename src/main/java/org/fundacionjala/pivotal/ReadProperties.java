@@ -1,5 +1,8 @@
 package org.fundacionjala.pivotal;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,21 +13,33 @@ import java.util.Properties;
  * @author Kevin Sanchez AWT - [01].
  * @version 0.1
  */
-public class ReadProperties {
+public final class ReadProperties {
+    private static final Logger LOGGER = LogManager.getLogger("Read properties");
+    private static ReadProperties instance = new ReadProperties();
     private Properties properties;
-    private InputStream input;
 
     /**
-     * Constructor which reads the file.
+     * Constructor which uses the readFile
+     * to obtain the properties.
      */
     private ReadProperties() {
+       try {
+           readFile();
+       } catch (IOException ex) {
+           LOGGER.error(ex.getMessage());
+       }
+    }
+
+    /**
+     * method which reads the config file.
+     * @throws IOException is throwed
+     */
+    private void readFile() throws IOException {
         properties = new Properties();
-        input = null;
-        try {
-            input = new FileInputStream("config.properties");
+        try (InputStream input = new FileInputStream("config.properties")) {
             properties.load(input);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage());
         }
     }
 
@@ -37,11 +52,10 @@ public class ReadProperties {
     }
 
     /**
-     * return the browser according the properties file.
-     * @return string
+     * returns the instance of the class.
+     * @return instance
      */
-    public static String getBrowser() {
-        ReadProperties readProperties = new ReadProperties();
-        return readProperties.getProperties().getProperty("browser");
+    public static ReadProperties getInstance() {
+        return instance;
     }
 }
