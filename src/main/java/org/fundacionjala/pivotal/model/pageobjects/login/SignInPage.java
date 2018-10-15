@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
@@ -66,8 +67,8 @@ public class SignInPage extends AbstractPage {
      * @return .
      */
     public static PageDashboard loginAs(final String username, final String password) {
+        WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
         HomePage homePage = new HomePage();
-        homePage.getDriver().get(HomePage.HOME_PAGE_URL);
         SignInPage signInPage = homePage.clickOnSignInButton();
         signInPage.setUsernameTextBox(username);
         LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);

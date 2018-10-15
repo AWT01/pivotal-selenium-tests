@@ -1,14 +1,19 @@
 package org.fundacionjala.pivotal.model.pageobjects;
 
+import org.fundacionjala.pivotal.ReadProperties;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Webdriver singleton pattern.
+ * @author Kevin Herrera, Kevin Sanchez AWT - [01].
+ * @version 0.1
  */
 public final class  WebDriverManager {
     private static WebDriverManager ourInstance = new WebDriverManager();
     private WebDriver driver;
+    private WebDriverWait wait;
+    private static final int WAIT_TIME = 30;
 
     /**
      * Getter of singleton instance.
@@ -22,8 +27,8 @@ public final class  WebDriverManager {
      * Constructor of class.
      */
     private WebDriverManager() {
-        System.setProperty("webdriver.gecko.driver", "ThirdParty\\Geckodriver\\geckodriver.exe");
-        driver = new FirefoxDriver();
+        this.driver = BrowserFactory.getBrowser(ReadProperties.getBrowser());
+        this.wait = new WebDriverWait(this.getDriver(), WAIT_TIME);
     }
 
     /**
@@ -32,5 +37,13 @@ public final class  WebDriverManager {
      */
     public WebDriver getDriver() {
         return driver;
+    }
+
+    /**
+     * setter of WebDriverWait object.
+     * @return WebDriverWait object
+     */
+    public WebDriverWait getWait() {
+        return wait;
     }
 }
