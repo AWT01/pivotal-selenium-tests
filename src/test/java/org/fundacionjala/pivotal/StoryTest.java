@@ -29,7 +29,6 @@ public class StoryTest {
     public void testClick() {
         WebDriverManager.getInstance().getDriver().get(PROJECT_PAGE_URL);
         StoryPage storyPage = new StoryPage();
-        storyPage.initDriver();
         storyPage.clickAddSideBarStoryButton();
         storyPage.setStoryTitle("test...");
         storyPage.clickEnableTaskButton();

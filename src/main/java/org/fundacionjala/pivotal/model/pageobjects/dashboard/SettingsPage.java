@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.model.pageobjects.dashboard;
 
 import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
+import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
 import org.fundacionjala.pivotal.util.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -34,8 +35,8 @@ public class SettingsPage extends AbstractPage {
      * Click on more button inside project page.
      */
     public void clickMoreButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(projectMoreButton));
-        Actions actions = new Actions(driver);
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(projectMoreButton));
+        Actions actions = new Actions(WebDriverManager.getInstance().getDriver());
         actions.moveToElement(projectMoreButton).click().perform();
     }
 }
