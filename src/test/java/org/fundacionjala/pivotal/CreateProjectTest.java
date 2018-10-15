@@ -39,10 +39,10 @@ public class CreateProjectTest {
         formPage = dashboard.clickCreateNewProject();
         String projectName = "new test " + System.currentTimeMillis();
         //use of lambda strategy map pattern
-        Map<CreateProjectInputs, String> formData = new HashMap<>();
-        formData.put(CreateProjectInputs.PROJECT_NAME, projectName);
-        formData.put(CreateProjectInputs.PROJECT_ACCOUNT, "test account");
-        formData.put(CreateProjectInputs.PROJECT_PRIVACY, "public");
+        Map<String, String> formData = new HashMap<>();
+        formData.put("name", projectName);
+        formData.put("account", "test account");
+        formData.put("privacy", "public");
         formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
         //submit data to create new project
         SettingsPage settingsPage = formPage.clickCreateButton();

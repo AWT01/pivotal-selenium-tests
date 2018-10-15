@@ -117,14 +117,11 @@ public class PageFormCreate extends AbstractPage {
      * @param values map of input to put inside create project form fields.
      * @return map of lambdas to set create project form fields.
      */
-    public Map<CreateProjectInputs, IFormFields> getStrategyFormMap(final Map<CreateProjectInputs, String> values) {
-        EnumMap<CreateProjectInputs, IFormFields> strategyMap = new EnumMap<>(CreateProjectInputs.class);
-        strategyMap.put(CreateProjectInputs.PROJECT_NAME,
-                () -> this.setProjectName(String.valueOf(values.get(CreateProjectInputs.PROJECT_NAME))));
-        strategyMap.put(CreateProjectInputs.PROJECT_ACCOUNT,
-                () -> this.setProjectAccount(String.valueOf(values.get(CreateProjectInputs.PROJECT_ACCOUNT))));
-        strategyMap.put(CreateProjectInputs.PROJECT_PRIVACY,
-                () -> this.setProjectPrivacy(String.valueOf(values.get(CreateProjectInputs.PROJECT_PRIVACY))));
+    public Map<String, IFormFields> getStrategyFormMap(final Map<String, String> values) {
+        Map<String, IFormFields> strategyMap = new HashMap<>();
+        strategyMap.put("name", () -> this.setProjectName(values.get("name")));
+        strategyMap.put("account", () -> this.setProjectAccount(values.get("account")));
+        strategyMap.put("privacy", () -> this.setProjectPrivacy(values.get("privacy")));
         return strategyMap;
     }
 
