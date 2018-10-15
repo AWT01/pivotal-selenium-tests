@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.model.pageobjects;
 
+import org.fundacionjala.pivotal.ReadProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,7 +27,7 @@ public final class  WebDriverManager {
      * Constructor of class.
      */
     private WebDriverManager() {
-        this.driver = BrowserFactory.getBrowser("firefox");
+        this.driver = BrowserFactory.getBrowser(ReadProperties.getBrowser());
         this.wait = new WebDriverWait(this.getDriver(), WAIT_TIME);
     }
 
