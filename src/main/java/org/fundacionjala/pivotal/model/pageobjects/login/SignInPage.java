@@ -85,7 +85,7 @@ public class SignInPage extends AbstractPage {
      * @param username that.
      * @param password that.
      */
-    public static void newCredentials (String username, String password){
+    public static PageDashboard newCredentials (String username, String password){
         try {
             String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
             LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
@@ -93,13 +93,14 @@ public class SignInPage extends AbstractPage {
                     CookieManager.getValueOfCookieNamed("lastuser"));
             if (!username.equals(currentSession)) {
                 CookieManager.deleteAllCookies();
-                loginAs(username, password);
+                return loginAs(username, password);
             } else {
                 LOGGER.log(Level.INFO, "User: " + username + "is already logged");
+                return new PageDashboard();
             }
-        } catch (Exception e) {
-            loginAs(username,password);
+        } catch (Exception e){
             LOGGER.log(Level.INFO, "Login in as: " + username + "Cookie session not found: "+e);
-            }
+            return loginAs(username,password);
+        }
     }
 }
