@@ -1,16 +1,29 @@
 package org.fundacionjala.pivotal.steps;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.CreateProjectInputs;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
+import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
+
+import org.fundacionjala.pivotal.util.Helper;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MyStepdefs {
+
+    private PageFormCreate formPage;
+    private SettingsPage settingsPage;
+    private PageDashboard dashboard;
+    private Helper helperToHook;
+
     /**
      * Precondition, user must be logged in.
      * @param username inserted
@@ -18,28 +31,30 @@ public class MyStepdefs {
      */
     @Given("^I log in as \"([^\"]*)\" \"([^\"]*)\"$")
     public void iLogInAs(String username, String password) {
-        SignInPage.newCredentials(username,password);
+        dashboard = SignInPage.newCredentials(username,password);
     }
 
-    /**
-     * New project is created
-     * @param projectName specify the project name
-     * @param privacy specify if project is private or public, defined as a boolean
-     */
-    @When("^I create a new project with name \"([^\"]*)\" with privacy set to \"([^\"]*)\"$")
-    public void iCreateANewProjectWithNameWithPrivacySetTo(String projectName, String privacy) {
-        boolean setPrivacy = Boolean.getBoolean(privacy);
-        System.out.println("Project to be created must be called: " + projectName);
-        if(setPrivacy)
-            System.out.println("Project is private");
-        else System.out.println("Project is public");
-    }
 
     @Then("^The project is created$")
     public void theProjectIsCreated() {
         System.out.println("Check project name and type");
     }
-    /**
-     * after test, close the driver.
-     */
+
+    @Then("^I click the create project button$")
+    public void iClickTheCreateProjectButton() {
+        formPage = dashboard.clickCreateNewProject();
+    }
+
+    @And("^I fill the fields of Create new project and press the create button$")
+    public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<CreateProjectInputs, String> values) {
+        values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
+        //submit data to create new project
+        settingsPage = formPage.clickCreateButton();
+        settingsPage.clickMoreButton();
+    }
+
+    @Then("^I verify if the project \"([^\"]*)\" is created$")
+    public void iVerifyIfTheProjectIsCreated(String projectName) {
+        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
+    }
 }

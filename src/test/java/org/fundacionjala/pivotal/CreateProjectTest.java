@@ -28,7 +28,7 @@ public class CreateProjectTest {
     @BeforeTest
     public void setUp() {
         //Set user credentials before test
-        dashboard = SignInPage.loginAs("aaaaa@aaaaa", "111111");
+        dashboard = SignInPage.loginAs("hapsneeze", "test12345");
     }
 
     /**
@@ -54,7 +54,7 @@ public class CreateProjectTest {
     /**
      * test of create project setting the name, and account.
      */
-    @Test
+    /*@Test
     public void testCreateProjectWithoutSetPrivacy() {
         formPage = dashboard.clickCreateNewProject();
         String projectName = "new test " + System.currentTimeMillis();
