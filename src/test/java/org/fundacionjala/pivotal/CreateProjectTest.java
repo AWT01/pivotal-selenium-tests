@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal;
 
-import org.fundacionjala.pivotal.model.pageobjects.dashboard.CreateProjectInputs;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
@@ -70,7 +69,7 @@ public class CreateProjectTest {
         //Asserting project name in settings project panel
         Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
-
+*/
     /**
      * after test, close the driver.
      */

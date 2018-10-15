@@ -26,7 +26,12 @@ public class HomePage extends AbstractPage {
         CommonActions.waitAndClick(signin);
         return new SignInPage();
     }
-    public String getSessionName(){
+
+    /**
+     * method to get name of the session.
+     * @return a string
+     */
+    public String getSessionName() {
         return CommonActions.waitAndGetText(sessionName);
     }
 }

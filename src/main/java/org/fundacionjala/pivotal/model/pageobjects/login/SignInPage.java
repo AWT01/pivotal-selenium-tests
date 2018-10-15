@@ -11,8 +11,6 @@ import org.fundacionjala.pivotal.util.CookieManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Set;
-
 /**
  * Page Object for Pivotal Sign In Page.
  * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
@@ -84,13 +82,14 @@ public class SignInPage extends AbstractPage {
      * Smart login checking current session with cookies.
      * @param username that.
      * @param password that.
+     * @return a PageDashboard object
      */
-    public static PageDashboard newCredentials (String username, String password){
+    public static PageDashboard newCredentials(final String username, final String password) {
         try {
             String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
             LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
-            LOGGER.log(Level.INFO, "User logged is: " +
-                    CookieManager.getValueOfCookieNamed("lastuser"));
+            LOGGER.log(Level.INFO, new StringBuilder().append("User logged is: ")
+                    .append(CookieManager.getValueOfCookieNamed("lastuser")).toString());
             if (!username.equals(currentSession)) {
                 CookieManager.deleteAllCookies();
                 return loginAs(username, password);
@@ -98,9 +97,10 @@ public class SignInPage extends AbstractPage {
                 LOGGER.log(Level.INFO, "User: " + username + "is already logged");
                 return new PageDashboard();
             }
-        } catch (Exception e){
-            LOGGER.log(Level.INFO, "Login in as: " + username + "Cookie session not found: "+e);
-            return loginAs(username,password);
+        } catch (Exception e) {
+            LOGGER.log(Level.INFO, new StringBuilder().append("Login in as: ")
+                    .append(username).append("Cookie session not found: ").append(e).toString());
+            return loginAs(username, password);
         }
     }
 }

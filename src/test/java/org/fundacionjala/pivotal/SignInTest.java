@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal;
 
-import org.fundacionjala.pivotal.model.pageobjects.WebDriverManager;
+import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ public class SignInTest {
     public void smartSignIn() {
 
        SignInPage.newCredentials("hapsneeze", "test12345");
-       SignInPage.newCredentials("adrinrojas1","test12345");
+       SignInPage.newCredentials("adrinrojas1", "test12345");
     }
     /**
      * Close driver after test.

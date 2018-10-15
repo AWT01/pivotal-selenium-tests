@@ -1,7 +1,5 @@
 package org.fundacionjala.pivotal.steps;
 
-import java.util.Map;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,7 +10,12 @@ import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
 import org.fundacionjala.pivotal.util.Helper;
 import org.testng.Assert;
 
-
+import java.util.Map;
+/**
+ * Class for steps.
+ * @author Adrian Rojas AWT - [01].
+ * @version 0.1
+ */
 public class MyStepdefs {
 
     private PageFormCreate formPage;
@@ -26,21 +29,30 @@ public class MyStepdefs {
      * @param password inserted
      */
     @Given("^I log in as \"([^\"]*)\" \"([^\"]*)\"$")
-    public void iLogInAs(String username, String password) {
-        dashboard = SignInPage.newCredentials(username,password);
+    public void iLogInAs(final String username, final String password) {
+        dashboard = SignInPage.newCredentials(username, password);
     }
 
-
+    /**
+     * .
+     */
     @Then("^The project is created$")
     public void theProjectIsCreated() {
         System.out.println("Check project name and type");
     }
 
+    /**
+     * .
+     */
     @Then("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
         formPage = dashboard.clickCreateNewProject();
     }
 
+    /**
+     * .
+     * @param values a map
+     */
     @And("^I fill the fields of Create new project and press the create button$")
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
@@ -49,8 +61,12 @@ public class MyStepdefs {
         settingsPage.clickMoreButton();
     }
 
+    /**
+     * .
+     * @param projectName name of the project
+     */
     @Then("^I verify if the project \"([^\"]*)\" is created$")
-    public void iVerifyIfTheProjectIsCreated(String projectName) {
+    public void iVerifyIfTheProjectIsCreated(final String projectName) {
         Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
 }

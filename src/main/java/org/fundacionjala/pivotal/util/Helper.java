@@ -5,6 +5,11 @@ import org.fundacionjala.pivotal.model.pageobjects.dashboard.CreateProjectInputs
 import java.util.EnumMap;
 import java.util.Map;
 
+/**
+ * Class helper.
+ * @author Adrian Rojas AWT - [01].
+ * @version 0.1
+ */
 public class Helper {
     private String projectName;
     private String projectAccount;
