@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.model.pageobjects;
 
+
 import org.fundacionjala.pivotal.ReadProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +15,7 @@ public final class  WebDriverManager {
     private WebDriver driver;
     private WebDriverWait wait;
     private static final int WAIT_TIME = 30;
-
+  
     /**
      * Getter of singleton instance.
      * @return WebDriverManager object .
@@ -27,6 +28,7 @@ public final class  WebDriverManager {
      * Constructor of class.
      */
     private WebDriverManager() {
+
         this.driver = BrowserFactory.getBrowser(ReadProperties.getBrowser());
         this.wait = new WebDriverWait(this.getDriver(), WAIT_TIME);
     }
@@ -39,7 +41,7 @@ public final class  WebDriverManager {
         return driver;
     }
 
-    /**
+     /**
      * setter of WebDriverWait object.
      * @return WebDriverWait object
      */
