@@ -16,7 +16,8 @@ public class HomePage extends AbstractPage {
     //Page URL
     @FindBy(how = How.LINK_TEXT, using = "Sign in")
     private WebElement signin;
-
+    @FindBy(id = "AvatarDetails__imageContainer")
+    private WebElement sessionName;
     /**
      * This method to click on Sign In.
      * @return .
@@ -25,5 +26,7 @@ public class HomePage extends AbstractPage {
         CommonActions.waitAndClick(signin);
         return new SignInPage();
     }
-
+    public String getSessionName(){
+        return CommonActions.waitAndGetText(sessionName);
+    }
 }

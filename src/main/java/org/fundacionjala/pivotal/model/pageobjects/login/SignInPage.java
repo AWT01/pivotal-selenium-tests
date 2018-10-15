@@ -7,8 +7,11 @@ import org.fundacionjala.pivotal.model.pageobjects.AbstractPage;
 import org.fundacionjala.pivotal.util.WebDriverManager;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.util.CommonActions;
+import org.fundacionjala.pivotal.util.CookieManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.Set;
 
 /**
  * Page Object for Pivotal Sign In Page.
@@ -77,4 +80,26 @@ public class SignInPage extends AbstractPage {
         return signInPage.clickSignInButton();
     }
 
+    /**
+     * Smart login checking current session with cookies.
+     * @param username that.
+     * @param password that.
+     */
+    public static void newCredentials (String username, String password){
+        try {
+            String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
+            LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
+            LOGGER.log(Level.INFO, "User logged is: " +
+                    CookieManager.getValueOfCookieNamed("lastuser"));
+            if (!username.equals(currentSession)) {
+                CookieManager.deleteAllCookies();
+                loginAs(username, password);
+            } else {
+                LOGGER.log(Level.INFO, "User: " + username + "is already logged");
+            }
+        } catch (Exception e) {
+            loginAs(username,password);
+            LOGGER.log(Level.INFO, "Login in as: " + username + "Cookie session not found: "+e);
+            }
+    }
 }
