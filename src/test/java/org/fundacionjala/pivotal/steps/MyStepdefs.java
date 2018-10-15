@@ -7,7 +7,6 @@ import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
-import org.fundacionjala.pivotal.util.Helper;
 import org.testng.Assert;
 
 import java.util.Map;
@@ -21,7 +20,6 @@ public class MyStepdefs {
     private PageFormCreate formPage;
     private SettingsPage settingsPage;
     private PageDashboard dashboard;
-    private Helper helperToHook;
 
     /**
      * Precondition, user must be logged in.
