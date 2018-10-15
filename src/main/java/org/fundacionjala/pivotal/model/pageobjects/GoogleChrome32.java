@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Kevin Sanchez AWT - [01].
  * @version 0.1
  */
-public class GoogleChrome32 extends AbstractBrowser {
+public class GoogleChrome32 implements AbstractBrowser {
     private WebDriver driver;
 
     /**

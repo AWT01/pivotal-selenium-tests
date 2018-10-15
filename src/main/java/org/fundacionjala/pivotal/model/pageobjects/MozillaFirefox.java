@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @author Kevin Sanchez AWT - [01].
  * @version 0.1
  */
-public class MozillaFirefox extends AbstractBrowser {
+public class MozillaFirefox implements AbstractBrowser {
     private WebDriver driver;
 
     /**
