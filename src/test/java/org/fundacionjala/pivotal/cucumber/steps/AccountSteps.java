@@ -17,7 +17,7 @@ import java.util.Map;
  * @author Adrian Rojas AWT - [01].
  * @version 0.1
  */
-public class MyStepdefs {
+public class AccountSteps {
 
     private PageFormCreate formPage;
     private SettingsPage settingsPage;
@@ -69,12 +69,10 @@ public class MyStepdefs {
     }
 
     /**
-     * .
-     *
-     * @param projectName name of the project
+     * Verify project is created.
      */
-    @Then("^I verify if the project \"([^\"]*)\" is created$")
-    public void iVerifyIfTheProjectIsCreated(final String projectName) {
+    @Then("^I verify if the project is created$")
+    public void iVerifyIfTheProjectIsCreated() {
         settingsPage.clickMoreButton();
         Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
