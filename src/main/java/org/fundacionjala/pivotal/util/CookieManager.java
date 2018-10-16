@@ -10,7 +10,7 @@ public final class CookieManager {
     private CookieManager () {}
 
     /**
-     * This method gets all the cookies
+     * This method gets all the cookies.
      * @return
      */
     public static Set<Cookie> getAllCookies() {
@@ -18,7 +18,7 @@ public final class CookieManager {
     }
 
     /**
-     *     This method gets a specified cookie
+     *     This method gets a specified cookie.
      */
     public static Cookie getCookieNamed(String name) {
         return WebDriverManager.getInstance().getDriver().manage().getCookieNamed(name);
@@ -34,7 +34,7 @@ public final class CookieManager {
     }
 
     /**
-     * This method deletes a specific cookie
+     * This method deletes a specific cookie.
      * @param name
      */
     public static void deleteCookieNamed(String name) {
@@ -42,7 +42,7 @@ public final class CookieManager {
     }
 
     /**
-     * This method deletes all cookies
+     * This method deletes all cookies.
      */
     public static void deleteAllCookies() {
         WebDriverManager.getInstance().getDriver().manage().deleteAllCookies();

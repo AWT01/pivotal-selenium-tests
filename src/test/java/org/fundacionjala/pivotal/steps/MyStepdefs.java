@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.steps;
 
 import java.util.Map;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -10,6 +11,7 @@ import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
 import org.fundacionjala.pivotal.util.Helper;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 
@@ -18,7 +20,8 @@ public class MyStepdefs {
     private PageFormCreate formPage;
     private SettingsPage settingsPage;
     private PageDashboard dashboard;
-    private Helper helperToHook;
+    private String projectName;
+
 
     /**
      * Precondition, user must be logged in.
@@ -30,27 +33,35 @@ public class MyStepdefs {
         dashboard = SignInPage.newCredentials(username,password);
     }
 
-
-    @Then("^The project is created$")
-    public void theProjectIsCreated() {
-        System.out.println("Check project name and type");
-    }
-
+    /**
+     * Project button is selected.
+     */
     @Then("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
         formPage = dashboard.clickCreateNewProject();
     }
 
+    /**
+     * Fields from data table are used to create project.
+     * @param values
+     */
     @And("^I fill the fields of Create new project and press the create button$")
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
+        projectName = String.valueOf(System.currentTimeMillis());
+        formPage.setProjectName(projectName);
+        projectName = values.get("name")+projectName;
         //submit data to create new project
         settingsPage = formPage.clickCreateButton();
-        settingsPage.clickMoreButton();
+
     }
 
-    @Then("^I verify if the project \"([^\"]*)\" is created$")
-    public void iVerifyIfTheProjectIsCreated(String projectName) {
+    /**
+     * Assert project exists
+     */
+    @Then("^I verify if the project is created$")
+    public void iVerifyIfTheProjectIsCreated() {
+        settingsPage.clickMoreButton();
         Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
 }
