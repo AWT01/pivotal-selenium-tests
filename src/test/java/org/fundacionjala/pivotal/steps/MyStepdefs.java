@@ -20,6 +20,7 @@ public class MyStepdefs {
     private PageFormCreate formPage;
     private SettingsPage settingsPage;
     private PageDashboard dashboard;
+    private String projectName;
 
     /**
      * Precondition, user must be logged in.
@@ -41,6 +42,7 @@ public class MyStepdefs {
 
     /**
      * .
+     * Project button is selected.
      */
     @Then("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
@@ -48,15 +50,18 @@ public class MyStepdefs {
     }
 
     /**
-     * .
-     * @param values a map
+     * Fields from data table are used to create project.
+     * @param values
      */
     @And("^I fill the fields of Create new project and press the create button$")
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
+        projectName = String.valueOf(System.currentTimeMillis());
+        formPage.setProjectName(projectName);
+        projectName = values.get("name")+projectName;
         //submit data to create new project
         settingsPage = formPage.clickCreateButton();
-        settingsPage.clickMoreButton();
+
     }
 
     /**
@@ -65,6 +70,7 @@ public class MyStepdefs {
      */
     @Then("^I verify if the project \"([^\"]*)\" is created$")
     public void iVerifyIfTheProjectIsCreated(final String projectName) {
+        settingsPage.clickMoreButton();
         Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
 }
