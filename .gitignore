@@ -4,3 +4,4 @@
 /.allure/
 /out/
 *.iml
+/logs/
