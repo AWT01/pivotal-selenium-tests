@@ -1,8 +1,8 @@
 package org.fundacionjala.pivotal.testng;
 
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageFormCreate;
-import org.fundacionjala.pivotal.pageobjects.dashboard.SettingsPage;
+import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
+import org.fundacionjala.pivotal.pageobjects.dashboard.ProjectFormCreate;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.testng.Assert;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @version 0.1
  */
 public class CreateProjectTest {
-    private PageDashboard dashboard;
+    private Dashboard dashboard;
 
     /**
      * Set up of test create project, set valid user credentials for pivotaltracker.com inside this method.
@@ -34,7 +34,7 @@ public class CreateProjectTest {
      */
     @Test
     public void testCreateProject() {
-        PageFormCreate formPage;
+        ProjectFormCreate formPage;
         formPage = dashboard.clickCreateNewProject();
         String projectName = "new test " + System.currentTimeMillis();
         //use of lambda strategy map pattern
@@ -44,10 +44,10 @@ public class CreateProjectTest {
         formData.put("privacy", "public");
         formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
         //submit data to create new project
-        SettingsPage settingsPage = formPage.clickCreateButton();
-        settingsPage.clickMoreButton();
+        Projects projects = formPage.clickCreateButton();
+        projects.clickMoreButton();
         //Asserting project name in project settings page
-        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
+        Assert.assertEquals(projects.getProjectNameInputField().getAttribute("value"), projectName);
     }
 
     /**

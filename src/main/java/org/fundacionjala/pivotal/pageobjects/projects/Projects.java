@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pageobjects.dashboard;
+package org.fundacionjala.pivotal.pageobjects.projects;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @author KevinHerrera - AWT-[01].
  * @version 0.1
  */
-public class SettingsPage extends AbstractPage {
+public class Projects extends AbstractPage {
 
     @FindBy(css = "a[data-aid='navTab-more']")
     private WebElement projectMoreButton;

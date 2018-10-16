@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * @author Kevin Herrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class PageDashboard extends AbstractPage {
+public class Dashboard extends AbstractPage {
 
     @FindBy(id = "create-project-button")
     private WebElement createProjectButton;
@@ -21,9 +21,9 @@ public class PageDashboard extends AbstractPage {
      * Click on "Create Project" button inside Dashboard page.
      * @return .
      */
-    public PageFormCreate clickCreateNewProject() {
+    public ProjectFormCreate clickCreateNewProject() {
         CommonActions.waitAndClick(createProjectButton);
-        return new PageFormCreate();
+        return new ProjectFormCreate();
     }
 
 }

@@ -1,5 +1,5 @@
 package org.fundacionjala.pivotal.testng;
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.testng.annotations.AfterTest;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
  */
 public class DashboardTest {
 
-    private PageDashboard dashboard;
+    private Dashboard dashboard;
 
     /**
      * Set up of test Dashboard page, set the user credentials for pivotaltracker.com inside method.

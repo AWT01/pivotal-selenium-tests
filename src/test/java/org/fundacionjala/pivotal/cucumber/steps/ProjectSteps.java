@@ -3,9 +3,9 @@ package org.fundacionjala.pivotal.cucumber.steps;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageFormCreate;
-import org.fundacionjala.pivotal.pageobjects.dashboard.SettingsPage;
+import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
+import org.fundacionjala.pivotal.pageobjects.dashboard.ProjectFormCreate;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.testng.Assert;
 
@@ -17,11 +17,11 @@ import java.util.Map;
  * @author Adrian Rojas AWT - [01].
  * @version 0.1
  */
-public class AccountSteps {
+public class ProjectSteps {
 
-    private PageFormCreate formPage;
-    private SettingsPage settingsPage;
-    private PageDashboard dashboard;
+    private ProjectFormCreate formPage;
+    private Projects projects;
+    private Dashboard dashboard;
     private String projectName;
 
     /**
@@ -64,7 +64,7 @@ public class AccountSteps {
         formPage.setProjectName(projectName);
         projectName = values.get("name") + projectName;
         //submit data to create new project
-        settingsPage = formPage.clickCreateButton();
+        projects = formPage.clickCreateButton();
 
     }
 
@@ -73,7 +73,7 @@ public class AccountSteps {
      */
     @Then("^I verify if the project is created$")
     public void iVerifyIfTheProjectIsCreated() {
-        settingsPage.clickMoreButton();
-        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
+        projects.clickMoreButton();
+        Assert.assertEquals(projects.getProjectNameInputField().getAttribute("value"), projectName);
     }
 }

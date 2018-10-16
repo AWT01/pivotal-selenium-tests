@@ -1,19 +1,19 @@
 package org.fundacionjala.pivotal.hooks;
 
 import cucumber.api.java.After;
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 
 public class Hooks {
 
-    private PageDashboard dashboard;
+    private Dashboard dashboard;
 
     /**
      * Default Constructor.
      *
-     * @param pageDashboard to manage projects, workspaces and stories
+     * @param dashboard to manage projects, workspaces and stories
      */
-    public Hooks(final PageDashboard pageDashboard) {
-        this.dashboard = pageDashboard;
+    public Hooks(final Dashboard dashboard) {
+        this.dashboard = dashboard;
     }
 
 

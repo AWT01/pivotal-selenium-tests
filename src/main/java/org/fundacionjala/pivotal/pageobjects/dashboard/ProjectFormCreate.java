@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pageobjects.dashboard;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,7 @@ import java.util.Map;
  * @author KevinHerrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class PageFormCreate extends AbstractPage {
+public class ProjectFormCreate extends AbstractPage {
 
     @FindBy(name = "project_name")
     private WebElement projectNameTextField;
@@ -92,9 +93,9 @@ public class PageFormCreate extends AbstractPage {
      * Submit create project form values.
      * @return Settings Page Object.
      */
-    public SettingsPage clickCreateButton() {
+    public Projects clickCreateButton() {
         CommonActions.waitAndClick(createButton);
-        return new SettingsPage();
+        return new Projects();
     }
 
     /**
