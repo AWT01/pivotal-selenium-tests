@@ -2,7 +2,6 @@ package org.fundacionjala.pivotal.steps;
 
 import java.util.Map;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -10,8 +9,6 @@ import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
 import org.fundacionjala.pivotal.model.pageobjects.login.SignInPage;
-import org.fundacionjala.pivotal.util.Helper;
-import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 
