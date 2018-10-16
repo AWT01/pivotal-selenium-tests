@@ -37,6 +37,7 @@ public final class CommonActions {
     /**
      * wait and get text.
      * @param element webelement
+     * @return a string
      */
     public static String waitAndGetText(final WebElement element) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));

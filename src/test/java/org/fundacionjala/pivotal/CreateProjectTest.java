@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal;
 
-import org.fundacionjala.pivotal.model.pageobjects.dashboard.CreateProjectInputs;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.model.pageobjects.dashboard.SettingsPage;
@@ -19,8 +18,6 @@ import java.util.Map;
  * @version 0.1
  */
 public class CreateProjectTest {
-
-    private PageFormCreate formPage;
     private PageDashboard dashboard;
 
     /**
@@ -37,6 +34,7 @@ public class CreateProjectTest {
      */
     @Test
     public void testCreateProject() {
+        PageFormCreate formPage;
         formPage = dashboard.clickCreateNewProject();
         String projectName = "new test " + System.currentTimeMillis();
         //use of lambda strategy map pattern
@@ -49,25 +47,6 @@ public class CreateProjectTest {
         SettingsPage settingsPage = formPage.clickCreateButton();
         settingsPage.clickMoreButton();
         //Asserting project name in project settings page
-        Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
-    }
-
-    /**
-     * test of create project setting the name, and account.
-     */
-    /*@Test
-    public void testCreateProjectWithoutSetPrivacy() {
-        formPage = dashboard.clickCreateNewProject();
-        String projectName = "new test " + System.currentTimeMillis();
-        //use of lambda strategy map pattern
-        Map<CreateProjectInputs, String> formData = new HashMap<>();
-        formData.put(CreateProjectInputs.PROJECT_NAME, projectName);
-        formData.put(CreateProjectInputs.PROJECT_ACCOUNT, "test account");
-        formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
-        //submit data to create new project
-        SettingsPage settingsPage = formPage.clickCreateButton();
-        settingsPage.clickMoreButton();
-        //Asserting project name in settings project panel
         Assert.assertEquals(settingsPage.getProjectNameInputField().getAttribute("value"), projectName);
     }
 
