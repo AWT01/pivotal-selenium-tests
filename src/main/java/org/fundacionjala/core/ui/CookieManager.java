@@ -40,7 +40,10 @@ public final class CookieManager {
      * @return string
      */
     public static String getValueOfCookieNamed(final String name) {
-        return WebDriverManager.getInstance().getDriver().manage().getCookieNamed(name).getValue();
+        if (WebDriverManager.getInstance().getDriver().manage().getCookieNamed(name) != null) {
+            return WebDriverManager.getInstance().getDriver().manage().getCookieNamed(name).getValue();
+        }
+        return "";
     }
 
     /**

@@ -2,7 +2,7 @@ package org.fundacionjala.pivotal.testng;
 
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.ProjectFormCreate;
+import org.fundacionjala.pivotal.pageobjects.dashboard.FormCreate;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.fundacionjala.core.ui.WebDriverManager;
@@ -36,7 +36,7 @@ public class CreateProjectTest {
      */
     @Test
     public void testCreateProject() {
-        ProjectFormCreate formPage;
+        FormCreate formPage;
         formPage = dashboard.clickCreateNewProject();
         String projectName = "new test " + System.currentTimeMillis();
         //use of lambda strategy map pattern
@@ -47,7 +47,7 @@ public class CreateProjectTest {
         formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
         //submit data to create new project
         Projects projects = formPage.clickCreateButton();
-        projects.clickMoreButton();
+        projects.enterProjectSettings();
         //Asserting project name in project settings page
         Assert.assertEquals(projects.getProjectNameInputField().getAttribute("value"), projectName);
     }

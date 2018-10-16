@@ -4,7 +4,8 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 /**
- * .
+ * @author Adrian Rojas - AWT-[01].
+ * @version 0.1
  */
 @CucumberOptions(
         features = "src/test/resources/features",

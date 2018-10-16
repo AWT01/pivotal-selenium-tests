@@ -7,7 +7,7 @@ import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.testng.Assert;
 import java.util.Map;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.ProjectFormCreate;
+import org.fundacionjala.pivotal.pageobjects.dashboard.FormCreate;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 
 /**
@@ -18,7 +18,7 @@ import org.fundacionjala.pivotal.pageobjects.projects.Projects;
  */
 public class ProjectSteps {
 
-    private ProjectFormCreate formPage;
+    private FormCreate formPage;
     private Projects projects;
     private Dashboard dashboard;
     private String projectName;
@@ -32,14 +32,6 @@ public class ProjectSteps {
     @Given("^I log in as \"([^\"]*)\" \"([^\"]*)\"$")
     public void iLogInAs(final String username, final String password) {
         dashboard = SignInPage.newCredentials(username, password);
-    }
-
-    /**
-     * .
-     */
-    @Then("^The project is created$")
-    public void theProjectIsCreated() {
-        System.out.println("Check project name and type");
     }
 
     /**
@@ -72,7 +64,7 @@ public class ProjectSteps {
      */
     @Then("^I verify if the project is created$")
     public void iVerifyIfTheProjectIsCreated() {
-        projects.clickMoreButton();
+        projects.enterProjectSettings();
         Assert.assertEquals(projects.getProjectNameInputField().getAttribute("value"), projectName);
     }
 }
