@@ -1,4 +1,5 @@
 package org.fundacionjala.pivotal.testng;
+import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.fundacionjala.core.ui.WebDriverManager;
@@ -18,7 +19,8 @@ public class DashboardTest {
      */
     @BeforeTest
     public void signIn() {
-        dashboard = SignInPage.loginAs("aaaaaa@aaaaa", "111111");
+        dashboard = SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user1"),
+                Environment.getInstance().getProperties().getProperty("password1"));
     }
 
     /**

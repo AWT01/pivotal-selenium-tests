@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.testng;
 
+import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
 import org.fundacionjala.pivotal.pageobjects.dashboard.PageFormCreate;
 import org.fundacionjala.pivotal.pageobjects.dashboard.SettingsPage;
@@ -26,7 +27,8 @@ public class CreateProjectTest {
     @BeforeTest
     public void setUp() {
         //Set user credentials before test
-        dashboard = SignInPage.loginAs("hapsneeze", "test12345");
+        dashboard = SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user2"),
+                Environment.getInstance().getProperties().getProperty("password2"));
     }
 
     /**
