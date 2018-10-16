@@ -11,7 +11,6 @@ import org.openqa.selenium.support.How;
  * @author Angelica Lopez - AWT-[01].
  * @version 0.1
  */
-
 public class HomePage extends AbstractPage {
     //Page URL
     @FindBy(how = How.LINK_TEXT, using = "Sign in")

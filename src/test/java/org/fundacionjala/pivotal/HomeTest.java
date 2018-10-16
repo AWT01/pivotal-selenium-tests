@@ -14,7 +14,7 @@ public class HomeTest {
     @Test
     public void init() {
         HomePage homePage = new HomePage();
-        homePage.clickOnSignInButton();
+        homePage.clickOnSignIn();
     }
 
 }
