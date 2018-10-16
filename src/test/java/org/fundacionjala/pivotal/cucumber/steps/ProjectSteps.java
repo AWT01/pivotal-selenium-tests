@@ -40,7 +40,7 @@ public class ProjectSteps {
      */
     @Then("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
-        formPage = dashboard.clickCreateNewProject();
+        formPage = dashboard.clickCreateNewProjectButton();
     }
 
     /**
@@ -52,7 +52,7 @@ public class ProjectSteps {
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
         projectName = String.valueOf(System.currentTimeMillis());
-        formPage.setProjectName(projectName);
+        formPage.setProjectNameTextField(projectName);
         projectName = values.get("name") + projectName;
         //submit data to create new project
         projects = formPage.clickCreateButton();

@@ -37,7 +37,7 @@ public class CreateProjectTest {
     @Test
     public void testCreateProject() {
         FormCreate formPage;
-        formPage = dashboard.clickCreateNewProject();
+        formPage = dashboard.clickCreateNewProjectButton();
         String projectName = "new test " + System.currentTimeMillis();
         //use of lambda strategy map pattern
         Map<String, String> formData = new HashMap<>();

@@ -30,13 +30,13 @@ public class Dashboard extends AbstractPage {
         return new FormCreate();
     }
     /**
-     * Click workspace tab to enter the workspace creation mode
+     * Click workspace tab to enter the workspace creation mode.
      */
     public void clickWorkspaceTab() {
         CommonActions.waitAndClick(workspacesTab);
     }
     /**
-     * Click to enter the
+     * Click to enter the workspace tab.
      */
     public void clickCreateWorkspaceButton() {
         CommonActions.waitAndClick(createWorkspaceButton);

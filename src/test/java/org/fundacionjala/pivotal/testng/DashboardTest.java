@@ -29,7 +29,7 @@ public class DashboardTest {
      */
     @Test
     public void pressCreateProjectButtonTest() {
-        dashboard.clickCreateNewProject();
+        dashboard.clickCreateNewProjectButton();
     }
 
     /**

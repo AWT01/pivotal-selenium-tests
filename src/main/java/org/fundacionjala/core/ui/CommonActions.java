@@ -52,7 +52,11 @@ public final class CommonActions {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void scrollToElement(final WebElement element){
+    /**
+     * Scroll to web element.
+     * @param element to scroll to
+     */
+    public static void scrollToElement(final WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) WebDriverManager.getInstance().getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }

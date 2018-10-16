@@ -60,7 +60,7 @@ public class FormCreate extends AbstractPage {
     private WebElement createSubmit;
 
     /**
-     * Submit the new workspace for creation
+     * Submit the new workspace for creation.
      * @return the workspace page
      */
     public Workspaces clickCreateSubmit() {
@@ -80,12 +80,11 @@ public class FormCreate extends AbstractPage {
 
 
     /**
-     * Set the workspace name on the form displayed
-     * @param workspaceName
+     * Set the workspace name on the form displayed.
+     * @param workspaceName to create workspace
      */
-
-    public void setWorkspaceNameTextField(String workspaceName) {
-        CommonActions.waitAndSetText(workspaceNameTextField,workspaceName);
+    public void setWorkspaceNameTextField(final String workspaceName) {
+        CommonActions.waitAndSetText(workspaceNameTextField, workspaceName);
     }
 
 

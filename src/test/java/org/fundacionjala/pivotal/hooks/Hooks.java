@@ -6,6 +6,12 @@ import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 
+/**
+ * Hooks for cucumber.
+ *
+ * @author Adrian Rojas - AWT-[01].
+ * @version 0.1
+ */
 public class Hooks {
 
     private Dashboard dashboard;
@@ -13,9 +19,10 @@ public class Hooks {
     private Workspaces workspaces;
 
     /**
-     * Default Constructor.
-     *
-     * @param dashboard to manage projects, workspaces and stories
+     * Default constructor.
+     * @param dashboard to d
+     * @param projects to p
+     * @param workspaces to w
      */
     public Hooks(final Dashboard dashboard, final Projects projects, final Workspaces workspaces) {
         this.dashboard = dashboard;
