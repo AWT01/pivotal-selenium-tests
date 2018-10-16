@@ -36,14 +36,6 @@ public class ProjectSteps {
 
     /**
      * .
-     */
-    @Then("^The project is created$")
-    public void theProjectIsCreated() {
-        System.out.println("Check project name and type");
-    }
-
-    /**
-     * .
      * Project button is selected.
      */
     @Then("^I click the create project button$")
