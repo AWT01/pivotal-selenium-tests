@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.fundacionjala.pivotal.pageobjects.dashboard.PageDashboard;
+import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.core.ui.CommonActions;
 import org.fundacionjala.core.ui.CookieManager;
 import org.openqa.selenium.WebElement;
@@ -56,9 +56,9 @@ public class SignInPage extends AbstractPage {
      * This method is to click on Login Button.
      * @return .
      */
-    public PageDashboard clickSignInButton() {
+    public Dashboard clickSignInButton() {
         CommonActions.waitAndClick(signInButton);
-        return new PageDashboard();
+        return new Dashboard();
     }
 
     /**
@@ -67,7 +67,7 @@ public class SignInPage extends AbstractPage {
      * @param password .
      * @return .
      */
-    public static PageDashboard loginAs(final String username, final String password) {
+    public static Dashboard loginAs(final String username, final String password) {
         WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
         HomePage homePage = new HomePage();
         SignInPage signInPage = homePage.clickOnSignInButton();
@@ -82,9 +82,9 @@ public class SignInPage extends AbstractPage {
      * Smart login checking current session with cookies.
      * @param username that.
      * @param password that.
-     * @return a PageDashboard object
+     * @return a Dashboard object
      */
-    public static PageDashboard newCredentials(final String username, final String password) {
+    public static Dashboard newCredentials(final String username, final String password) {
         String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
         LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
         LOGGER.log(Level.INFO, new StringBuilder().append("User logged is: ")
@@ -94,7 +94,7 @@ public class SignInPage extends AbstractPage {
             return loginAs(username, password);
         } else {
             LOGGER.log(Level.INFO, "User: " + username + "is already logged");
-            return new PageDashboard();
+            return new Dashboard();
         }
     }
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class StoryPage extends AbstractPage {
+public class Story extends AbstractPage {
 
     @FindBy(css = "button[title='Add Story']")
     private WebElement sideBarAddStoryButton;
