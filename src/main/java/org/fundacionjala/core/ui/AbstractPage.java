@@ -1,6 +1,5 @@
 package org.fundacionjala.core.ui;
 
-import org.fundacionjala.core.util.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
@@ -12,7 +11,7 @@ import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
  */
 public abstract class AbstractPage extends AbstractWebDriverEventListener {
     //Page URL
-    public static final String HOME_PAGE_URL = Environment.getInstance().getProperties().getProperty("url");
+    public static final String HOME_PAGE_URL = "https://www.pivotaltracker.com/";
     private WebDriver driver;
 
     /**
