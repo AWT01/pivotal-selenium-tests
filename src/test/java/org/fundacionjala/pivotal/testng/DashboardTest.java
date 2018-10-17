@@ -20,7 +20,7 @@ public class DashboardTest {
      */
     @BeforeTest
     public void signIn() {
-        dashboard = SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user1"),
+        dashboard = SignInPage.credentials(Environment.getInstance().getProperties().getProperty("user1"),
                 Environment.getInstance().getProperties().getProperty("password1"));
     }
 

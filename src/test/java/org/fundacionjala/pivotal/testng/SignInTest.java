@@ -18,8 +18,8 @@ public class SignInTest {
     @Test
     public void smartSignIn() {
 
-       SignInPage.newCredentials("hapsneeze", "test12345");
-       SignInPage.newCredentials("adrinrojas1", "test12345");
+       SignInPage.credentials("hapsneeze", "test12345");
+       SignInPage.credentials("adrinrojas1", "test12345");
     }
     /**
      * Close driver after test.

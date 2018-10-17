@@ -27,7 +27,7 @@ public class CreateProjectTest {
     @BeforeTest
     public void setUp() {
         //Set user credentials before test
-        dashboard = SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user2"),
+        dashboard = SignInPage.credentials(Environment.getInstance().getProperties().getProperty("user2"),
                 Environment.getInstance().getProperties().getProperty("password2"));
     }
 

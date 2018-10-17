@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
  * @version 0.1
  */
 public class DeleteProjectTest {
-    private Dashboard dashboard;
 
     /**
      * Set up of test create project, set valid user credentials for pivotaltracker.com inside this method.
@@ -22,7 +21,7 @@ public class DeleteProjectTest {
     @BeforeTest
     public void setUp() {
         //Set user credentials before test
-        dashboard = SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user2"),
+        SignInPage.credentials(Environment.getInstance().getProperties().getProperty("user2"),
                 Environment.getInstance().getProperties().getProperty("password2"));
     }
 

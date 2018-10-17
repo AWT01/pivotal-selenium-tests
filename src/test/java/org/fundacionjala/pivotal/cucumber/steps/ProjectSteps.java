@@ -32,7 +32,7 @@ public class ProjectSteps {
      */
     @Given("^I log in as \"([^\"]*)\" \"([^\"]*)\"$")
     public void iLogInAs(final String username, final String password) {
-        dashboard = SignInPage.newCredentials(username, password);
+        dashboard = SignInPage.credentials(username, password);
     }
 
     /**

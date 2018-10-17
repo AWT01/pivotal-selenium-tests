@@ -18,14 +18,16 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SignInPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger("Sign in pivotal");
-    //Using FindBy for locating elements
+
     @FindBy(css = "input[type='text'][id='credentials_username']")
     private WebElement usernameTextBox;
+
     @FindBy(css = "input[type='submit'][value='NEXT']")
     private WebElement nextButton;
-    //Using FindBy for locating elements
+
     @FindBy(css = "input[type='password'][id='credentials_password']")
     private WebElement passwordTextBox;
+
     @FindBy(css = "input[type='submit'][value='SIGN IN']")
     private WebElement signInButton;
 
@@ -62,30 +64,12 @@ public class SignInPage extends AbstractPage {
     }
 
     /**
-     * Missing to implement switchUser.
-     * @param username .
-     * @param password .
-     * @return .
-     */
-    public static Dashboard loginAs(final String username, final String password) {
-        WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
-        HomePage homePage = new HomePage();
-        SignInPage signInPage = homePage.clickOnSignInButton();
-        signInPage.setUsernameTextBox(username);
-        LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
-        signInPage.clickOnLoginButton();
-        signInPage.setPasswordTextBox(password);
-        return signInPage.clickSignInButton();
-    }
-
-    /**
      * Smart login checking current session with cookies.
      * @param username that.
      * @param password that.
      * @return a Dashboard object
      */
-    //TODO join both methods
-    public static Dashboard newCredentials(final String username, final String password) {
+    public static Dashboard credentials(final String username, final String password) {
             String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
 
             LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
@@ -93,7 +77,14 @@ public class SignInPage extends AbstractPage {
                     .append(CookieManager.getValueOfCookieNamed("lastuser")).toString());
             if (!username.equals(currentSession)) {
                 CookieManager.deleteAllCookies();
-                return loginAs(username, password);
+                WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
+                HomePage homePage = new HomePage();
+                SignInPage signInPage = homePage.clickOnSignInButton();
+                signInPage.setUsernameTextBox(username);
+                LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
+                signInPage.clickOnLoginButton();
+                signInPage.setPasswordTextBox(password);
+                return signInPage.clickSignInButton();
             } else {
                 LOGGER.log(Level.INFO, "User: " + username + "is already logged");
                 return new Dashboard();
