@@ -21,6 +21,9 @@ public class Dashboard extends AbstractPage {
     @FindBy(id = "//span[text()='Workspaces']")
     private WebElement workspacesTab;
 
+    @FindBy(css = "a[data-aid='project-name']")
+    private WebElement firstProject;
+
     /**
      * Click on "Create Project" button inside Dashboard page.
      * @return .
@@ -40,5 +43,13 @@ public class Dashboard extends AbstractPage {
      */
     public void clickCreateWorkspaceButton() {
         CommonActions.waitAndClick(createWorkspaceButton);
+    }
+
+    /**
+     * this method gives the href for the first project.
+     * @return url to access the project
+     */
+    public String getFirstProject() {
+        return CommonActions.waitAndGetAttribute(firstProject, "href");
     }
 }

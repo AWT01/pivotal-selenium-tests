@@ -44,6 +44,18 @@ public final class CommonActions {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         return element.getText();
     }
+
+    /**
+     * waitand get attribute.
+     * @param element web element
+     * @param attribute attribute to get
+     * @return string
+     */
+    public static String waitAndGetAttribute(final WebElement element, final String attribute) {
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
+        return element.getAttribute(attribute);
+    }
+
     /**
      * wait for a element.
      * @param element webelement
