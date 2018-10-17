@@ -7,7 +7,7 @@ import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.testng.Assert;
 import java.util.Map;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.ProjectFormCreate;
+import org.fundacionjala.pivotal.pageobjects.dashboard.FormCreate;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 
 /**
@@ -18,7 +18,7 @@ import org.fundacionjala.pivotal.pageobjects.projects.Projects;
  */
 public class ProjectSteps {
 
-    private ProjectFormCreate formPage;
+    private FormCreate formPage;
     private Projects projects;
     private Dashboard dashboard;
     private String projectName;
@@ -40,7 +40,7 @@ public class ProjectSteps {
      */
     @Then("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
-        formPage = dashboard.clickCreateNewProject();
+        formPage = dashboard.clickCreateNewProjectButton();
     }
 
     /**
@@ -52,7 +52,7 @@ public class ProjectSteps {
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
         projectName = String.valueOf(System.currentTimeMillis());
-        formPage.setProjectName(projectName);
+        formPage.setProjectNameTextField(projectName);
         projectName = values.get("name") + projectName;
         //submit data to create new project
         projects = formPage.clickCreateButton();
@@ -64,7 +64,7 @@ public class ProjectSteps {
      */
     @Then("^I verify if the project is created$")
     public void iVerifyIfTheProjectIsCreated() {
-        projects.clickMoreButton();
+        projects.enterProjectSettings();
         Assert.assertEquals(projects.getProjectNameInputField().getAttribute("value"), projectName);
     }
 }

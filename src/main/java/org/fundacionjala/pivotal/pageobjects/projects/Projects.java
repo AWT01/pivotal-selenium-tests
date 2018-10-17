@@ -4,7 +4,6 @@ import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.ui.CommonActions;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -21,6 +20,11 @@ public class Projects extends AbstractPage {
     @FindBy(id = "project_name")
     private WebElement projectNameInputField;
 
+    @FindBy(id = "delete_link")
+    private WebElement projectDeleteLink;
+
+    @FindBy(id = "confirm_delete")
+    private WebElement projectDeleteConfirmButton;
     /**
      * Getter of project name input field on create project settings page.
      * @return webElement object.
@@ -30,13 +34,22 @@ public class Projects extends AbstractPage {
         return projectNameInputField;
     }
 
-
     /**
      * Click on more button inside project page.
      */
-    public void clickMoreButton() {
+    public void enterProjectSettings() {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(projectMoreButton));
-        Actions actions = new Actions(WebDriverManager.getInstance().getDriver());
-        actions.moveToElement(projectMoreButton).click().perform();
+        String newURL = WebDriverManager.getInstance().getDriver().getCurrentUrl().replace("/n", "") + "/settings";
+        WebDriverManager.getInstance().getDriver().navigate().to(newURL);
+    }
+
+    /**
+     * Delete the current project page.
+     */
+    public void deleteProject() {
+        CommonActions.waitAnElement(projectDeleteLink);
+        CommonActions.scrollToElement(projectDeleteLink);
+        CommonActions.waitAndClick(projectDeleteLink);
+        CommonActions.waitAndClick(projectDeleteConfirmButton);
     }
 }

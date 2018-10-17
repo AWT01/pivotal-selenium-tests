@@ -85,16 +85,17 @@ public class SignInPage extends AbstractPage {
      * @return a Dashboard object
      */
     public static Dashboard newCredentials(final String username, final String password) {
-        String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
-        LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
-        LOGGER.log(Level.INFO, new StringBuilder().append("User logged is: ")
-                .append(CookieManager.getValueOfCookieNamed("lastuser")).toString());
-        if (!username.equals(currentSession)) {
-            CookieManager.deleteAllCookies();
-            return loginAs(username, password);
-        } else {
-            LOGGER.log(Level.INFO, "User: " + username + "is already logged");
-            return new Dashboard();
+            String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
+
+            LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
+            LOGGER.log(Level.INFO, new StringBuilder().append("User logged is: ")
+                    .append(CookieManager.getValueOfCookieNamed("lastuser")).toString());
+            if (!username.equals(currentSession)) {
+                CookieManager.deleteAllCookies();
+                return loginAs(username, password);
+            } else {
+                LOGGER.log(Level.INFO, "User: " + username + "is already logged");
+                return new Dashboard();
+            }
         }
-    }
 }
