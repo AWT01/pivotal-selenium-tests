@@ -1,10 +1,7 @@
 Feature: Manage Stories
-  Scenario Outline: Create a new story
+  Scenario: Create a new story
     Given username "user1" and password "password1"
     Then I click the add story button
-    And I fill the story <title>
+    And I fill the story title
+    |title|testStory|
     Then I verify if the story was created
-    Examples:
-      |title|
-      |qqq|
-      |fdf|

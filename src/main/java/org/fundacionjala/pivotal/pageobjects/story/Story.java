@@ -30,6 +30,9 @@ public class Story extends AbstractPage {
     @FindBy(css = "button[data-aid='addTaskButton']")
     private WebElement saveTaskEditButton;
 
+    @FindBy(css = ".story_name")
+    private WebElement firstStory;
+
     /**
      * This method is to click on Login Button.
      */
@@ -74,4 +77,11 @@ public class Story extends AbstractPage {
         CommonActions.waitAndClick(saveTaskEditButton);
     }
 
+    /**
+     * Method to get the first story on the list.
+     * @return the name of the first story
+     */
+    public String getFirstStory() {
+        return CommonActions.waitAndGetText(firstStory);
+    }
 }
