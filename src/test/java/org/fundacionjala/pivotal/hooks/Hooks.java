@@ -14,18 +14,16 @@ import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
  */
 public class Hooks {
 
-    private Dashboard dashboard;
     private Projects projects;
     private Workspaces workspaces;
 
     /**
      * Default constructor.
-     * @param dashboard to d
      * @param projects to p
      * @param workspaces to w
      */
-    public Hooks(final Dashboard dashboard, final Projects projects, final Workspaces workspaces) {
-        this.dashboard = dashboard;
+    public Hooks(final Projects projects, final Workspaces workspaces) {
+
         this.projects = projects;
         this.workspaces = workspaces;
     }

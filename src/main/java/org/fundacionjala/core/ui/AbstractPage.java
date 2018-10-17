@@ -10,16 +10,15 @@ import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
  * @author Angelica Lopez, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public abstract class AbstractPage extends AbstractWebDriverEventListener {
+public abstract class AbstractPage {
     //Page URL
     public static final String HOME_PAGE_URL = Environment.getInstance().getProperties().getProperty("url");
-    private WebDriver driver;
+    protected WebDriver driver;
 
     /**
      * Constructor of class.
      */
     protected AbstractPage() {
-        super();
         this.driver = WebDriverManager.getInstance().getDriver();
         PageFactory.initElements(this.driver, this);
     }

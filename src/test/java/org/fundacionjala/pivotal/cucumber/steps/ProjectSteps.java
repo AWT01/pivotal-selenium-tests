@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.cucumber.steps;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.testng.Assert;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class ProjectSteps {
      * .
      * Project button is selected.
      */
-    @Then("^I click the create project button$")
+    @When("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
         formPage = dashboard.clickCreateNewProjectButton();
     }
@@ -48,7 +49,7 @@ public class ProjectSteps {
      *
      * @param values .
      */
-    @And("^I fill the fields of Create new project and press the create button$")
+    @When("^I fill the fields of Create new project and press the create button$")
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
         projectName = String.valueOf(System.currentTimeMillis());
