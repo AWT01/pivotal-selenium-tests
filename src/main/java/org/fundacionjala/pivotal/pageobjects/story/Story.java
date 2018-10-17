@@ -30,11 +30,14 @@ public class Story extends AbstractPage {
     @FindBy(css = "button[data-aid='addTaskButton']")
     private WebElement saveTaskEditButton;
 
+    @FindBy(css = ".story_name")
+    private WebElement firstStory;
+
     /**
      * This method is to click on Login Button.
      */
     public void clickAddSideBarStoryButton() {
-        CommonActions.waitAndClick(sideBarAddStoryButton);
+        CommonActions.click(sideBarAddStoryButton);
     }
 
     /**
@@ -42,21 +45,21 @@ public class Story extends AbstractPage {
      * @param text story title.
      */
     public void setStoryTitle(final String text) {
-        CommonActions.waitAndSetText(storyTitleText, text);
+        CommonActions.setText(storyTitleText, text);
     }
 
     /**
      * This method is to click on button save.
      */
     public void clickSaveButton() {
-        CommonActions.waitAndClick(saveButton);
+        CommonActions.click(saveButton);
     }
 
     /**
      * This method is to click on enable task button.
      */
     public void clickEnableTaskButton() {
-        CommonActions.waitAndClick(enableTaskButton);
+        CommonActions.click(enableTaskButton);
     }
 
     /**
@@ -64,14 +67,21 @@ public class Story extends AbstractPage {
      * @param text task text.
      */
     public void setAddText(final String text) {
-        CommonActions.waitAndSetText(addTaskText, text);
+        CommonActions.setText(addTaskText, text);
     }
 
     /**
      * This method is to click on enable task button.
      */
     public void clickSaveTaskButton() {
-        CommonActions.waitAndClick(saveTaskEditButton);
+        CommonActions.click(saveTaskEditButton);
     }
 
+    /**
+     * Method to get the first story on the list.
+     * @return the name of the first story
+     */
+    public String getFirstStory() {
+        return CommonActions.getText(firstStory);
+    }
 }
