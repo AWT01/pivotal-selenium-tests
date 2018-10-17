@@ -29,20 +29,20 @@ public class Dashboard extends AbstractPage {
      * @return .
      */
     public FormCreate clickCreateNewProjectButton() {
-        CommonActions.waitAndClick(createProjectButton);
+        CommonActions.click(createProjectButton);
         return new FormCreate();
     }
     /**
      * Click workspace tab to enter the workspace creation mode.
      */
     public void clickWorkspaceTab() {
-        CommonActions.waitAndClick(workspacesTab);
+        CommonActions.click(workspacesTab);
     }
     /**
      * Click to enter the workspace tab.
      */
     public void clickCreateWorkspaceButton() {
-        CommonActions.waitAndClick(createWorkspaceButton);
+        CommonActions.click(createWorkspaceButton);
     }
 
     /**
@@ -50,6 +50,6 @@ public class Dashboard extends AbstractPage {
      * @return url to access the project
      */
     public String getFirstProject() {
-        return CommonActions.waitAndGetAttribute(firstProject, "href");
+        return CommonActions.getAttribute(firstProject, "href");
     }
 }

@@ -37,7 +37,7 @@ public class Story extends AbstractPage {
      * This method is to click on Login Button.
      */
     public void clickAddSideBarStoryButton() {
-        CommonActions.waitAndClick(sideBarAddStoryButton);
+        CommonActions.click(sideBarAddStoryButton);
     }
 
     /**
@@ -45,21 +45,21 @@ public class Story extends AbstractPage {
      * @param text story title.
      */
     public void setStoryTitle(final String text) {
-        CommonActions.waitAndSetText(storyTitleText, text);
+        CommonActions.setText(storyTitleText, text);
     }
 
     /**
      * This method is to click on button save.
      */
     public void clickSaveButton() {
-        CommonActions.waitAndClick(saveButton);
+        CommonActions.click(saveButton);
     }
 
     /**
      * This method is to click on enable task button.
      */
     public void clickEnableTaskButton() {
-        CommonActions.waitAndClick(enableTaskButton);
+        CommonActions.click(enableTaskButton);
     }
 
     /**
@@ -67,14 +67,14 @@ public class Story extends AbstractPage {
      * @param text task text.
      */
     public void setAddText(final String text) {
-        CommonActions.waitAndSetText(addTaskText, text);
+        CommonActions.setText(addTaskText, text);
     }
 
     /**
      * This method is to click on enable task button.
      */
     public void clickSaveTaskButton() {
-        CommonActions.waitAndClick(saveTaskEditButton);
+        CommonActions.click(saveTaskEditButton);
     }
 
     /**
@@ -82,6 +82,6 @@ public class Story extends AbstractPage {
      * @return the name of the first story
      */
     public String getFirstStory() {
-        return CommonActions.waitAndGetText(firstStory);
+        return CommonActions.getText(firstStory);
     }
 }

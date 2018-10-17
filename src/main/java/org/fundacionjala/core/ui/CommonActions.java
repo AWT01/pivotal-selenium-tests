@@ -21,8 +21,7 @@ public final class CommonActions {
      * wait and click action.
      * @param element webelement.
      */
-    //TODO rename methods
-    public static void waitAndClick(final WebElement element) {
+    public static void click(final WebElement element) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
@@ -32,7 +31,7 @@ public final class CommonActions {
      * @param element webelement
      * @param textToSet text
      */
-    public static void waitAndSetText(final WebElement element, final String textToSet) {
+    public static void setText(final WebElement element, final String textToSet) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(textToSet);
     }
@@ -41,7 +40,7 @@ public final class CommonActions {
      * @param element webelement
      * @return a string
      */
-    public static String waitAndGetText(final WebElement element) {
+    public static String getText(final WebElement element) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         return element.getText();
     }
@@ -52,7 +51,7 @@ public final class CommonActions {
      * @param attribute attribute to get
      * @return string
      */
-    public static String waitAndGetAttribute(final WebElement element, final String attribute) {
+    public static String getAttribute(final WebElement element, final String attribute) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         return element.getAttribute(attribute);
     }
@@ -61,7 +60,7 @@ public final class CommonActions {
      * wait for a element.
      * @param element webelement
      */
-    public static void waitAnElement(final WebElement element) {
+    public static void waitElement(final WebElement element) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
     }
 
