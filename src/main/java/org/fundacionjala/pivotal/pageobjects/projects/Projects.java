@@ -30,7 +30,7 @@ public class Projects extends AbstractPage {
      * @return webElement object.
      */
     public WebElement getProjectNameInputField() {
-        CommonActions.waitAnElement(projectNameInputField);
+        CommonActions.waitElement(projectNameInputField);
         return projectNameInputField;
     }
 
@@ -47,9 +47,9 @@ public class Projects extends AbstractPage {
      * Delete the current project page.
      */
     public void deleteProject() {
-        CommonActions.waitAnElement(projectDeleteLink);
+        CommonActions.waitElement(projectDeleteLink);
         CommonActions.scrollToElement(projectDeleteLink);
-        CommonActions.waitAndClick(projectDeleteLink);
-        CommonActions.waitAndClick(projectDeleteConfirmButton);
+        CommonActions.click(projectDeleteLink);
+        CommonActions.click(projectDeleteConfirmButton);
     }
 }

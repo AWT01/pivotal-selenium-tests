@@ -23,7 +23,7 @@ public class HomePage extends AbstractPage {
      * @return .
      */
     public SignInPage clickOnSignInButton() {
-        CommonActions.waitAndClick(signin);
+        CommonActions.click(signin);
         return new SignInPage();
     }
 
@@ -32,6 +32,6 @@ public class HomePage extends AbstractPage {
      * @return a string
      */
     public String getSessionName() {
-        return CommonActions.waitAndGetText(sessionName);
+        return CommonActions.getText(sessionName);
     }
 }

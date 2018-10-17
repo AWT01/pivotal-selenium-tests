@@ -28,7 +28,7 @@ public class Workspaces {
      * @return webElement object.
      */
     public String getWorkspaceName() {
-        return CommonActions.waitAndGetText(workspaceName);
+        return CommonActions.getText(workspaceName);
     }
 
     /**
@@ -44,9 +44,9 @@ public class Workspaces {
      * Delete the current project page.
      */
     public void deleteWorkspace() {
-        CommonActions.waitAnElement(deleteLink);
+        CommonActions.waitElement(deleteLink);
         CommonActions.scrollToElement(deleteLink);
-        CommonActions.waitAndClick(deleteLink);
-        CommonActions.waitAndClick(deleteConfirmButton);
+        CommonActions.click(deleteLink);
+        CommonActions.click(deleteConfirmButton);
     }
 }
