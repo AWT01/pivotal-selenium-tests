@@ -1,7 +1,11 @@
 package org.fundacionjala.pivotal.cucumber.runner;
 
 import cucumber.api.CucumberOptions;
+import cucumber.api.java.After;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+import org.fundacionjala.core.ui.WebDriverManager;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterClass;
 
 /**
  * @author Adrian Rojas - AWT-[01].
@@ -18,5 +22,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
                 "rerun:target/cucumber-reports/rerun.txt"
         })
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
-
+    @AfterClass
+    public void close() {
+        WebDriverManager.getInstance().getDriver().close();
+    }
 }

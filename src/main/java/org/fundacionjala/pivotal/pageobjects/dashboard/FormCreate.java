@@ -116,6 +116,7 @@ public class FormCreate extends AbstractPage {
      * @param value .
      */
     public void setProjectPrivacy(final String value) {
+        //TODO change to if
         switch (value.toLowerCase()) {
             case "public":
                 CommonActions.waitAndClick(inputProjectPrivacyPublic);

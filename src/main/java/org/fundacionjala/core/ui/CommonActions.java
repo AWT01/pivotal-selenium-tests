@@ -21,6 +21,7 @@ public final class CommonActions {
      * wait and click action.
      * @param element webelement.
      */
+    //TODO rename methods
     public static void waitAndClick(final WebElement element) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
         element.click();

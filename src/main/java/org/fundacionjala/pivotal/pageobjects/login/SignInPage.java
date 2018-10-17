@@ -84,6 +84,7 @@ public class SignInPage extends AbstractPage {
      * @param password that.
      * @return a Dashboard object
      */
+    //TODO join both methods
     public static Dashboard newCredentials(final String username, final String password) {
             String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
 

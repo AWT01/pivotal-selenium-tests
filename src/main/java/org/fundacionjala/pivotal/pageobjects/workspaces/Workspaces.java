@@ -8,9 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object for Pivotal Workspaces Page.
- *
- * @author Adrian Rojas - AWT-[01].
- * @version 0.1
  */
 public class Workspaces {
 

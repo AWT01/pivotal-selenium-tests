@@ -15,6 +15,7 @@ public class HomePage extends AbstractPage {
     //Page URL
     @FindBy(how = How.LINK_TEXT, using = "Sign in")
     private WebElement signin;
+    //TODO
     @FindBy(id = "AvatarDetails__imageContainer")
     private WebElement sessionName;
     /**
