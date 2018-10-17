@@ -68,14 +68,19 @@ public class SignInPage extends AbstractPage {
      * @return .
      */
     public static Dashboard loginAs(final String username, final String password) {
-        WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
-        HomePage homePage = new HomePage();
-        SignInPage signInPage = homePage.clickOnSignInButton();
-        signInPage.setUsernameTextBox(username);
-        LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
-        signInPage.clickOnLoginButton();
-        signInPage.setPasswordTextBox(password);
-        return signInPage.clickSignInButton();
+        try {
+            WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
+            HomePage homePage = new HomePage();
+            SignInPage signInPage = homePage.clickOnSignInButton();
+            signInPage.setUsernameTextBox(username);
+            LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
+            signInPage.clickOnLoginButton();
+            signInPage.setPasswordTextBox(password);
+            return signInPage.clickSignInButton();
+        } catch (NullPointerException ex) {
+            LOGGER.error("There isn't a url in the config.properties file");
+            throw new RuntimeException();
+        }
     }
 
     /**

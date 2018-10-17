@@ -3,6 +3,8 @@ package org.fundacionjala.pivotal.cucumber.steps;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
@@ -18,6 +20,7 @@ import java.util.Map;
  * @version 0.1
  */
 public class StoriesSteps {
+    private static final Logger LOGGER = LogManager.getLogger("Read properties");
     private Story storyPage;
     /**
      * Precondition, user must be logged in
@@ -29,10 +32,15 @@ public class StoriesSteps {
     @Given("^username \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void usernameAndPassword(final String username, final String password) {
         Dashboard dashboard;
-        dashboard = SignInPage.newCredentials(Environment.getInstance().getProperties()
-                .getProperty(username),
-                Environment.getInstance().getProperties()
-                        .getProperty(password));
+        try {
+            dashboard = SignInPage.newCredentials(Environment.getInstance().getProperties()
+                    .getProperty(username), Environment.getInstance().getProperties()
+                    .getProperty(password));
+        } catch (NullPointerException ex) {
+            LOGGER.error("The parameters of username or password are missing in the config.properties file");
+            throw new RuntimeException();
+        }
+
         WebDriverManager.getInstance().getDriver()
                 .get(dashboard.getFirstProject());
         storyPage = new Story();
