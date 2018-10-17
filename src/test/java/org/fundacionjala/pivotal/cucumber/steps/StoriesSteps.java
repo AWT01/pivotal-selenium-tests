@@ -18,7 +18,6 @@ import java.util.Map;
  * @version 0.1
  */
 public class StoriesSteps {
-    private Dashboard dashboard;
     private Story storyPage;
     /**
      * Precondition, user must be logged in
@@ -29,6 +28,7 @@ public class StoriesSteps {
      */
     @Given("^username \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void usernameAndPassword(final String username, final String password) {
+        Dashboard dashboard;
         dashboard = SignInPage.newCredentials(Environment.getInstance().getProperties()
                 .getProperty(username),
                 Environment.getInstance().getProperties()
