@@ -2,6 +2,8 @@ package org.fundacionjala.pivotal.pageobjects.dashboard;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
+import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +17,7 @@ import java.util.Map;
  * @author KevinHerrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class PageFormCreate extends AbstractPage {
+public class FormCreate extends AbstractPage {
 
     @FindBy(name = "project_name")
     private WebElement projectNameTextField;
@@ -37,6 +39,54 @@ public class PageFormCreate extends AbstractPage {
 
     @FindBy(css = "button[data-aid='FormModal__submit']")
     private WebElement createButton;
+    @FindBy(css = "a[data-aid='navTab-more']")
+    private WebElement projectMoreButton;
+
+    @FindBy(id = "project_name")
+    private WebElement projectNameInputField;
+
+    @FindBy(id = "delete_link")
+    private WebElement projectDeleteLink;
+
+    @FindBy(id = "confirm_delete")
+    private WebElement projectDeleteConfirmButton;
+
+
+
+    @FindBy(id = ".tc-form__input")
+    private WebElement workspaceNameTextField;
+
+    @FindBy(id = ".pvXpn__Button--positive")
+    private WebElement createSubmit;
+
+    /**
+     * Submit the new workspace for creation.
+     * @return the workspace page
+     */
+    public Workspaces clickCreateSubmit() {
+        CommonActions.waitAndClick(createSubmit);
+        return new Workspaces();
+    }
+
+    /**
+     * Getter of project name input field on create project settings page.
+     *
+     * @return webElement object.
+     */
+    public WebElement getProjectNameInputField() {
+        CommonActions.waitAnElement(projectNameInputField);
+        return projectNameInputField;
+    }
+
+
+    /**
+     * Set the workspace name on the form displayed.
+     * @param workspaceName to create workspace
+     */
+    public void setWorkspaceNameTextField(final String workspaceName) {
+        CommonActions.waitAndSetText(workspaceNameTextField, workspaceName);
+    }
+
 
     private Map<String, WebElement> accountMap;
 
@@ -44,7 +94,7 @@ public class PageFormCreate extends AbstractPage {
      * set project name on create project form.
      * @param name .
      */
-    public void setProjectName(final String name) {
+    public void setProjectNameTextField(final String name) {
         CommonActions.waitAndSetText(projectNameTextField, name);
     }
 
@@ -92,9 +142,9 @@ public class PageFormCreate extends AbstractPage {
      * Submit create project form values.
      * @return Settings Page Object.
      */
-    public SettingsPage clickCreateButton() {
+    public Projects clickCreateButton() {
         CommonActions.waitAndClick(createButton);
-        return new SettingsPage();
+        return new Projects();
     }
 
     /**
@@ -118,7 +168,7 @@ public class PageFormCreate extends AbstractPage {
      */
     public Map<String, IFormFields> getStrategyFormMap(final Map<String, String> values) {
         Map<String, IFormFields> strategyMap = new HashMap<>();
-        strategyMap.put("name", () -> this.setProjectName(values.get("name")));
+        strategyMap.put("name", () -> this.setProjectNameTextField(values.get("name")));
         strategyMap.put("account", () -> this.setProjectAccount(values.get("account")));
         strategyMap.put("privacy", () -> this.setProjectPrivacy(values.get("privacy")));
         return strategyMap;
