@@ -34,6 +34,22 @@ public class CommonSteps {
     }
 
     /**
+     * Setter for dashboard page.
+     * @param dashboard dashboarpage
+     */
+    public static void setDashboard(Dashboard dashboard) {
+        CommonSteps.dashboard = dashboard;
+    }
+
+    /**
+     * Setter for form page.
+     * @param formPage formpage
+     */
+    public static void setFormPage(FormCreate formPage) {
+        CommonSteps.formPage = formPage;
+    }
+
+    /**
      * Precondition, user must be logged in.
      *
      * @param username inserted
@@ -42,9 +58,9 @@ public class CommonSteps {
     @Given("^I log in as \"([^\"]*)\" \"([^\"]*)\"$")
     public void iLogInAs(final String username, final String password) {
         try {
-            dashboard = SignInPage.newCredentials(Environment.getInstance()
+            setDashboard(SignInPage.newCredentials(Environment.getInstance()
                             .getProperties().getProperty(username),
-                    Environment.getInstance().getProperties().getProperty(password));
+                    Environment.getInstance().getProperties().getProperty(password)));
         } catch (NullPointerException exeption) {
             LOGGER.error("The username or password are missing on config.properties");
             throw exeption;
@@ -57,6 +73,6 @@ public class CommonSteps {
      */
     @When("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
-        formPage = dashboard.clickCreateNewProjectButton();
+        setFormPage(dashboard.clickCreateNewProjectButton());
     }
 }
