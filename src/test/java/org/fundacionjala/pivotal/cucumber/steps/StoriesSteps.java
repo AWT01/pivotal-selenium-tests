@@ -36,9 +36,9 @@ public class StoriesSteps {
             dashboard = SignInPage.newCredentials(Environment.getInstance().getProperties()
                     .getProperty(username), Environment.getInstance().getProperties()
                     .getProperty(password));
-        } catch (NullPointerException ex) {
+        } catch (NullPointerException exception) {
             LOGGER.error("The parameters of username or password are missing in the config.properties file");
-            throw new RuntimeException();
+            throw exception;
         }
 
         WebDriverManager.getInstance().getDriver()

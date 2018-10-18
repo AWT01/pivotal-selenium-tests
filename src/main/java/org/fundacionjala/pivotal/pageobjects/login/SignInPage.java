@@ -77,9 +77,9 @@ public class SignInPage extends AbstractPage {
             signInPage.clickOnLoginButton();
             signInPage.setPasswordTextBox(password);
             return signInPage.clickSignInButton();
-        } catch (NullPointerException ex) {
+        } catch (NullPointerException exception) {
             LOGGER.error("There isn't a url in the config.properties file");
-            throw new RuntimeException();
+            throw exception;
         }
     }
 
