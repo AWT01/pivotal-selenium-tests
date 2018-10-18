@@ -33,9 +33,9 @@ public final class Environment {
         properties = new Properties();
         try (InputStream input = new FileInputStream("config.properties")) {
             properties.load(input);
-        } catch (IOException ex) {
-            LOGGER.error(ex.getMessage());
-            throw new RuntimeException();
+        } catch (IOException exception) {
+            LOGGER.error(exception.getMessage());
+            throw new NullPointerException();
         }
     }
 
