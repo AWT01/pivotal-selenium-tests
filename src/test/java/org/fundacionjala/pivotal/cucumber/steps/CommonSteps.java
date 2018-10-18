@@ -37,7 +37,7 @@ public class CommonSteps {
      * Setter for dashboard page.
      * @param dashboard dashboarpage
      */
-    public static void setDashboard(Dashboard dashboard) {
+    public static void setDashboard(final Dashboard dashboard) {
         CommonSteps.dashboard = dashboard;
     }
 
@@ -45,7 +45,7 @@ public class CommonSteps {
      * Setter for form page.
      * @param formPage formpage
      */
-    public static void setFormPage(FormCreate formPage) {
+    public static void setFormPage(final FormCreate formPage) {
         CommonSteps.formPage = formPage;
     }
 
