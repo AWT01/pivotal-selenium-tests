@@ -14,29 +14,10 @@ import java.util.Map;
 
 /**
  * Class with the steps to create a story.
- * @author Kevin Sanchez - AWT-[01].
- * @version 0.1
  */
 public class StoriesSteps {
     private Story storyPage;
-    /**
-     * Precondition, user must be logged in
-     * and enter in a existing project.
-     *
-     * @param username inserted
-     * @param password inserted
-     */
-    @Given("^username \"([^\"]*)\" and password \"([^\"]*)\"$")
-    public void usernameAndPassword(final String username, final String password) {
-        Dashboard dashboard;
-        dashboard = SignInPage.newCredentials(Environment.getInstance().getProperties()
-                .getProperty(username),
-                Environment.getInstance().getProperties()
-                        .getProperty(password));
-        WebDriverManager.getInstance().getDriver()
-                .get(dashboard.getFirstProject());
-        storyPage = new Story();
-    }
+
 
     /**
      * click add story action.

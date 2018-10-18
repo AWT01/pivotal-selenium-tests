@@ -1,39 +1,22 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.testng.Assert;
 import java.util.Map;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.FormCreate;
+import org.fundacionjala.pivotal.pageobjects.dashboard.NewProjectForm;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 
 /**
- * Class for steps.
- *
- * @author Adrian Rojas AWT - [01].
- * @version 0.1
+ * Class for project steps.
  */
 public class ProjectSteps {
 
-    private FormCreate formPage;
+    private NewProjectForm formPage;
     private Projects projects;
     private Dashboard dashboard;
     private String projectName;
-
-    /**
-     * Precondition, user must be logged in.
-     *
-     * @param username inserted
-     * @param password inserted
-     */
-    @Given("^I log in as \"([^\"]*)\" \"([^\"]*)\"$")
-    public void iLogInAs(final String username, final String password) {
-        dashboard = SignInPage.credentials(username, password);
-    }
 
     /**
      * .
@@ -66,6 +49,6 @@ public class ProjectSteps {
     @Then("^I verify if the project is created$")
     public void iVerifyIfTheProjectIsCreated() {
         projects.enterProjectSettings();
-        Assert.assertEquals(projects.getProjectNameInputField().getAttribute("value"), projectName);
+        Assert.assertTrue(projectName.equalsIgnoreCase(projects.getProjectNameInputField().getAttribute("value")));
     }
 }

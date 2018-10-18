@@ -17,7 +17,7 @@ import java.util.Map;
  * @author KevinHerrera, Kevin Sanchez - AWT-[01].
  * @version 0.1
  */
-public class FormCreate extends AbstractPage {
+public class NewProjectForm extends AbstractPage {
 
     @FindBy(name = "project_name")
     private WebElement projectNameTextField;
@@ -39,34 +39,9 @@ public class FormCreate extends AbstractPage {
 
     @FindBy(css = "button[data-aid='FormModal__submit']")
     private WebElement createButton;
-    @FindBy(css = "a[data-aid='navTab-more']")
-    private WebElement projectMoreButton;
 
     @FindBy(id = "project_name")
     private WebElement projectNameInputField;
-
-    @FindBy(id = "delete_link")
-    private WebElement projectDeleteLink;
-
-    @FindBy(id = "confirm_delete")
-    private WebElement projectDeleteConfirmButton;
-
-
-
-    @FindBy(id = ".tc-form__input")
-    private WebElement workspaceNameTextField;
-
-    @FindBy(id = ".pvXpn__Button--positive")
-    private WebElement createSubmit;
-
-    /**
-     * Submit the new workspace for creation.
-     * @return the workspace page
-     */
-    public Workspaces clickCreateSubmit() {
-        CommonActions.click(createSubmit);
-        return new Workspaces();
-    }
 
     /**
      * Getter of project name input field on create project settings page.
@@ -78,14 +53,6 @@ public class FormCreate extends AbstractPage {
         return projectNameInputField;
     }
 
-
-    /**
-     * Set the workspace name on the form displayed.
-     * @param workspaceName to create workspace
-     */
-    public void setWorkspaceNameTextField(final String workspaceName) {
-        CommonActions.setText(workspaceNameTextField, workspaceName);
-    }
 
 
     private Map<String, WebElement> accountMap;
@@ -116,16 +83,10 @@ public class FormCreate extends AbstractPage {
      * @param value .
      */
     public void setProjectPrivacy(final String value) {
-        //TODO change to if
-        switch (value.toLowerCase()) {
-            case "public":
-                CommonActions.click(inputProjectPrivacyPublic);
-                break;
-            case "private":
+        if (value.equalsIgnoreCase("private")) {
                 CommonActions.click(inputProjectPrivacyPrivate);
-                break;
-            default:
-                break;
+        } else {
+            CommonActions.click(inputProjectPrivacyPublic);
         }
     }
 

@@ -1,6 +1,6 @@
 Feature: Manage Stories
   Scenario: Create a new story
-    Given username "user1" and password "password1"
+    Given I log in as "user1"
     Then I click the add story button
     And I fill the story title
     |title|testStory|
