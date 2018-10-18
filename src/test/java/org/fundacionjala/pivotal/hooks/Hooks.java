@@ -2,7 +2,6 @@ package org.fundacionjala.pivotal.hooks;
 
 import cucumber.api.java.After;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 

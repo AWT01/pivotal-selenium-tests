@@ -36,7 +36,6 @@ public final class Environment {
         } catch (IOException ex) {
             LOGGER.error(ex.getMessage());
             //TODO stop execution with message
-            
         }
     }
 

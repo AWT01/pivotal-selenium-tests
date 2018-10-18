@@ -1,10 +1,8 @@
 package org.fundacionjala.pivotal.cucumber.runner;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.java.After;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 
 /**
@@ -22,6 +20,9 @@ import org.testng.annotations.AfterClass;
                 "rerun:target/cucumber-reports/rerun.txt"
         })
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
+    /**
+     * After the tests.
+     */
     @AfterClass
     public void close() {
         WebDriverManager.getInstance().getDriver().close();

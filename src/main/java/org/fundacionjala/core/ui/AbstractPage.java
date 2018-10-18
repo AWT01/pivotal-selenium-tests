@@ -3,7 +3,6 @@ package org.fundacionjala.core.ui;
 import org.fundacionjala.core.util.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
 /**
  * Parent of Page Objects.

@@ -10,7 +10,10 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class createWorkspaceTest {
+/**
+ * Test if a workspace is created.
+ */
+public class CreateWorkspaceTest {
     private Dashboard dashboard;
     private Workspaces workspace;
 

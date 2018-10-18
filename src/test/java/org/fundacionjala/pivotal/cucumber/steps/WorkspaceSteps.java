@@ -19,12 +19,19 @@ public class WorkspaceSteps {
     private Workspaces workspace;
     private String workspaceName;
 
+    /**
+     * Enter environment for workspace.
+     */
     @When("^I switch tab to workspaces and click the create button$")
     public void iSwitchTabToWorkspaces() {
         dashboard.clickWorkspaceTab();
         pageForm = dashboard.clickCreateWorkspaceButton();
     }
 
+    /**
+     * fill workspace form.
+     * @param value name
+     */
     @And("^I fill the fields of Create new workspace and press the create button$")
     public void iFillTheFieldsOfCreateNewWorkspaceAndPressTheCreateButton(final Map<String, String> value) {
         workspaceName = value.get("name") + System.currentTimeMillis();
@@ -32,6 +39,9 @@ public class WorkspaceSteps {
         workspace = pageForm.clickCreateSubmit();
     }
 
+    /**
+     * Check if the workspace is created.
+     */
     @Then("^I verify if the workspace is created$")
     public void iVerifyIfTheWorkspaceIsCreated() {
         Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceName()));

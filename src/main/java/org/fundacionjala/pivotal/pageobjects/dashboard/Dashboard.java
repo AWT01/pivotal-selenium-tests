@@ -43,8 +43,10 @@ public class Dashboard extends AbstractPage {
     public void clickWorkspaceTab() {
         CommonActions.click(workspacesTab);
     }
+
     /**
-     * Click to enter the workspace tab.
+     * Click to enter workspace tab.
+     * @return form
      */
     public NewWorkspaceForm clickCreateWorkspaceButton() {
         CommonActions.click(createWorkspaceButton);
@@ -66,7 +68,7 @@ public class Dashboard extends AbstractPage {
      * @param account account for project
      * @return the new project
      */
-    public Projects createNewProject (String projectName, String privacy, String account) {
+    public Projects createNewProject(final String projectName, final String privacy, final String account) {
         NewProjectForm formPage;
         formPage = clickCreateNewProjectButton();
 
@@ -84,7 +86,7 @@ public class Dashboard extends AbstractPage {
      * @param workspaceName name
      * @return the new workspace
      */
-    public Workspaces createNewWorkspace (String workspaceName) {
+    public Workspaces createNewWorkspace(final String workspaceName) {
         clickWorkspaceTab();
         NewWorkspaceForm formPage;
         formPage = clickCreateWorkspaceButton();

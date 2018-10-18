@@ -73,8 +73,9 @@ public class SignInPage extends AbstractPage {
             String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
 
             LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
-            LOGGER.log(Level.INFO, "User logged is: " +
-                    CookieManager.getValueOfCookieNamed("lastuser"));
+            LOGGER.log(Level.INFO, "User logged is: "
+                    + CookieManager.getValueOfCookieNamed("lastuser"));
+            // change sessions if needed
             if (!username.equals(currentSession)) {
                 CookieManager.deleteAllCookies();
                 try {

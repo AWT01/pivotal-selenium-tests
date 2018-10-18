@@ -6,6 +6,9 @@ import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Form to create workspaces.
+ */
 public class NewWorkspaceForm extends AbstractPage {
 
 
