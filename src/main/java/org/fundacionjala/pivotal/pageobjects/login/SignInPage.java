@@ -34,14 +34,14 @@ public class SignInPage extends AbstractPage {
      * @param userEmail .
      */
     public void setUsernameTextBox(final String userEmail) {
-        CommonActions.waitAndSetText(usernameTextBox, userEmail);
+        CommonActions.setText(usernameTextBox, userEmail);
     }
 
     /**
      * This method is to click on Login Button.
      */
     public void clickOnLoginButton() {
-        CommonActions.waitAndClick(nextButton);
+        CommonActions.click(nextButton);
     }
 
     /**
@@ -49,7 +49,7 @@ public class SignInPage extends AbstractPage {
      * @param userPassword .
      */
     public void setPasswordTextBox(final String userPassword) {
-        CommonActions.waitAndSetText(passwordTextBox, userPassword);
+        CommonActions.setText(passwordTextBox, userPassword);
     }
 
     /**
@@ -57,7 +57,7 @@ public class SignInPage extends AbstractPage {
      * @return .
      */
     public Dashboard clickSignInButton() {
-        CommonActions.waitAndClick(signInButton);
+        CommonActions.click(signInButton);
         return new Dashboard();
     }
 

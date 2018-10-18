@@ -64,7 +64,7 @@ public class FormCreate extends AbstractPage {
      * @return the workspace page
      */
     public Workspaces clickCreateSubmit() {
-        CommonActions.waitAndClick(createSubmit);
+        CommonActions.click(createSubmit);
         return new Workspaces();
     }
 
@@ -74,7 +74,7 @@ public class FormCreate extends AbstractPage {
      * @return webElement object.
      */
     public WebElement getProjectNameInputField() {
-        CommonActions.waitAnElement(projectNameInputField);
+        CommonActions.waitElement(projectNameInputField);
         return projectNameInputField;
     }
 
@@ -84,7 +84,7 @@ public class FormCreate extends AbstractPage {
      * @param workspaceName to create workspace
      */
     public void setWorkspaceNameTextField(final String workspaceName) {
-        CommonActions.waitAndSetText(workspaceNameTextField, workspaceName);
+        CommonActions.setText(workspaceNameTextField, workspaceName);
     }
 
 
@@ -95,7 +95,7 @@ public class FormCreate extends AbstractPage {
      * @param name .
      */
     public void setProjectNameTextField(final String name) {
-        CommonActions.waitAndSetText(projectNameTextField, name);
+        CommonActions.setText(projectNameTextField, name);
     }
 
     /**
@@ -119,10 +119,10 @@ public class FormCreate extends AbstractPage {
         //TODO change to if
         switch (value.toLowerCase()) {
             case "public":
-                CommonActions.waitAndClick(inputProjectPrivacyPublic);
+                CommonActions.click(inputProjectPrivacyPublic);
                 break;
             case "private":
-                CommonActions.waitAndClick(inputProjectPrivacyPrivate);
+                CommonActions.click(inputProjectPrivacyPrivate);
                 break;
             default:
                 break;
@@ -134,9 +134,9 @@ public class FormCreate extends AbstractPage {
      * @param accountName .
      */
     public void createNewAccount(final String accountName) {
-        CommonActions.waitAndClick(selectAccountField);
-        CommonActions.waitAndClick(createNewAccountButton);
-        CommonActions.waitAndSetText(newAccountNameTextField, accountName);
+        CommonActions.click(selectAccountField);
+        CommonActions.click(createNewAccountButton);
+        CommonActions.setText(newAccountNameTextField, accountName);
     }
 
     /**
@@ -144,7 +144,7 @@ public class FormCreate extends AbstractPage {
      * @return Settings Page Object.
      */
     public Projects clickCreateButton() {
-        CommonActions.waitAndClick(createButton);
+        CommonActions.click(createButton);
         return new Projects();
     }
 
@@ -152,7 +152,7 @@ public class FormCreate extends AbstractPage {
      * Fill a list of accounts that are inside field "account" on create project form.
      */
     public void fillCurrentAccountsList() {
-        CommonActions.waitAndClick(selectAccountField);
+        CommonActions.click(selectAccountField);
         List<WebElement> accountList = selectAccountField.findElements(
                 By.className("tc-account-selector__option-account-name"));
         accountMap = new HashMap<>();
