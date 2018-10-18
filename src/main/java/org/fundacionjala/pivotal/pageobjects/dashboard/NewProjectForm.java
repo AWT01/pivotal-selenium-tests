@@ -3,7 +3,6 @@ package org.fundacionjala.pivotal.pageobjects.dashboard;
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
-import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

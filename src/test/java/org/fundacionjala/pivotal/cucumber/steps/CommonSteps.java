@@ -7,8 +7,6 @@ import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 
 public class CommonSteps {
 
-    private Dashboard dashboard;
-
     /**
      * Precondition, user must be logged in
      * and enter in a existing project.
@@ -18,7 +16,7 @@ public class CommonSteps {
     @Given("^I log in as \"([^\"]*)\"$")
     public void iLogInAs(String username) {
         String password = username.replace("user","password");
-        dashboard = SignInPage.credentials(Environment.getInstance().getProperties().getProperty(username),
+        SignInPage.credentials(Environment.getInstance().getProperties().getProperty(username),
                 Environment.getInstance().getProperties().getProperty(password));
     }
 }
