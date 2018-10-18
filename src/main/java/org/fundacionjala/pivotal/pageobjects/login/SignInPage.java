@@ -73,18 +73,23 @@ public class SignInPage extends AbstractPage {
             String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
 
             LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
-            LOGGER.log(Level.INFO, new StringBuilder().append("User logged is: ")
-                    .append(CookieManager.getValueOfCookieNamed("lastuser")).toString());
+            LOGGER.log(Level.INFO, "User logged is: " +
+                    CookieManager.getValueOfCookieNamed("lastuser"));
             if (!username.equals(currentSession)) {
                 CookieManager.deleteAllCookies();
-                WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
-                HomePage homePage = new HomePage();
-                SignInPage signInPage = homePage.clickOnSignInButton();
-                signInPage.setUsernameTextBox(username);
-                LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
-                signInPage.clickOnLoginButton();
-                signInPage.setPasswordTextBox(password);
-                return signInPage.clickSignInButton();
+                try {
+                    WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
+                    HomePage homePage = new HomePage();
+                    SignInPage signInPage = homePage.clickOnSignInButton();
+                    signInPage.setUsernameTextBox(username);
+                    LOGGER.log(Level.INFO, "Sign in on pivotaltracker.com, user: " + username);
+                    signInPage.clickOnLoginButton();
+                    signInPage.setPasswordTextBox(password);
+                    return signInPage.clickSignInButton();
+                } catch (NullPointerException exception) {
+                    LOGGER.error("There is no URL in the config.properties file");
+                    throw exception;
+                }
             } else {
                 LOGGER.log(Level.INFO, "User: " + username + "is already logged");
                 return new Dashboard();
