@@ -1,10 +1,9 @@
 package org.fundacionjala.pivotal.testng;
 
-import org.fundacionjala.core.util.Environment;
-import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.projects.Projects;
-import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 import org.fundacionjala.core.ui.WebDriverManager;
+import org.fundacionjala.core.util.Environment;
+import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -14,7 +13,6 @@ import org.testng.annotations.Test;
  * @version 0.1
  */
 public class DeleteProjectTest {
-    private Dashboard dashboard;
 
     /**
      * Set up of test create project, set valid user credentials for pivotaltracker.com inside this method.
@@ -22,7 +20,7 @@ public class DeleteProjectTest {
     @BeforeTest
     public void setUp() {
         //Set user credentials before test
-        dashboard = SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user2"),
+        SignInPage.loginAs(Environment.getInstance().getProperties().getProperty("user2"),
                 Environment.getInstance().getProperties().getProperty("password2"));
     }
 

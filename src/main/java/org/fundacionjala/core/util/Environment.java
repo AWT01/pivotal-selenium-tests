@@ -33,9 +33,13 @@ public final class Environment {
         properties = new Properties();
         try (InputStream input = new FileInputStream("config.properties")) {
             properties.load(input);
+            if (properties.getProperty("user1").isEmpty()||properties.getProperty("password1").isEmpty()) {
+                LOGGER.error("There aren't the request data");
+                throw new EnviromentException();
+            }
         } catch (IOException exception) {
             LOGGER.error(exception.getMessage());
-            throw new NullPointerException();
+            throw new FileException();
         }
     }
 
