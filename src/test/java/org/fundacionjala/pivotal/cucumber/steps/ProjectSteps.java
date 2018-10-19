@@ -16,9 +16,12 @@ public class ProjectSteps {
     private Projects projects;
     private String projectName;
 
-    public ProjectSteps(final NewProjectForm formPage){
+    /**
+     * Constructos for injection dependency.
+     * @param formPage the form for project creation
+     */
+    public ProjectSteps(final NewProjectForm formPage) {
         this.formPage = formPage;
-
     }
 
     /**

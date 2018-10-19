@@ -4,7 +4,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.NewProjectForm;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
 
 /**
@@ -12,7 +11,7 @@ import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
  */
 public class CommonSteps {
     private Dashboard dashboard;
-    private NewProjectForm formPage;
+
     /**
      * Precondition, user must be logged in
      * and enter in a existing project.
@@ -32,7 +31,7 @@ public class CommonSteps {
      */
     @When("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
-        formPage = dashboard.clickCreateNewProjectButton();
+        dashboard.clickCreateNewProjectButton();
     }
 }
 
