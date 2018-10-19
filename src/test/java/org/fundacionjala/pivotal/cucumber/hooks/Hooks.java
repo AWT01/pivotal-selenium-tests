@@ -1,8 +1,7 @@
-package org.fundacionjala.pivotal.hooks;
+package org.fundacionjala.pivotal.cucumber.hooks;
 
 import cucumber.api.java.After;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 
@@ -34,8 +33,10 @@ public class Hooks {
      */
     @After(value = "@deleteProject")
     public void deleteCreatedProject() {
+        if (!WebDriverManager.getInstance().getDriver().getCurrentUrl().contains("settings")) {
+            projects.enterProjectSettings();
+        }
         projects.deleteProject();
-        WebDriverManager.getInstance().getDriver().close();
     }
 
     /**

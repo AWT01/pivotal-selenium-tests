@@ -2,8 +2,13 @@ package org.fundacionjala.pivotal.pageobjects.dashboard;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
+import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Page Object for Pivotal Dashboard Page.
@@ -15,10 +20,10 @@ public class Dashboard extends AbstractPage {
     @FindBy(id = "create-project-button")
     private WebElement createProjectButton;
 
-    @FindBy(id = "#create-workspace-button")
+    @FindBy(id = "create-workspace-button")
     private WebElement createWorkspaceButton;
 
-    @FindBy(id = "//span[text()='Workspaces']")
+    @FindBy(xpath = "//span[contains(text(), 'Workspaces')]")
     private WebElement workspacesTab;
 
     @FindBy(css = "a[data-aid='project-name']")
@@ -28,9 +33,9 @@ public class Dashboard extends AbstractPage {
      * Click on "Create Project" button inside Dashboard page.
      * @return .
      */
-    public FormCreate clickCreateNewProjectButton() {
+    public NewProjectForm clickCreateNewProjectButton() {
         CommonActions.click(createProjectButton);
-        return new FormCreate();
+        return new NewProjectForm();
     }
     /**
      * Click workspace tab to enter the workspace creation mode.
@@ -38,11 +43,14 @@ public class Dashboard extends AbstractPage {
     public void clickWorkspaceTab() {
         CommonActions.click(workspacesTab);
     }
+
     /**
-     * Click to enter the workspace tab.
+     * Click to enter workspace tab.
+     * @return form
      */
-    public void clickCreateWorkspaceButton() {
+    public NewWorkspaceForm clickCreateWorkspaceButton() {
         CommonActions.click(createWorkspaceButton);
+        return new NewWorkspaceForm();
     }
 
     /**
@@ -51,5 +59,38 @@ public class Dashboard extends AbstractPage {
      */
     public String getFirstProject() {
         return CommonActions.getAttribute(firstProject, "href");
+    }
+
+    /**
+     * Dashboard method to create new project.
+     * @param projectName name of the project
+     * @param privacy public or private
+     * @param account account for project
+     * @return the new project
+     */
+    public Projects createNewProject(final String projectName, final String privacy, final String account) {
+        NewProjectForm formPage;
+        formPage = clickCreateNewProjectButton();
+
+        Map<String, String> formData = new HashMap<>();
+        formData.put("name", projectName);
+        formData.put("account", account);
+        formData.put("privacy", privacy);
+        formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).executeSteps());
+        //submit data to create new project
+        return formPage.clickCreateButton();
+    }
+
+    /**
+     * Create new workspace.
+     * @param workspaceName name
+     * @return the new workspace
+     */
+    public Workspaces createNewWorkspace(final String workspaceName) {
+        clickWorkspaceTab();
+        NewWorkspaceForm formPage;
+        formPage = clickCreateWorkspaceButton();
+        formPage.setWorkspaceNameTextField(workspaceName);
+        return formPage.clickCreateSubmit();
     }
 }

@@ -15,7 +15,6 @@ public class GoogleChrome32 implements AbstractBrowser {
      * Empty constructor and path fof driver.
      */
     public GoogleChrome32() {
-        //TODO multi platform support
         System.setProperty("webdriver.chrome.driver", "ThirdParty\\chromedriver\\chromedriver.exe");
         this.driver = new ChromeDriver();
     }

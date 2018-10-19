@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.pageobjects.workspaces;
 
+import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.openqa.selenium.WebElement;
@@ -9,10 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 /**
  * Page Object for Pivotal Workspaces Page.
  */
-public class Workspaces {
+public class Workspaces extends AbstractPage {
 
-    @FindBy(id = ".raw_context_name")
-    private WebElement workspaceName;
+    @FindBy(id = "workspace_name")
+    private WebElement workspaceNameTextField;
 
     @FindBy(css = "a[data-aid='navTab-more']")
     private WebElement moreButton;
@@ -28,7 +29,8 @@ public class Workspaces {
      * @return webElement object.
      */
     public String getWorkspaceName() {
-        return CommonActions.getText(workspaceName);
+        enterWorkspaceSettings();
+        return workspaceNameTextField.getAttribute("value");
     }
 
     /**

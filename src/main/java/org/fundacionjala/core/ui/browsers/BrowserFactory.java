@@ -31,7 +31,7 @@ public final class BrowserFactory {
      * @return webdriver instance
      */
     public static WebDriver getBrowser(final String browser) {
-        return BROWSERS.getOrDefault(browser,GoogleChrome32::new).get().getDriver();
+        return BROWSERS.getOrDefault(browser, GoogleChrome32::new).get().getDriver();
     }
 }
 

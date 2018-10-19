@@ -1,11 +1,11 @@
 package org.fundacionjala.pivotal.cucumber.runner;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.java.After;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.openqa.selenium.WebElement;
+import org.fundacionjala.core.util.Environment;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 /**
  * @author Adrian Rojas - AWT-[01].
@@ -21,7 +21,20 @@ import org.testng.annotations.AfterClass;
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "rerun:target/cucumber-reports/rerun.txt"
         })
+/**
+ * method which runs all features.
+ */
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
+    /**
+     * this method execute before the tests.
+     */
+    @BeforeClass
+    public void open() {
+        Environment.getInstance();
+    }
+    /**
+     * this method close the browser after the features finish.
+     */
     @AfterClass
     public void close() {
         WebDriverManager.getInstance().getDriver().close();

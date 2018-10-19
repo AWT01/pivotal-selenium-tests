@@ -5,7 +5,6 @@ import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.ui.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Page Object for Pivotal Settings Page.
@@ -38,7 +37,7 @@ public class Projects extends AbstractPage {
      * Click on more button inside project page.
      */
     public void enterProjectSettings() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(projectMoreButton));
+        CommonActions.waitElement(projectMoreButton);
         String newURL = WebDriverManager.getInstance().getDriver().getCurrentUrl().replace("/n", "") + "/settings";
         WebDriverManager.getInstance().getDriver().navigate().to(newURL);
     }
