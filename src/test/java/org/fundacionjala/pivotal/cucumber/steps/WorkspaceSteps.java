@@ -58,6 +58,9 @@ public class WorkspaceSteps {
      */
     @Then("^I verify if the workspace is created$")
     public void iVerifyIfTheWorkspaceIsCreated() {
-        Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceName()));
+        System.out.println("WHAT!"+workspace.getWorkspaceNameFromContext());
+        Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromContext()));
+        //Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromSettings()));
+        //Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromDashboard()));
     }
 }

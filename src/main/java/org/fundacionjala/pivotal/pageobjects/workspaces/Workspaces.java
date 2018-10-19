@@ -12,6 +12,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class Workspaces extends AbstractPage {
 
+    @FindBy(className = "tc_context_name")
+    private WebElement workspaceContextName;
+
     @FindBy(id = "workspace_name")
     private WebElement workspaceNameTextField;
 
@@ -24,14 +27,37 @@ public class Workspaces extends AbstractPage {
     @FindBy(id = "confirm_delete")
     private WebElement deleteConfirmButton;
 
+    @FindBy(className = "WorkspaceTile_name")
+    private WebElement workspaceTitle;
+
     /**
-     * Getter of project name input field on create project settings page.
-     * @return webElement object.
+     * Getter of workspace name input field on create workspace settings page.
+     * @return String with name.
      */
-    public String getWorkspaceName() {
+    public String getWorkspaceNameFromSettings() {
         enterWorkspaceSettings();
         return workspaceNameTextField.getAttribute("value");
     }
+
+    /**
+     * Getter of workspace name input field on workspace page.
+     * @return String with name.
+     */
+    public String getWorkspaceNameFromContext() {
+        CommonActions.waitElement(workspaceContextName);
+        System.out.println(workspaceContextName.getAttribute("value"));
+        return WebDriverManager.getInstance().getDriver().getTitle().replace(" - Pivotal Tracker","");
+
+    }
+    /**
+     * Getter of workspace name input field on dashboard page.
+     * @return String with name.
+     */
+    public String getWorkspaceNameFromDashboard() {
+        CommonActions.goToDashboard();
+        return workspaceTitle.getAttribute("value");
+    }
+
 
     /**
      * Click on more button inside project page.
@@ -46,7 +72,6 @@ public class Workspaces extends AbstractPage {
      * Delete the current project page.
      */
     public void deleteWorkspace() {
-        CommonActions.waitElement(deleteLink);
         CommonActions.scrollToElement(deleteLink);
         CommonActions.click(deleteLink);
         CommonActions.click(deleteConfirmButton);

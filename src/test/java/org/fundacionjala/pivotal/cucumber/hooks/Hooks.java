@@ -44,6 +44,9 @@ public class Hooks {
      */
     @After(value = "@deleteWorkspace")
     public void deleteCreatedWorkspace() {
+        if (!WebDriverManager.getInstance().getDriver().getCurrentUrl().contains("settings")) {
+            workspaces.enterWorkspaceSettings();
+        }
         workspaces.deleteWorkspace();
     }
 }

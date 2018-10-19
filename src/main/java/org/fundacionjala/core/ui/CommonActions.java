@@ -1,5 +1,6 @@
 package org.fundacionjala.core.ui;
 
+import org.fundacionjala.core.util.Environment;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -69,7 +70,14 @@ public final class CommonActions {
      * @param element to scroll to
      */
     public static void scrollToElement(final WebElement element) {
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         JavascriptExecutor js = (JavascriptExecutor) WebDriverManager.getInstance().getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public static void goToDashboard() {
+        if(!WebDriverManager.getInstance().getDriver().getCurrentUrl().contains("dashboard")) {
+            WebDriverManager.getInstance().getDriver().navigate().to(Environment.getInstance().getProperties().getProperty("url"));
+        }
     }
 }
