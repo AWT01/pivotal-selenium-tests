@@ -78,7 +78,6 @@ public class SignInPage extends AbstractPage {
             // change sessions if needed
             if (!username.equals(currentSession)) {
                 CookieManager.deleteAllCookies();
-                try {
                     WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
                     HomePage homePage = new HomePage();
                     SignInPage signInPage = homePage.clickOnSignInButton();
@@ -87,12 +86,10 @@ public class SignInPage extends AbstractPage {
                     signInPage.clickOnLoginButton();
                     signInPage.setPasswordTextBox(password);
                     return signInPage.clickSignInButton();
-                } catch (Exception exception) {
-                    LOGGER.error("There is no URL in the config.properties file");
-                                    }
+
             } else {
                 LOGGER.log(Level.INFO, "User: " + username + "is already logged");
                 return new Dashboard();
             }
-        }
+    }
 }
