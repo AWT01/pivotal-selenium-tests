@@ -44,8 +44,7 @@ public class Workspaces extends AbstractPage {
      * @return String with name.
      */
     public String getWorkspaceNameFromContext() {
-        CommonActions.waitElement(workspaceContextName);
-        System.out.println(workspaceContextName.getAttribute("value"));
+        CommonActions.waitElement(moreButton);
         return WebDriverManager.getInstance().getDriver().getTitle().replace(" - Pivotal Tracker","");
 
     }
@@ -55,6 +54,7 @@ public class Workspaces extends AbstractPage {
      */
     public String getWorkspaceNameFromDashboard() {
         CommonActions.goToDashboard();
+        System.out.println(workspaceTitle.getAttribute("value"));
         return workspaceTitle.getAttribute("value");
     }
 

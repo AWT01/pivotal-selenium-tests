@@ -60,7 +60,7 @@ public class WorkspaceSteps {
     public void iVerifyIfTheWorkspaceIsCreated() {
         System.out.println("WHAT!"+workspace.getWorkspaceNameFromContext());
         Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromContext()));
-        //Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromSettings()));
+        Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromSettings()));
         //Assert.assertTrue(workspaceName.equalsIgnoreCase(workspace.getWorkspaceNameFromDashboard()));
     }
 }
