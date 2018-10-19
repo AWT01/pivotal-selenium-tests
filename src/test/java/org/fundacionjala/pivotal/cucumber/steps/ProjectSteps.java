@@ -15,7 +15,6 @@ public class ProjectSteps {
 
     private NewProjectForm formPage;
     private Projects projects;
-    private Dashboard dashboard;
     private String projectName;
 
     /**
@@ -24,6 +23,7 @@ public class ProjectSteps {
      */
     @When("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
+        Dashboard dashboard = new Dashboard();
         formPage = dashboard.clickCreateNewProjectButton();
     }
 

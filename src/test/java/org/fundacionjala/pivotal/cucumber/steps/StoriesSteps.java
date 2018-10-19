@@ -19,6 +19,7 @@ public class StoriesSteps {
      */
     @Then("^I click the add story button$")
     public void iClickAddStoryButton() {
+        storyPage = new Story();
         storyPage.clickAddSideBarStoryButton();
     }
 

@@ -20,9 +20,10 @@ import org.testng.annotations.AfterClass;
                 "rerun:target/cucumber-reports/rerun.txt"
         })
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
+
     /**
-     * After the tests.
-     */
+    * After the tests.
+    */
     @AfterClass
     public void close() {
         WebDriverManager.getInstance().getDriver().close();
