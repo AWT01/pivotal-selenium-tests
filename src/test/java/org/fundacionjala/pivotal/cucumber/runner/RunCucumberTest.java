@@ -26,8 +26,11 @@ import org.testng.annotations.BeforeClass;
  */
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
 
+    /**
+     * this method execute before the tests.
+     */
     @BeforeClass
-    public void open(){
+    public void open() {
         Environment.getInstance();
     }
     /**
