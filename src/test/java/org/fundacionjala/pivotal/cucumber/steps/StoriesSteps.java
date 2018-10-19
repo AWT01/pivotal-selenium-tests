@@ -5,6 +5,8 @@ import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.pageobjects.story.Story;
 import org.testng.Assert;
 
+import java.util.Map;
+
 /**
  * Class with the steps to create a story.
  * @author Kevin Sanchez - AWT-[01].
@@ -23,11 +25,11 @@ public class StoriesSteps {
 
     /**
      * file the title of the story with the data table.
-     * @param title of the story
+     * @param value of the story
      */
-    @When("^I fill the story \"([^\"]*)\"$")
-    public void iFillStoryTitle(final String title) {
-        storyPage.setStoryTitle(title);
+    @When("^I fill the story$")
+    public void iFillStoryTitle(final Map<String, String> value) {
+        storyPage.setStoryTitle(value.get("title"));
         storyPage.clickSaveButton();
     }
 
