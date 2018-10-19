@@ -14,3 +14,4 @@ Feature: Manage Stories
     And I fill the story
     |title|storyTest|
     Then I verify if the story was created
+    
