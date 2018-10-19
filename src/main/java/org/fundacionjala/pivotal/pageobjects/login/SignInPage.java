@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
+import org.fundacionjala.core.util.EnviromentException;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.core.ui.CommonActions;
 import org.fundacionjala.core.ui.CookieManager;
@@ -79,7 +80,7 @@ public class SignInPage extends AbstractPage {
             return signInPage.clickSignInButton();
         } catch (NullPointerException exception) {
             LOGGER.error("There isn't a url in the config.properties file");
-            throw exception;
+            throw new EnviromentException();
         }
     }
 
