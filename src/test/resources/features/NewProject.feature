@@ -4,7 +4,7 @@ Feature: Create a New Project
   Scenario: Create a new project with privacy set to public
     Given I log in as "user1"
     When I click the create project button
-    And I fill the fields of Create new project and press the create button
+    And I create a new project with fields:
       | name    | Public project |
       | account | newAccount     |
       | privacy | public         |

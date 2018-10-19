@@ -29,8 +29,8 @@ public class ProjectSteps {
      *
      * @param values .
      */
-    @When("^I fill the fields of Create new project and press the create button$")
-    public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
+    @When("^I create a new project with fields:$")
+    public void iCreateANewProjectWithFields(final Map<String, String> values) {
         values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).executeSteps());
         projectName = String.valueOf(System.currentTimeMillis());
         formPage.setProjectNameTextField(projectName);
