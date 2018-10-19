@@ -4,7 +4,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 import java.util.Map;
-import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.dashboard.NewProjectForm;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 
@@ -17,14 +16,9 @@ public class ProjectSteps {
     private Projects projects;
     private String projectName;
 
-    /**
-     * .
-     * Project button is selected.
-     */
-    @When("^I click the create project button$")
-    public void iClickTheCreateProjectButton() {
-        Dashboard dashboard = new Dashboard();
-        formPage = dashboard.clickCreateNewProjectButton();
+    public ProjectSteps(final NewProjectForm formPage){
+        this.formPage = formPage;
+
     }
 
     /**
@@ -34,7 +28,7 @@ public class ProjectSteps {
      */
     @When("^I fill the fields of Create new project and press the create button$")
     public void iFillTheFieldsOfCreateNewProjectAndPressTheCreateButton(final Map<String, String> values) {
-        values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).fillCreateProjectForm());
+        values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).executeSteps());
         projectName = String.valueOf(System.currentTimeMillis());
         formPage.setProjectNameTextField(projectName);
         projectName = values.get("name") + projectName;

@@ -76,7 +76,7 @@ public class Dashboard extends AbstractPage {
         formData.put("name", projectName);
         formData.put("account", account);
         formData.put("privacy", privacy);
-        formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).fillCreateProjectForm());
+        formData.keySet().forEach(form -> formPage.getStrategyFormMap(formData).get(form).executeSteps());
         //submit data to create new project
         return formPage.clickCreateButton();
     }

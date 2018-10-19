@@ -33,6 +33,9 @@ public class Hooks {
      */
     @After(value = "@deleteProject")
     public void deleteCreatedProject() {
+        if (!WebDriverManager.getInstance().getDriver().getCurrentUrl().contains("settings")) {
+            projects.enterProjectSettings();
+        }
         projects.deleteProject();
         WebDriverManager.getInstance().getDriver().close();
     }
@@ -43,5 +46,6 @@ public class Hooks {
     @After(value = "@deleteWorkspace")
     public void deleteCreatedWorkspace() {
         workspaces.deleteWorkspace();
+        WebDriverManager.getInstance().getDriver().close();
     }
 }
