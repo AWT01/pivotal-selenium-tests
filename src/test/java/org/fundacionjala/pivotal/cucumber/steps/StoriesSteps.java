@@ -2,7 +2,10 @@ package org.fundacionjala.pivotal.cucumber.steps;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import gherkin.deps.com.google.gson.JsonObject;
+import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.pivotal.pageobjects.story.Story;
+import org.fundacionjala.pivotal.restapi.RequestManager;
 import org.testng.Assert;
 
 import java.util.Map;
@@ -14,6 +17,22 @@ import java.util.Map;
  */
 public class StoriesSteps {
     private Story storyPage;
+
+    /**
+     * evento of create a project.
+     */
+    @When("^I create a new project$")
+    public void iCreateNewProject() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", "api8");
+        jsonObject.addProperty("new_account_name", "test");
+        String idProject = RequestManager.postRequest("/projects", jsonObject.toString())
+                .jsonPath().get("id").toString();
+        String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
+                .replace("dashboard", "n/projects/" + idProject);
+        WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
+    }
+
     /**
      * click add story action.
      */

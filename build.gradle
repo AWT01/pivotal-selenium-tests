@@ -27,6 +27,7 @@ dependencies {
     testCompile group: 'io.cucumber', name: 'cucumber-java', version: '4.0.0'
     testCompile group: 'io.cucumber', name: 'cucumber-testng', version: '4.0.0'
     testCompile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '4.0.0'
+    testCompile 'io.rest-assured:rest-assured:3.2.0'
 }
 
 // Checkstyle configuration
