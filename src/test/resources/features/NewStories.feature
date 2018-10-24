@@ -2,11 +2,7 @@ Feature: Manage Stories
 
   Background:
     Given I log in as "user1"
-    And I click the create project button
-    And I create a new project with fields:
-      | name    | Public project |
-      | account | newAccount     |
-      | privacy | public         |
+    And I create a new project
 
   @deleteProject
   Scenario: Create a new story
