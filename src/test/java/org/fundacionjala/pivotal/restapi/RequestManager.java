@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.restapi;
 
 import io.restassured.response.Response;
+import org.fundacionjala.core.util.Environment;
 
 import static io.restassured.RestAssured.given;
 
@@ -8,9 +9,9 @@ import static io.restassured.RestAssured.given;
  * class for rest api.
  */
 public final class RequestManager {
-    private static String baseURL = "https://www.pivotaltracker.com/services/v5";
+    private static String baseURL = Environment.getInstance().getProperties().getProperty("apiURL");
     private static String headerCommon = "X-TrackerToken";
-    private static String apiToken = "8c5a5a6e8bf0cebf4e463b9c3d16bf92";
+    private static String apiToken = Environment.getInstance().getProperties().getProperty("apiToken");
     private static String headerPost = "Content-Type";
     private static String post = "application/json";
 
@@ -38,10 +39,11 @@ public final class RequestManager {
      * @return response.
      */
     public static Response postRequest(final String endpoint, final String body) {
-       return given()
+        return given()
                .header(headerCommon, apiToken)
                .header(headerPost, post)
                .baseUri(baseURL)
+               .when()
                .body(body)
                .post(endpoint);
     }
