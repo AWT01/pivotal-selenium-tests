@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.rest_api;
+package org.fundacionjala.pivotal.restapi;
 
 import io.restassured.response.Response;
 
