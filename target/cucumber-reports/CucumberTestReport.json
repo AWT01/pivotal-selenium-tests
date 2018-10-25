@@ -1,0 +1,146 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 34458097769,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I create a new project using API",
+            "match": {
+              "location": "CommonSteps.iCreateNewProject()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 17429828207,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I log in as \"user1\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "user1",
+                  "offset": 13
+                }
+              ],
+              "location": "CommonSteps.iLogInAs(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 6578282355,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I open the project created with API:",
+            "match": {
+              "location": "CommonSteps.iOpenProjectCreatedWithAPI()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1284499956,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I click the add epics button",
+            "match": {
+              "location": "EpicsSteps.iClickAddEpicsButton()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "line": 10,
+        "name": "Create a new epic",
+        "description": "",
+        "id": "manage-epics;create-a-new-epic",
+        "after": [
+          {
+            "result": {
+              "duration": 711198756,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.deleteCreatedProject()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 589240546,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I click the add epics button",
+            "match": {
+              "location": "EpicsSteps.iClickAddEpicsButton()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 901225735,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I fill the epic",
+            "match": {
+              "location": "EpicsSteps.iFillStoryTitle(String,String\u003e)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "title",
+                  "epicTest"
+                ]
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 148513839,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "I verify if the epic was created",
+            "match": {
+              "location": "EpicsSteps.iVerifyIfStoryWasCreated()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@deleteProject"
+          }
+        ]
+      }
+    ],
+    "name": "Manage Epics",
+    "description": "",
+    "id": "manage-epics",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/NewEpics.feature",
+    "tags": []
+  }
+]

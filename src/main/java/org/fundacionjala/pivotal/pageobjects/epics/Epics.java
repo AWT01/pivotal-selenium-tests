@@ -29,10 +29,13 @@ public class Epics extends AbstractPage {
     }
 
     /**
-     * click on button show epic tab.
+     * click on button that show epics tab.
      */
     public void clickEpicToggleButton() {
-        CommonActions.click(epicsToggleButton);
+        String toggleState;
+        if ("false".equals(CommonActions.getAttribute(epicsToggleButton, "data-panel-visible"))) {
+            CommonActions.click(epicsToggleButton);
+        }
     }
 
     /**

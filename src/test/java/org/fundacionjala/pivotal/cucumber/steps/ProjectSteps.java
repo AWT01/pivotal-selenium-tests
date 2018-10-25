@@ -37,7 +37,6 @@ public class ProjectSteps {
         projectName = values.get("name") + projectName;
         //submit data to create new project
         projects = formPage.clickCreateButton();
-
     }
 
     /**

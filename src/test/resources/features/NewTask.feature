@@ -2,7 +2,7 @@ Feature: Manage task
 
     Background:
         Given I log in as "user1"
-        And I create a new project
+        And I create a new project using API token of "user1"
         And I click the add story button
 
     @deleteProject

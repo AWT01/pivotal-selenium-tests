@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pageobjects.dashboard;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.openqa.selenium.WebElement;
@@ -92,5 +93,18 @@ public class Dashboard extends AbstractPage {
         formPage = clickCreateWorkspaceButton();
         formPage.setWorkspaceNameTextField(workspaceName);
         return formPage.clickCreateSubmit();
+    }
+
+    /**
+     * open a project given a projectID.
+     * @param projectID project id number
+     * @return Projects page object
+     */
+    public Projects openProjectByID(String projectID) {
+        String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
+                .replace("dashboard", "n/projects/" + projectID);
+        WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
+        Projects projects = new Projects();
+        return projects;
     }
 }

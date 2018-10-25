@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.pageobjects.projects;
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.pivotal.restapi.RequestManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,6 +25,10 @@ public class Projects extends AbstractPage {
 
     @FindBy(id = "confirm_delete")
     private WebElement projectDeleteConfirmButton;
+
+    @FindBy(css = "td[class='text_column']")
+    private WebElement projectIDText;
+
     /**
      * Getter of project name input field on create project settings page.
      * @return webElement object.
@@ -50,5 +55,12 @@ public class Projects extends AbstractPage {
         CommonActions.scrollToElement(projectDeleteLink);
         CommonActions.click(projectDeleteLink);
         CommonActions.click(projectDeleteConfirmButton);
+    }
+
+    public String getProjectIDSettings() {
+        CommonActions.waitElement(projectIDText);
+        CommonActions.scrollToElement(projectIDText);
+        return CommonActions.getText(projectIDText);
+
     }
 }

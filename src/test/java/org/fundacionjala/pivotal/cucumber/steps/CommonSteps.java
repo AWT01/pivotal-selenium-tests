@@ -3,7 +3,6 @@ package org.fundacionjala.pivotal.cucumber.steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import gherkin.deps.com.google.gson.JsonObject;
-import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
@@ -31,16 +30,15 @@ public class CommonSteps {
     /**
      * rest api for create a project.
      */
-    @When("^I create a new project$")
-    public void iCreateNewProject() {
+    @When("^I create a new project using API$")
+    public void iCreateNewProject(final String username) {
+        String apiToken = Environment.getInstance().getProperties().getProperty(username.replace("user", "apiToken"));
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("name", "api8");
         jsonObject.addProperty("new_account_name", "test");
         String idProject = RequestManager.postRequest("/projects", jsonObject.toString())
                 .jsonPath().get("id").toString();
-        String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
-                .replace("dashboard", "n/projects/" + idProject);
-        WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
+        dashboard.openProjectByID(idProject);
     }
 
     /**
