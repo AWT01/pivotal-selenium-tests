@@ -19,7 +19,7 @@ public class Task extends AbstractPage {
     @FindBy(css = "button[data-aid='addTaskButton']")
     private WebElement saveTaskEditButton;
 
-    @FindBy(css = ".tracker_markup")
+    @FindBy(css = "div[data-aid='TaskDescription']")
     private WebElement firstTask;
 
     /**
