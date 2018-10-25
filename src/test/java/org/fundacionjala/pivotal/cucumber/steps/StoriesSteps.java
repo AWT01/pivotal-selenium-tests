@@ -19,21 +19,6 @@ public class StoriesSteps {
     private Story storyPage;
 
     /**
-     * evento of create a project.
-     */
-    @When("^I create a new project$")
-    public void iCreateNewProject() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("name", "api8");
-        jsonObject.addProperty("new_account_name", "test");
-        String idProject = RequestManager.postRequest("/projects", jsonObject.toString())
-                .jsonPath().get("id").toString();
-        String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
-                .replace("dashboard", "n/projects/" + idProject);
-        WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
-    }
-
-    /**
      * click add story action.
      */
     @When("^I click the add story button$")
