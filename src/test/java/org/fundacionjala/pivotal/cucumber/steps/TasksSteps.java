@@ -46,4 +46,9 @@ public class TasksSteps {
     public void iVerifyIfTheTaskWasCreated() {
         Assert.assertEquals(task.getFirstTask(), "testTask");
     }
+
+    @When("^I select the task$")
+    public void iSelectTheTask() {
+        task.clickFirstTask();
+    }
 }

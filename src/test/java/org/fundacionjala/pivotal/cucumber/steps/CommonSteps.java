@@ -14,6 +14,9 @@ import org.fundacionjala.pivotal.restapi.RequestManager;
  */
 public class CommonSteps {
     private Dashboard dashboard;
+    private String idProject;
+    private String idStory;
+    String newUrl;
 
     /**
      * Precondition, user must be logged in
@@ -34,17 +37,45 @@ public class CommonSteps {
     @When("^I create a new project$")
     public void iCreateNewProject() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("name", "api8");
+        jsonObject.addProperty("name", "apiTest");
         jsonObject.addProperty("new_account_name", "test");
-        String idProject = RequestManager.postRequest("/projects", jsonObject.toString())
+        idProject = RequestManager.postRequest("/projects", jsonObject.toString())
                 .jsonPath().get("id").toString();
-        String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
+        newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
                 .replace("dashboard", "n/projects/" + idProject);
+    }
+
+    /**
+     * open the project.
+     */
+    @When("^I open the project$")
+    public void iOpenTheProject() {
         WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
     }
 
     /**
-     * .
+     * create a story.
+     */
+    @When("^I create a new story$")
+    public void iCreateNewStory() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", "testStory");
+        idStory = RequestManager.postRequest("/projects/" + idProject + "/stories",
+                jsonObject.toString()).jsonPath().get("id").toString();
+    }
+
+    /**
+     * create a task.
+     */
+    @When("^I create a new task$")
+    public void iCreateNewTask() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("description", "testTask");
+        RequestManager.postRequest("/projects/" + idProject + "/stories/" + idStory + "/tasks",
+                jsonObject.toString());
+    }
+
+    /**
      * Project button is selected.
      */
     @When("^I click the create project button$")

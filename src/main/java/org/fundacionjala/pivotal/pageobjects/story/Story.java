@@ -24,6 +24,9 @@ public class Story extends AbstractPage {
     @FindBy(css = ".story_name")
     private WebElement firstStory;
 
+    @FindBy(css = "[data-aid='StoryPreviewItem__expander']")
+    private WebElement expandStoryButton;
+
     /**
      * This method is to click on Login Button.
      */
@@ -52,5 +55,12 @@ public class Story extends AbstractPage {
      */
     public String getFirstStory() {
         return CommonActions.getText(firstStory);
+    }
+
+    /**
+     * Click expand button story.
+     */
+    public void clickExpandStoryButton() {
+        CommonActions.click(expandStoryButton);
     }
 }

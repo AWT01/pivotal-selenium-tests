@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.cucumber.steps;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.pivotal.pageobjects.story.Story;
 import org.testng.Assert;
 
@@ -40,5 +41,13 @@ public class StoriesSteps {
     @Then("^I verify if the story was created$")
     public void iVerifyIfStoryWasCreated() {
         Assert.assertEquals("storyTest", storyPage.getFirstStory());
+    }
+
+    /**
+     * click the story button.
+     */
+    @When("^I click the story$")
+    public void iClickTheStory() {
+        storyPage.clickExpandStoryButton();
     }
 }

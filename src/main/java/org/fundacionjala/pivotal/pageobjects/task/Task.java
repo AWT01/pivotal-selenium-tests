@@ -51,4 +51,11 @@ public class Task extends AbstractPage {
     public String getFirstTask() {
         return CommonActions.getText(firstTask);
     }
+
+    /**
+     * method to select the task.
+     */
+    public void clickFirstTask() {
+        CommonActions.click(firstTask);
+    }
 }
