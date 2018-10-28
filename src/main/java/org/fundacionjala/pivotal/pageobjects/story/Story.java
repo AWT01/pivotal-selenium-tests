@@ -24,7 +24,7 @@ public class Story extends AbstractPage {
     @FindBy(css = ".story_name")
     private WebElement firstStory;
 
-    @FindBy(css = "[data-aid='StoryPreviewItem__expander']")
+    @FindBy(css = "button[data-aid='StoryPreviewItem__expander']")
     private WebElement expandStoryButton;
 
     /**

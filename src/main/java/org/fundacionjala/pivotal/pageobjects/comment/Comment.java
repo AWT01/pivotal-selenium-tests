@@ -18,12 +18,17 @@ public class Comment extends AbstractPage {
     @FindBy(css = "div[data-aid='message']")
     private WebElement firstComment;
 
+    @FindBy(css = "div[data-aid='action-menu']")
+    private WebElement actionMenuButton;
+
+    @FindBy(xpath = "//span[text()='Edit']")
+    private WebElement actionEditButton;
+
     /**
      * fills the textarea with the comment.
      * @param comment string.
      */
     public void setTextAreaComment(final String comment) {
-        //CommonActions.click(textAreaComment);
         CommonActions.setText(textAreaComment, comment);
     }
 
@@ -40,5 +45,19 @@ public class Comment extends AbstractPage {
      */
     public String getFirstComment() {
         return CommonActions.getText(firstComment);
+    }
+
+    /**
+     * click action menu.
+     */
+    public void clickActionMenu() {
+        CommonActions.click(actionMenuButton);
+    }
+
+    /**
+     * click action edit button.
+     */
+    public void clickActionEditMenu() {
+        CommonActions.click(actionEditButton);
     }
 }

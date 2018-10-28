@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.pageobjects.task.Task;
@@ -14,11 +15,18 @@ public class TasksSteps {
     private Task task;
 
     /**
+     * setup for task class.
+     */
+    @Before
+    public void setUp() {
+        task = new Task();
+    }
+
+    /**
      * click enable.
      */
     @When("^I click the enable button of tasks$")
     public void iClickTheEnableButtonOfTasks() {
-        task = new Task();
         task.clickEnableTaskButton();
     }
 
@@ -28,27 +36,43 @@ public class TasksSteps {
      */
     @When("^I set the name of the task$")
     public void iSetTheNameOfTheTask(final Map<String, String> value) {
-        task.setAddText(value.get("title"));
+        task.setAddEditText(value.get("title"));
+    }
+
+    @When("^I set the name of the new task$")
+    public void iSetTheNameOfTheNewTask(final Map<String, String> value) {
+        task.setAddNewTaskText(value.get("title"));
     }
 
     /**
-     * save.
+     * save task.
      */
     @When("^I save the task$")
     public void iSaveTheTask() {
-        task.clickSaveTaskButton();
+        task.clickSaveNewTaskButton();
     }
 
     /**
-     * verify.
+     * verify creation.
      */
     @Then("^I verify if the task was created$")
-    public void iVerifyIfTheTaskWasCreated() {
-        Assert.assertEquals(task.getFirstTask(), "testTask");
+    public void iVerifyIfTheTaskWasCreated(final Map<String, String> value) {
+        Assert.assertEquals(task.getFirstTask(), value.get("title"));
     }
 
+    /**
+     * get the first task created.
+     */
     @When("^I select the task$")
     public void iSelectTheTask() {
         task.clickFirstTask();
+    }
+
+    /**
+     * save the edit task.
+     */
+    @When("^I save the edited task$")
+    public void iSaveTheEditedTask() {
+        task.clickSaveEditTaskButton();
     }
 }

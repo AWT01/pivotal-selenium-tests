@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.core.ui.WebDriverManager;
@@ -17,11 +18,17 @@ public class StoriesSteps {
     private Story storyPage;
 
     /**
+     * setup for story class.
+     */
+    @Before
+    public void setUp() {
+        storyPage = new Story();
+    }
+    /**
      * click add story action.
      */
     @When("^I click the add story button$")
     public void iClickAddStoryButton() {
-        storyPage = new Story();
         storyPage.clickAddSideBarStoryButton();
     }
 
@@ -39,8 +46,8 @@ public class StoriesSteps {
      * click save the story and check the creation.
      */
     @Then("^I verify if the story was created$")
-    public void iVerifyIfStoryWasCreated() {
-        Assert.assertEquals("storyTest", storyPage.getFirstStory());
+    public void iVerifyIfStoryWasCreated(final Map<String, String> value) {
+        Assert.assertEquals(storyPage.getFirstStory(), value.get("title"));
     }
 
     /**

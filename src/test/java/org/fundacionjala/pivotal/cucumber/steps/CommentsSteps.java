@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.pageobjects.comment.Comment;
@@ -14,12 +15,19 @@ public class CommentsSteps {
     private Comment comment;
 
     /**
+     * setup for comment class.
+     */
+    @Before
+    public void setUp() {
+        comment = new Comment();
+    }
+
+    /**
      * fill area.
      * @param value map.
      */
-    @When("^I click the textarea and set the comment$")
+    @When("^I set the comment$")
     public void iClickTheTextAreaAndSetTheComment(final Map<String, String> value) {
-        comment = new Comment();
         comment.setTextAreaComment(value.get("comment"));
     }
 
@@ -35,7 +43,23 @@ public class CommentsSteps {
      * verify creation of the comment.
      */
     @Then("^I verify if the comment was created$")
-    public void iVerifyIfTheCommentWasCreated() {
-        Assert.assertEquals(comment.getFirstComment(), "test comment");
+    public void iVerifyIfTheCommentWasCreated(final Map<String, String> value) {
+        Assert.assertEquals(comment.getFirstComment(), value.get("comment"));
+    }
+
+    /**
+     * click action menu.
+     */
+    @When("^I click action menu$")
+    public void iClickActionMenu() {
+        comment.clickActionMenu();
+    }
+
+    /**
+     * click edit button.
+     */
+    @When("^I click the edit button$")
+    public void iClickTheEditButton() {
+        comment.clickActionEditMenu();
     }
 }

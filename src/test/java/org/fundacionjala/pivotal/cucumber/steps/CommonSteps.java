@@ -59,7 +59,7 @@ public class CommonSteps {
     @When("^I create a new story$")
     public void iCreateNewStory() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("name", "testStory");
+        jsonObject.addProperty("name", "storyTest");
         idStory = RequestManager.postRequest("/projects/" + idProject + "/stories",
                 jsonObject.toString()).jsonPath().get("id").toString();
     }
@@ -81,6 +81,17 @@ public class CommonSteps {
     @When("^I click the create project button$")
     public void iClickTheCreateProjectButton() {
         dashboard.clickCreateNewProjectButton();
+    }
+
+    /**
+     * create comment.
+     */
+    @When("^I create a new comment$")
+    public void iCreateNewComment() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("text", "test comment");
+        RequestManager.postRequest("/projects/" + idProject + "/stories/" + idStory + "/comments",
+                jsonObject.toString());
     }
 }
 
