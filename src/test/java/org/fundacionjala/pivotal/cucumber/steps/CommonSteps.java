@@ -1,8 +1,13 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import gherkin.deps.com.google.gson.JsonObject;
+import io.restassured.response.Response;
+import java.util.HashMap;
+import java.util.Map;
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
@@ -13,6 +18,8 @@ import org.fundacionjala.pivotal.restapi.RequestManager;
  */
 public class CommonSteps {
     private Dashboard dashboard;
+    private Response lastResponse;
+    private Map<String, Response> responseMap = new HashMap<>();
 
     /**
      * Precondition, user must be logged in
@@ -30,24 +37,31 @@ public class CommonSteps {
     /**
      * rest api for create a project.
      */
-    @When("^I create a new project using API$")
-    public void iCreateNewProject(final String username) {
-        String apiToken = Environment.getInstance().getProperties().getProperty(username.replace("user", "apiToken"));
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("name", "api8");
-        jsonObject.addProperty("new_account_name", "test");
-        String idProject = RequestManager.postRequest("/projects", jsonObject.toString())
-                .jsonPath().get("id").toString();
-        dashboard.openProjectByID(idProject);
+    @When("^I click the create project button$")
+    public void iClickTheCreateProjectButton() {
+        dashboard.clickCreateNewProjectButton();
     }
 
     /**
      * .
-     * Project button is selected.
+     * @param endpoint .
+     * @param values .
      */
-    @When("^I click the create project button$")
-    public void iClickTheCreateProjectButton() {
-        dashboard.clickCreateNewProjectButton();
+    @And("^I send a post request \"([^\"]*)\" with data:$")
+    public void iSendAPostRequestWithData(final String endpoint, final Map<String, String> values) {
+        JsonObject jsonObject = new JsonObject();
+        values.keySet().forEach(data -> jsonObject.addProperty(data, values.get(data)));
+        lastResponse = RequestManager.postRequest(endpoint, jsonObject.toString());
+    }
+
+    @And("^I verify the status code is \"([^\"]*)\"$")
+    public void iVerifyTheStatusCodeIs(String statusCode) throws Throwable {
+        //(lastResponse.statusCode() == Integer.valueOf(statusCode));
+    }
+
+    @And("^I store the response as \"([^\"]*)\"$")
+    public void iStoreTheResponseAs(String responseName) {
+        responseMap.put(responseName, lastResponse);
     }
 }
 

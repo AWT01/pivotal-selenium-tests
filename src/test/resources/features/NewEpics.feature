@@ -3,7 +3,8 @@ Feature: Manage Epics
   Background:
     Given I log in as "user3"
     And I send a post request "/projects" with data:
-      | name | projectapi |
+      | name    | projectapi |
+      | account | newAccount |
     And I verify the status code is "200"
     And I store the response as "Project1"
     And I send a post request "/projects/{Project1.id}/stories" with data:
