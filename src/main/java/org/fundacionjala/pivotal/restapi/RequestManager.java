@@ -1,6 +1,9 @@
 package org.fundacionjala.pivotal.restapi;
 
 import io.restassured.response.Response;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.fundacionjala.core.util.Environment;
 
 import static io.restassured.RestAssured.given;
@@ -58,5 +61,21 @@ public final class RequestManager {
                 .header(headerCommon, apiToken)
                 .baseUri(baseURL)
                 .delete(endpoint);
+    }
+
+
+    public static String buildEndpoint(String regex, String rawEndpoint, Map<String, Response> responseMap) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(rawEndpoint);
+        String result = rawEndpoint;
+        for (int i = 0; i >= matcher.groupCount(); i++) {
+            String match = matcher.group(i);
+            String[] keys = match.split(".");
+            if (keys.length >= 2){
+                result = rawEndpoint.replace("\\{\b"+keys[0]+"."+keys[1]+"\\}"
+                        ,responseMap.get(keys[0]).jsonPath().get(keys[1]).toString());
+            }
+        }
+        return result;
     }
 }

@@ -4,6 +4,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.Map;
 import org.fundacionjala.pivotal.pageobjects.epics.Epics;
+import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.testng.Assert;
 
 /**
@@ -11,13 +12,17 @@ import org.testng.Assert;
  */
 public class EpicsSteps {
     private Epics epicsPage;
+    private Projects projects;
+
+    public EpicsSteps(final Projects projects) {
+        this.projects = projects;
+    }
     /**
      * click add epic action.
      */
     @When("^I click the add epics button$")
     public void iClickAddEpicsButton() {
-        epicsPage = new Epics();
-        epicsPage.clickEpicToggleButton();
+        epicsPage = projects.clickEpicToggleButton();;
         epicsPage.clickEpicAddButton();
     }
 

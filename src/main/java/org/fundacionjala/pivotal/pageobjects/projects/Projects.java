@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.pageobjects.projects;
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.pivotal.pageobjects.epics.Epics;
 import org.fundacionjala.pivotal.restapi.RequestManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,8 @@ public class Projects extends AbstractPage {
     @FindBy(css = "td[class='text_column']")
     private WebElement projectIDText;
 
+    @FindBy (css = "button[data-panel-id*='epics_']")
+    private WebElement epicsToggleButton;
     /**
      * Getter of project name input field on create project settings page.
      * @return webElement object.
@@ -61,6 +64,15 @@ public class Projects extends AbstractPage {
         CommonActions.waitElement(projectIDText);
         CommonActions.scrollToElement(projectIDText);
         return CommonActions.getText(projectIDText);
+    }
 
+    /**
+     * click on button that show epics tab.
+     */
+    public Epics clickEpicToggleButton() {
+        if ("false".equals(CommonActions.getAttribute(epicsToggleButton, "data-panel-visible"))) {
+            CommonActions.click(epicsToggleButton);
+        }
+        return new Epics();
     }
 }
