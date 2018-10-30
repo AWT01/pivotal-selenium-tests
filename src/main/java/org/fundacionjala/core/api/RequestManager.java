@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.restapi;
+package org.fundacionjala.core.api;
 
 import io.restassured.response.Response;
 import org.fundacionjala.core.util.Environment;
