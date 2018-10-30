@@ -3,11 +3,11 @@ package org.fundacionjala.pivotal.cucumber.steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import gherkin.deps.com.google.gson.JsonObject;
+import org.fundacionjala.core.api.RequestManager;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pageobjects.login.SignInPage;
-import org.fundacionjala.pivotal.restapi.RequestManager;
 
 /**
  * Common steps.
