@@ -2,11 +2,12 @@ package org.fundacionjala.pivotal.pageobjects.dashboard;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,9 @@ public class Dashboard extends AbstractPage {
 
     @FindBy(css = "a[data-aid='project-name']")
     private WebElement firstProject;
+
+    @FindBy(css = "button[data-aid='show-more-projects-button']")
+    private WebElement showMoreProjects;
 
     /**
      * Click on "Create Project" button inside Dashboard page.
@@ -93,4 +97,39 @@ public class Dashboard extends AbstractPage {
         formPage.setWorkspaceNameTextField(workspaceName);
         return formPage.clickCreateSubmit();
     }
+
+    /**
+     * open a project given a projectID.
+     * @param projectID project id number
+     * @return Projects page object
+     */
+    public Projects openProjectByID(final String projectID) {
+        String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
+                .replace("dashboard", "n/projects/" + projectID);
+        WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
+        Projects projects = new Projects();
+        return projects;
+    }
+
+    /**
+     * click on button show more project from dashboard.
+     */
+    private void clickShowMoreProjects() {
+        if (showMoreProjects != null) {
+            CommonActions.click(showMoreProjects);
+        }
+    }
+
+    /**
+     * open a project from UI, searching name on dashboard page.
+     * @param projectName name of project
+     */
+    public void openProjectByName(final String projectName) {
+        clickShowMoreProjects();
+        WebElement element = WebDriverManager.getInstance().getDriver()
+                .findElement(By.xpath("//a[text()='" + projectName + "']"));
+        CommonActions.scrollToElement(element);
+        CommonActions.click(element);
+    }
+
 }

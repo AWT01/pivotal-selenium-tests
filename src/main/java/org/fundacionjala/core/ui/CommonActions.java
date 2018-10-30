@@ -1,7 +1,9 @@
 package org.fundacionjala.core.ui;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
@@ -26,6 +28,15 @@ public final class CommonActions {
         element.click();
     }
 
+    /**
+     * wait and double click action.
+     * @param element webelement.
+     */
+    public static void doubleClick(final WebElement element) {
+        Actions action = new Actions(WebDriverManager.getInstance().getDriver());
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
+        action.doubleClick(element).perform();
+    }
     /**
      * wait and set text.
      * @param element webelement
@@ -65,11 +76,22 @@ public final class CommonActions {
     }
 
     /**
+     * wait for a element.
+     * @param findBy webelement
+     */
+    public static void waitElement(final By findBy) {
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOfElementLocated(findBy));
+    }
+
+    /**
      * Scroll to web element.
      * @param element to scroll to
      */
     public static void scrollToElement(final WebElement element) {
+        CommonActions.waitElement(element);
         JavascriptExecutor js = (JavascriptExecutor) WebDriverManager.getInstance().getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
+
+
 }

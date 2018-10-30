@@ -2,15 +2,16 @@ Feature: Manage Epics
 
   Background:
     Given I log in as "user1"
-    And I click the create project button
-    And I create a new project with fields:
-      | name    | Public project |
-      | account | newAccount     |
-      | privacy | public         |
-
+    And I send a post request "/projects" with data:
+      | name              | projectapi |
+      | new_account_name  | test       |
+    And I verify the status code is "200"
+    And I store the response as "Project1"
   @deleteProject
   Scenario: Create a new epic
-    When I click the add epics button
+    When I open a project "Project1.name"
+    And I click the add epics button
     And I fill the epic
-      |title|epicTest|
-    Then I verify if the epic was created
+      | title | epicTest |
+    And I store the table as "Epic1"
+    Then I verify if epic title is "Epic1.title"

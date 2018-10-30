@@ -1,6 +1,9 @@
-package org.fundacionjala.core.api;
+package org.fundacionjala.pivotal.restapi;
 
 import io.restassured.response.Response;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.fundacionjala.core.util.Environment;
 
 import static io.restassured.RestAssured.given;
@@ -58,5 +61,27 @@ public final class RequestManager {
                 .header(headerCommon, apiToken)
                 .baseUri(baseURL)
                 .delete(endpoint);
+    }
+
+    /**
+     * build a endpoint string, seaching keys on a raw endpoint and replacing the key with map values.
+     * @param rawEndpoint endpoint with Pattern "{Project.name}"
+     * @param responseMap response map where get data to replace
+     * @return a endpoint with the key replaced by data
+     */
+    public static String buildEndpoint(final String rawEndpoint, final Map<String, Response> responseMap) {
+        Pattern pattern = Pattern.compile("\\{(.*?)\\}");
+        Matcher matcher = pattern.matcher(rawEndpoint);
+        String result = rawEndpoint;
+        while (matcher.find()) {
+            String match = matcher.group(1);
+            String[] keys = match.split("\\.");
+            if (keys.length >= 2) {
+                String targetRegex = "{" + keys[0] + "." + keys[1] + "}";
+                String toReplace = responseMap.get(keys[0]).jsonPath().get(keys[1]).toString();
+                result = rawEndpoint.replace(targetRegex, toReplace);
+            }
+        }
+        return result;
     }
 }

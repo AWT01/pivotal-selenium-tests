@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
  * @version 0.1
  */
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "src/test/resources/features/NewEpics.feature",
         glue = {"org.fundacionjala.pivotal.cucumber"},
 //        tags = {"~@Ignore"},
         plugin = {
