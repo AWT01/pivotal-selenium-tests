@@ -1,9 +1,7 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.pivotal.pageobjects.story.Story;
 import org.testng.Assert;
 
@@ -20,9 +18,8 @@ public class StoriesSteps {
     /**
      * setup for story class.
      */
-    @Before
-    public void setUp() {
-        storyPage = new Story();
+    public StoriesSteps(final Story storyPage) {
+        this.storyPage = storyPage;
     }
     /**
      * click add story action.

@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.pageobjects.comment.Comment;
@@ -17,9 +16,8 @@ public class CommentsSteps {
     /**
      * setup for comment class.
      */
-    @Before
-    public void setUp() {
-        comment = new Comment();
+    public CommentsSteps(final Comment comment) {
+        this.comment = comment;
     }
 
     /**

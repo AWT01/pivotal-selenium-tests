@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal.cucumber.steps;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.pageobjects.task.Task;
@@ -17,9 +16,8 @@ public class TasksSteps {
     /**
      * setup for task class.
      */
-    @Before
-    public void setUp() {
-        task = new Task();
+    public TasksSteps(final Task task) {
+        this.task = task;
     }
 
     /**
