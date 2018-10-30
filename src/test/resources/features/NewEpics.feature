@@ -1,7 +1,7 @@
 Feature: Manage Epics
 
   Background:
-    Given I log in as "user3"
+    Given I log in as "user1"
     And I send a post request "/projects" with data:
       | name              | projectapi |
       | new_account_name  | test       |
