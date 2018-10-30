@@ -63,17 +63,23 @@ public final class RequestManager {
                 .delete(endpoint);
     }
 
-
-    public static String buildEndpoint(String regex, String rawEndpoint, Map<String, Response> responseMap) {
-        Pattern pattern = Pattern.compile(regex);
+    /**
+     * build a endpoint string, seaching keys on a raw endpoint and replacing the key with map values.
+     * @param rawEndpoint endpoint with Pattern "{Project.name}"
+     * @param responseMap response map where get data to replace
+     * @return a endpoint with the key replaced by data
+     */
+    public static String buildEndpoint(final String rawEndpoint, final Map<String, Response> responseMap) {
+        Pattern pattern = Pattern.compile("\\{(.*?)\\}");
         Matcher matcher = pattern.matcher(rawEndpoint);
         String result = rawEndpoint;
-        for (int i = 0; i >= matcher.groupCount(); i++) {
-            String match = matcher.group(i);
-            String[] keys = match.split(".");
-            if (keys.length >= 2){
-                result = rawEndpoint.replace("\\{\b"+keys[0]+"."+keys[1]+"\\}"
-                        ,responseMap.get(keys[0]).jsonPath().get(keys[1]).toString());
+        while (matcher.find()) {
+            String match = matcher.group(1);
+            String[] keys = match.split("\\.");
+            if (keys.length >= 2) {
+                String targetRegex = "{" + keys[0] + "." + keys[1] + "}";
+                String toReplace = responseMap.get(keys[0]).jsonPath().get(keys[1]).toString();
+                result = rawEndpoint.replace(targetRegex, toReplace);
             }
         }
         return result;

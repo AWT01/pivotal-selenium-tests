@@ -8,7 +8,6 @@ import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,7 +103,7 @@ public class Dashboard extends AbstractPage {
      * @param projectID project id number
      * @return Projects page object
      */
-    public Projects openProjectByID(String projectID) {
+    public Projects openProjectByID(final String projectID) {
         String newUrl = WebDriverManager.getInstance().getDriver().getCurrentUrl()
                 .replace("dashboard", "n/projects/" + projectID);
         WebDriverManager.getInstance().getDriver().navigate().to(newUrl);
@@ -112,17 +111,25 @@ public class Dashboard extends AbstractPage {
         return projects;
     }
 
-    public void clickShowMoreProjects() {
+    /**
+     * click on button show more project from dashboard.
+     */
+    private void clickShowMoreProjects() {
         if (showMoreProjects != null) {
             CommonActions.click(showMoreProjects);
         }
     }
-    public Projects openProjectByName(String projectName) {
+
+    /**
+     * open a project from UI, searching name on dashboard page.
+     * @param projectName name of project
+     */
+    public void openProjectByName(final String projectName) {
         clickShowMoreProjects();
-        WebElement element = WebDriverManager.getInstance().getDriver().findElement(By.xpath("//a[text()='"+projectName+"']"));
+        WebElement element = WebDriverManager.getInstance().getDriver()
+                .findElement(By.xpath("//a[text()='" + projectName + "']"));
         CommonActions.scrollToElement(element);
         CommonActions.click(element);
-        return new Projects();
     }
 
 }

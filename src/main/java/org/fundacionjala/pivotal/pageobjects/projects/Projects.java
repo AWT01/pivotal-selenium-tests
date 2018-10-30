@@ -4,14 +4,12 @@ import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.ui.CommonActions;
 import org.fundacionjala.pivotal.pageobjects.epics.Epics;
-import org.fundacionjala.pivotal.restapi.RequestManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
  * Page Object for Pivotal Settings Page.
- * @author KevinHerrera - AWT-[01].
- * @version 0.1
  */
 public class Projects extends AbstractPage {
 
@@ -21,17 +19,12 @@ public class Projects extends AbstractPage {
     @FindBy(id = "project_name")
     private WebElement projectNameInputField;
 
-    @FindBy(id = "delete_link")
-    private WebElement projectDeleteLink;
-
-    @FindBy(id = "confirm_delete")
-    private WebElement projectDeleteConfirmButton;
-
     @FindBy(css = "td[class='text_column']")
     private WebElement projectIDText;
 
     @FindBy (css = "button[data-panel-id*='epics_']")
     private WebElement epicsToggleButton;
+
     /**
      * Getter of project name input field on create project settings page.
      * @return webElement object.
@@ -51,15 +44,9 @@ public class Projects extends AbstractPage {
     }
 
     /**
-     * Delete the current project page.
+     * get project id from project setting page.
+     * @return id of project as string
      */
-    public void deleteProject() {
-        CommonActions.waitElement(projectDeleteLink);
-        CommonActions.scrollToElement(projectDeleteLink);
-        CommonActions.click(projectDeleteLink);
-        CommonActions.click(projectDeleteConfirmButton);
-    }
-
     public String getProjectIDSettings() {
         CommonActions.waitElement(projectIDText);
         CommonActions.scrollToElement(projectIDText);
@@ -68,11 +55,23 @@ public class Projects extends AbstractPage {
 
     /**
      * click on button that show epics tab.
+     * @return page object Epics
      */
     public Epics clickEpicToggleButton() {
         if ("false".equals(CommonActions.getAttribute(epicsToggleButton, "data-panel-visible"))) {
             CommonActions.click(epicsToggleButton);
         }
         return new Epics();
+    }
+
+    /**
+     * open a story from UI, by searching the name of project on dashboard page.
+     * @param storyName name of story
+     */
+    public static void openStoryByName(final String storyName) {
+        By elementToFind = By.xpath("//span[text()='" + storyName + "']");
+        CommonActions.waitElement(elementToFind);
+        WebElement element = WebDriverManager.getInstance().getDriver().findElement(elementToFind);
+        CommonActions.doubleClick(element);
     }
 }

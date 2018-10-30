@@ -1,9 +1,7 @@
 package org.fundacionjala.pivotal.cucumber.hooks;
 
 import cucumber.api.java.After;
-import gherkin.deps.com.google.gson.JsonObject;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
 import org.fundacionjala.pivotal.restapi.RequestManager;

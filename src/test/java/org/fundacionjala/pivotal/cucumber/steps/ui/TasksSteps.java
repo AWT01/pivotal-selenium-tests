@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.cucumber.steps;
+package org.fundacionjala.pivotal.cucumber.steps.ui;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

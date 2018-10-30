@@ -1,7 +1,9 @@
-package org.fundacionjala.pivotal.cucumber.steps;
+package org.fundacionjala.pivotal.cucumber.steps.ui;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.fundacionjala.pivotal.cucumber.steps.CommonSteps;
 import org.testng.Assert;
 import java.util.Map;
 import org.fundacionjala.pivotal.pageobjects.dashboard.NewProjectForm;
@@ -46,5 +48,19 @@ public class ProjectSteps {
     public void iVerifyIfTheProjectIsCreated() {
         projects.enterProjectSettings();
         Assert.assertTrue(projectName.equalsIgnoreCase(projects.getProjectNameInputField().getAttribute("value")));
+    }
+
+    /**
+     * open a story searching data on a map using a key.
+     * @param storyNameKey name of key.
+     */
+    @And("^I open a story \"([^\"]*)\"$")
+    public void iOpenAStory(final String storyNameKey) {
+        String[] keys = storyNameKey.split("\\.");
+        StringBuilder storyName = new StringBuilder();
+        if (keys.length >= 2) {
+            storyName.append(CommonSteps.getResponsesMap().get(keys[0]).jsonPath().get(keys[1]).toString());
+        }
+        Projects.openStoryByName(storyName.toString());
     }
 }

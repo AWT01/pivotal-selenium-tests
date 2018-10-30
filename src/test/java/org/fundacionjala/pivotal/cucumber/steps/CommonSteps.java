@@ -7,8 +7,6 @@ import gherkin.deps.com.google.gson.JsonObject;
 import io.restassured.response.Response;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.util.Environment;
 import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
@@ -22,7 +20,9 @@ import org.testng.Assert;
 public class CommonSteps {
     private Dashboard dashboard;
     private Response lastResponse;
-    private Map<String, Response> responseMap = new HashMap<>();
+    private static Map<String, String> lastTable = new HashMap<>();
+    private static Map<String, Response> responseMap = new HashMap<>();
+    private static Map<String, Map<String, String>> tablesMap = new HashMap<>();
 
     /**
      * Precondition, user must be logged in
@@ -46,51 +46,89 @@ public class CommonSteps {
     }
 
     /**
-     * .
-     * @param rawEndpoint .
-     * @param values .
+     * send post request.
+     * @param rawEndpoint endpoint give by step definition.
+     * @param values data to make post request.
      */
     @And("^I send a post request \"([^\"]*)\" with data:$")
     public void iSendAPostRequestWithData(final String rawEndpoint, final Map<String, String> values) {
         StringBuilder endPoint = new StringBuilder();
-        String patternString = "\\{(.*?)\\}";
-        if (rawEndpoint.matches(patternString)) {
-            endPoint.append(RequestManager.buildEndpoint(patternString, rawEndpoint, responseMap));
+        if (rawEndpoint.contains("{")) {
+            endPoint.append(RequestManager.buildEndpoint(rawEndpoint, responseMap));
         } else {
             endPoint.append(rawEndpoint);
         }
-        System.out.println("endpoint: "+endPoint.toString());
         JsonObject jsonObject = new JsonObject();
         values.keySet().forEach(data -> {
-            jsonObject.addProperty(data, values.get(data)+System.currentTimeMillis());
+            jsonObject.addProperty(data, values.get(data) + System.currentTimeMillis());
         });
-        //jsonObject.addProperty("name", "api8");
-        //jsonObject.addProperty("new_account_name", "test");
         lastResponse = RequestManager.postRequest(endPoint.toString(), jsonObject.toString());
-        System.out.println("api status : "+lastResponse.getStatusCode());
     }
 
+    /**
+     * verify is responce code status is equal parameter.
+     * @param statusCode status code expected.
+     */
     @And("^I verify the status code is \"([^\"]*)\"$")
-    public void iVerifyTheStatusCodeIs(String statusCode) {
-        int expectedCode = Integer.valueOf(statusCode);
+    public void iVerifyTheStatusCodeIs(final String statusCode) {
+        int expectedCode = Integer.parseInt(statusCode);
         Assert.assertEquals(lastResponse.statusCode(), expectedCode);
     }
 
+    /**
+     * store response on a map with key equal to parameter.
+     * @param responseName name of key.
+     */
     @And("^I store the response as \"([^\"]*)\"$")
-    public void iStoreTheResponseAs(String responseName) {
+    public void iStoreTheResponseAs(final String responseName) {
         responseMap.put(responseName, lastResponse);
-
     }
 
+    /**
+     * open project given name of project.
+     * @param rawProjectName .
+     */
     @And("^I open a project \"([^\"]*)\"$")
-    public void iOpenAProject(String rawProjectName) {
+    public void iOpenAProject(final String rawProjectName) {
         WebDriverManager.getInstance().getDriver().get(WebDriverManager.getInstance().getDriver().getCurrentUrl());
         String[] keys = rawProjectName.split("\\.");
-        System.out.println("open "+ rawProjectName + ": "+ keys[0] + "|" + keys[keys.length-1]);
-        String projectName = responseMap.get(keys[0]).jsonPath().get(keys[1]).toString();
-        dashboard.openProjectByName(projectName);
+        if (keys.length >= 2) {
+            String projectName = responseMap.get(keys[0]).jsonPath().get(keys[1]).toString();
+            dashboard.openProjectByName(projectName);
+        }
     }
 
+    /**
+     * store data table on a map with key equal to parameter.
+     * @param keyName name of the key.
+     */
+    @And("^I store the table as \"([^\"]*)\"$")
+    public void iStoreTheTableAs(final String keyName) {
+        tablesMap.put(keyName, lastTable);
+    }
 
+    /**
+     * set last table value.
+     * @param dataTable new lastTable value
+     */
+    public static void setLastTable(final Map<String, String> dataTable) {
+        lastTable = dataTable;
+    }
+
+    /**
+     * getter of response map.
+     * @return response map
+     */
+    public static Map<String, Response> getResponsesMap() {
+        return responseMap;
+    }
+
+    /**
+     * getter of tables map.
+     * @return tables map
+     */
+    public static Map<String, Map<String, String>> getTablesMap() {
+        return tablesMap;
+    }
 }
 
