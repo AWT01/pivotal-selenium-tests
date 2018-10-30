@@ -8,6 +8,17 @@ import static io.restassured.RestAssured.given;
 /**
  * class for rest api.
  */
+import io.restassured.response.Response;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.fundacionjala.core.util.Environment;
+
+import static io.restassured.RestAssured.given;
+
+/**
+ * class for rest api.
+ */
 public final class RequestManager {
     private static String baseURL = Environment.getInstance().getProperties().getProperty("apiURL");
     private static String headerCommon = "X-TrackerToken";
@@ -40,12 +51,12 @@ public final class RequestManager {
      */
     public static Response postRequest(final String endpoint, final String body) {
         return given()
-               .header(headerCommon, apiToken)
-               .header(headerPost, post)
-               .baseUri(baseURL)
-               .when()
-               .body(body)
-               .post(endpoint);
+                .header(headerCommon, apiToken)
+                .header(headerPost, post)
+                .baseUri(baseURL)
+                .when()
+                .body(body)
+                .post(endpoint);
     }
 
     /**
@@ -58,5 +69,21 @@ public final class RequestManager {
                 .header(headerCommon, apiToken)
                 .baseUri(baseURL)
                 .delete(endpoint);
+    }
+
+
+    public static String buildEndpoint(String regex, String rawEndpoint, Map<String, Response> responseMap) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(rawEndpoint);
+        String result = rawEndpoint;
+        for (int i = 0; i >= matcher.groupCount(); i++) {
+            String match = matcher.group(i);
+            String[] keys = match.split(".");
+            if (keys.length >= 2){
+                result = rawEndpoint.replace("\\{\b"+keys[0]+"."+keys[1]+"\\}"
+                        ,responseMap.get(keys[0]).jsonPath().get(keys[1]).toString());
+            }
+        }
+        return result;
     }
 }
