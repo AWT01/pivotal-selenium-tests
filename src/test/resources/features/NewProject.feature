@@ -8,7 +8,6 @@ Feature: Create a New Project
       | name    | Public project |
       | account | newAccount     |
       | privacy | public         |
-    And I open the project
     Then I verify if the project is created
 
 

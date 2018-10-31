@@ -1,22 +1,20 @@
 package org.fundacionjala.core.ui.browsers;
 
-import org.openqa.selenium.WebDriver;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import org.openqa.selenium.WebDriver;
+
 /**
  * Class which chose the class to execute.
- * @author Kevin Sanchez AWT - [01].
- * @version 0.1
  */
 public final class BrowserFactory {
 
     private static final Map<String, Supplier<AbstractBrowser>> BROWSERS = new HashMap<>();
     static {
-        BROWSERS.put("chrome", GoogleChrome32::new);
-        BROWSERS.put("firefox", MozillaFirefox::new);
+        BROWSERS.put("chrome", Chrome::new);
+        BROWSERS.put("firefox", Firefox::new);
     }
 
     /**
@@ -31,7 +29,7 @@ public final class BrowserFactory {
      * @return webdriver instance
      */
     public static WebDriver getBrowser(final String browser) {
-        return BROWSERS.getOrDefault(browser, GoogleChrome32::new).get().getDriver();
+        return BROWSERS.getOrDefault(browser, Chrome::new).get().getDriver();
     }
 }
 

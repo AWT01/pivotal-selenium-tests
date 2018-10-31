@@ -2,15 +2,12 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 
 import cucumber.api.java.After;
 import org.fundacionjala.core.ui.WebDriverManager;
-import org.fundacionjala.pivotal.pageobjects.projects.Projects;
-import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
-import org.fundacionjala.pivotal.restapi.RequestManager;
+import org.fundacionjala.pivotal.pages.projects.Projects;
+import org.fundacionjala.pivotal.pages.workspaces.Workspaces;
+import org.fundacionjala.pivotal.api.RequestManager;
 
 /**
  * Hooks for cucumber.
- *
- * @author Adrian Rojas - AWT-[01].
- * @version 0.1
  */
 public class Hooks {
 
@@ -36,7 +33,7 @@ public class Hooks {
         if (!WebDriverManager.getInstance().getDriver().getCurrentUrl().contains("settings")) {
             projects.enterProjectSettings();
         }
-        RequestManager.deleteRequest("/projects/" + projects.getProjectIDSettings());
+        RequestManager.delete(String.format("/projects/%s", projects.getProjectIDSettings()));
     }
 
     /**

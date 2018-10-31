@@ -3,9 +3,9 @@ package org.fundacionjala.pivotal.cucumber.steps.ui;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pageobjects.dashboard.NewWorkspaceForm;
-import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
+import org.fundacionjala.pivotal.pages.Dashboard;
+import org.fundacionjala.pivotal.pages.workspaces.NewWorkspaceForm;
+import org.fundacionjala.pivotal.pages.workspaces.Workspaces;
 import org.testng.Assert;
 
 import java.util.Map;

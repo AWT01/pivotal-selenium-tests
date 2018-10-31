@@ -1,20 +1,17 @@
-package org.fundacionjala.pivotal.pageobjects.dashboard;
-
-import org.fundacionjala.core.ui.AbstractPage;
-import org.fundacionjala.core.ui.CommonActions;
-import org.fundacionjala.pivotal.pageobjects.projects.Projects;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+package org.fundacionjala.pivotal.pages.projects;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.fundacionjala.core.ui.AbstractPage;
+import org.fundacionjala.core.ui.CommonActions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 /**
  * Page Object for Pivotal Settings Page.
- * @author KevinHerrera, Kevin Sanchez - AWT-[01].
- * @version 0.1
  */
 public class NewProjectForm extends AbstractPage {
 
@@ -127,8 +124,8 @@ public class NewProjectForm extends AbstractPage {
      * @param values map of input to put inside create project form fields.
      * @return map of lambdas to set create project form fields.
      */
-    public Map<String, IFormFields> getStrategyFormMap(final Map<String, String> values) {
-        Map<String, IFormFields> strategyMap = new HashMap<>();
+    public Map<String, Runnable> getStrategyFormMap(final Map<String, String> values) {
+        Map<String, Runnable> strategyMap = new HashMap<>();
         strategyMap.put("name", () -> this.setProjectNameTextField(values.get("name")));
         strategyMap.put("account", () -> this.setProjectAccount(values.get("account")));
         strategyMap.put("privacy", () -> this.setProjectPrivacy(values.get("privacy")));

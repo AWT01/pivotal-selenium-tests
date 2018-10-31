@@ -1,9 +1,11 @@
-package org.fundacionjala.pivotal.restapi;
+package org.fundacionjala.pivotal.api;
 
-import io.restassured.response.Response;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.fundacionjala.core.util.Environment;
 
 import static io.restassured.RestAssured.given;
@@ -13,16 +15,15 @@ import static io.restassured.RestAssured.given;
  */
 public final class RequestManager {
     private static String baseURL = Environment.getInstance().getProperties().getProperty("apiURL");
-    private static String headerCommon = "X-TrackerToken";
     private static String apiToken = Environment.getInstance().getProperties().getProperty("apiToken");
-    private static String headerPost = "Content-Type";
-    private static String post = "application/json";
+    private static final String HEADER_TRACKER_TOKEN = "X-TrackerToken";
 
     /**
      * empty constructor.
      */
     private RequestManager() {
     }
+
     /**
      * get requests.
      * @param endpoint string.
@@ -30,7 +31,7 @@ public final class RequestManager {
      */
     public static Response getRequest(final String endpoint) {
         return given()
-                .header(headerCommon, apiToken)
+                .header(HEADER_TRACKER_TOKEN, apiToken)
                 .baseUri(baseURL)
                 .get(endpoint);
     }
@@ -41,14 +42,14 @@ public final class RequestManager {
      * @param body to send.
      * @return response.
      */
-    public static Response postRequest(final String endpoint, final String body) {
+    public static Response post(final String endpoint, final String body) {
         return given()
-               .header(headerCommon, apiToken)
-               .header(headerPost, post)
-               .baseUri(baseURL)
-               .when()
-               .body(body)
-               .post(endpoint);
+                .header(HEADER_TRACKER_TOKEN, apiToken)
+                .contentType(ContentType.JSON)
+                .baseUri(baseURL)
+                .when()
+                .body(body)
+                .post(endpoint);
     }
 
     /**
@@ -56,10 +57,11 @@ public final class RequestManager {
      * @param endpoint string.
      * @return response.
      */
-    public static Response deleteRequest(final String endpoint) {
+    public static Response delete(final String endpoint) {
         return given()
-                .header(headerCommon, apiToken)
+                .header(HEADER_TRACKER_TOKEN, apiToken)
                 .baseUri(baseURL)
+                .when()
                 .delete(endpoint);
     }
 
@@ -77,7 +79,7 @@ public final class RequestManager {
             String match = matcher.group(1);
             String[] keys = match.split("\\.");
             if (keys.length >= 2) {
-                String targetRegex = "{" + keys[0] + "." + keys[1] + "}";
+                String targetRegex = String.format("{%s.%s}", keys[0], keys[1]);
                 String toReplace = responseMap.get(keys[0]).jsonPath().get(keys[1]).toString();
                 result = rawEndpoint.replace(targetRegex, toReplace);
             }

@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Webdriver singleton pattern.
- * @author Kevin Herrera, Kevin Sanchez AWT - [01].
- * @version 0.1
  */
 public final class  WebDriverManager {
     private static WebDriverManager ourInstance = new WebDriverManager();
@@ -28,9 +26,9 @@ public final class  WebDriverManager {
      * Constructor of class.
      */
     private WebDriverManager() {
-        this.driver = BrowserFactory.getBrowser(Environment.
-                getInstance().getProperties().getProperty("browser"));
-        this.wait = new WebDriverWait(this.getDriver(), WAIT_TIME);
+        driver = BrowserFactory.getBrowser(Environment.getInstance().getProperties().getProperty("browser"));
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(this.getDriver(), WAIT_TIME);
     }
 
     /**

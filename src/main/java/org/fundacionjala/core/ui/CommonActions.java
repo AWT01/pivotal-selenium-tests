@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Class with common actions to execute.
- * @author Kevin Sanchez AWT - [01].
- * @version 0.1
  */
 public final class CommonActions {
 
@@ -24,8 +22,9 @@ public final class CommonActions {
      * @param element webelement.
      */
     public static void click(final WebElement element) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+        WebDriverManager.getInstance().getWait()
+                .until(ExpectedConditions.elementToBeClickable(element))
+                .click();
     }
 
     /**
@@ -33,9 +32,10 @@ public final class CommonActions {
      * @param element webelement.
      */
     public static void doubleClick(final WebElement element) {
-        Actions action = new Actions(WebDriverManager.getInstance().getDriver());
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
-        action.doubleClick(element).perform();
+        new Actions(WebDriverManager.getInstance().getDriver())
+                .doubleClick(element)
+                .perform();
     }
     /**
      * wait and set text.
@@ -44,6 +44,7 @@ public final class CommonActions {
      */
     public static void setText(final WebElement element, final String textToSet) {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
+        element.clear();
         element.sendKeys(textToSet);
     }
     /**
@@ -52,19 +53,21 @@ public final class CommonActions {
      * @return a string
      */
     public static String getText(final WebElement element) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
-        return element.getText();
+        return WebDriverManager.getInstance().getWait()
+                .until(ExpectedConditions.visibilityOf(element))
+                .getText();
     }
 
     /**
-     * waitand get attribute.
+     * wait and get attribute.
      * @param element web element
      * @param attribute attribute to get
      * @return string
      */
     public static String getAttribute(final WebElement element, final String attribute) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
-        return element.getAttribute(attribute);
+        return WebDriverManager.getInstance().getWait()
+                .until(ExpectedConditions.visibilityOf(element))
+                .getAttribute(attribute);
     }
 
     /**
@@ -92,6 +95,4 @@ public final class CommonActions {
         JavascriptExecutor js = (JavascriptExecutor) WebDriverManager.getInstance().getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
-
-
 }

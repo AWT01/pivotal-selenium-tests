@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pageobjects.login;
+package org.fundacionjala.pivotal.pages;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
