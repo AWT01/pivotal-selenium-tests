@@ -18,6 +18,7 @@ public class StoriesSteps {
 
     /**
      * setup for story class.
+     * @param storyPage story object.
      */
     public StoriesSteps(final Story storyPage) {
         this.storyPage = storyPage;
@@ -42,6 +43,7 @@ public class StoriesSteps {
 
     /**
      * click save the story and check the creation.
+     * @param expectedStory string.
      */
     @Then("^I verify if the story is \"([^\"]*)\"$")
     public void iVerifyIfStoryWasCreated(final String expectedStory) {

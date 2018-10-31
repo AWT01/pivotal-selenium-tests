@@ -16,6 +16,7 @@ public class TasksSteps {
 
     /**
      * setup for task class.
+     * @param task task object.
      */
     public TasksSteps(final Task task) {
         this.task = task;
@@ -38,6 +39,10 @@ public class TasksSteps {
         task.setAddEditText(value.get("task"));
     }
 
+    /**
+     * set new task.
+     * @param value string.
+     */
     @When("^I set the name of the new task$")
     public void iSetTheNameOfTheNewTask(final Map<String, String> value) {
         task.setAddNewTaskText(value.get("task"));
@@ -53,6 +58,7 @@ public class TasksSteps {
 
     /**
      * verify creation.
+     * @param expectedTask string.
      */
     @Then("^I verify if the task is \"([^\"]*)\"$")
     public void iVerifyIfTheTaskWasCreated(final String expectedTask) {
