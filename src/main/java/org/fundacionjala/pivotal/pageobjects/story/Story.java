@@ -28,6 +28,9 @@ public class Story extends AbstractPage {
     @FindBy(css = "textarea[data-aid='Comment__textarea']")
     private WebElement textAreaComment;
 
+    @FindBy(css = "button[data-aid='StoryPreviewItem__expander']")
+    private WebElement expandStoryButton;
+
     /**
      * This method is to click on Login Button.
      */
@@ -65,5 +68,12 @@ public class Story extends AbstractPage {
     public Comments scrollToCommentTextField() {
         CommonActions.scrollToElement(textAreaComment);
         return new Comments();
+    }
+
+    /**
+     * Click expand button story.
+     */
+    public void clickExpandStoryButton() {
+        CommonActions.click(expandStoryButton);
     }
 }

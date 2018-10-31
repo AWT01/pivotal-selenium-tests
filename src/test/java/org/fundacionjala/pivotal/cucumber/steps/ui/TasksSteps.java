@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.cucumber.steps.ui;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.fundacionjala.pivotal.cucumber.steps.CommonSteps;
 import org.fundacionjala.pivotal.pageobjects.task.Task;
 import org.testng.Assert;
 
@@ -34,12 +35,12 @@ public class TasksSteps {
      */
     @When("^I set the name of the task$")
     public void iSetTheNameOfTheTask(final Map<String, String> value) {
-        task.setAddEditText(value.get("title"));
+        task.setAddEditText(value.get("task"));
     }
 
     @When("^I set the name of the new task$")
     public void iSetTheNameOfTheNewTask(final Map<String, String> value) {
-        task.setAddNewTaskText(value.get("title"));
+        task.setAddNewTaskText(value.get("task"));
     }
 
     /**
@@ -53,9 +54,14 @@ public class TasksSteps {
     /**
      * verify creation.
      */
-    @Then("^I verify if the task was created$")
-    public void iVerifyIfTheTaskWasCreated(final Map<String, String> value) {
-        Assert.assertEquals(task.getFirstTask(), value.get("title"));
+    @Then("^I verify if the task is \"([^\"]*)\"$")
+    public void iVerifyIfTheTaskWasCreated(final String expectedTask) {
+        String[] keys = expectedTask.split("\\.");
+        StringBuilder taskString = new StringBuilder();
+        if (keys.length >= 2) {
+            taskString.append(CommonSteps.getTablesMap().get(keys[0]).get(keys[1]));
+        }
+        Assert.assertEquals(task.getFirstTask(), taskString.toString());
     }
 
     /**

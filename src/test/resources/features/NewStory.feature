@@ -13,6 +13,6 @@ Feature: Manage Stories
     When I open a project "Project1.name"
     And I click the add story button
     And I fill the story
-    |title|storyTest|
-    Then I verify if the story was created
-    |title|storyTest|
+    |story|storyTest|
+    And I store the table as "Story1"
+    Then I verify if the story is "Story1.story"
