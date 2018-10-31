@@ -1,14 +1,14 @@
-package org.fundacionjala.pivotal.pageobjects.login;
+package org.fundacionjala.pivotal.pages;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.core.ui.AbstractPage;
-import org.fundacionjala.core.ui.WebDriverManager;
-import org.fundacionjala.core.util.EnvironmentException;
-import org.fundacionjala.pivotal.pageobjects.dashboard.Dashboard;
 import org.fundacionjala.core.ui.CommonActions;
-import org.fundacionjala.core.ui.CookieManager;
+import org.fundacionjala.core.ui.WebDriverManager;
+import org.fundacionjala.core.util.Environment;
+import org.fundacionjala.core.util.exceptions.EnvironmentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -76,16 +76,18 @@ public class SignInPage extends AbstractPage {
      * @return a Dashboard object
      */
     public static Dashboard credentials(final String username, final String password) {
-        String currentSession = CookieManager.getValueOfCookieNamed("lastuser");
-
+        String currentSession = StringUtils.EMPTY;
+        if (WebDriverManager.getInstance().getDriver().manage().getCookieNamed("lastuser") != null) {
+            currentSession = WebDriverManager.getInstance().getDriver().manage().getCookieNamed("lastuser").getValue();
+        }
         LOGGER.log(Level.INFO, "Check if user: " + username + "is logged");
-        LOGGER.log(Level.INFO, "User logged is: "
-                + CookieManager.getValueOfCookieNamed("lastuser"));
+        LOGGER.log(Level.INFO, "User logged is: " + currentSession);
         // change sessions if needed
         if (!username.equals(currentSession)) {
-            CookieManager.deleteAllCookies();
+            WebDriverManager.getInstance().getDriver().manage().deleteAllCookies();
             try {
-                WebDriverManager.getInstance().getDriver().get(HomePage.HOME_PAGE_URL);
+                final String url = Environment.getInstance().getProperties().getProperty("url");
+                WebDriverManager.getInstance().getDriver().get(url);
                 HomePage homePage = new HomePage();
                 SignInPage signInPage = homePage.clickOnSignInButton();
                 signInPage.setUsernameTextBox(username);
@@ -98,8 +100,8 @@ public class SignInPage extends AbstractPage {
                 throw new EnvironmentException();
             }
         } else {
-        LOGGER.log(Level.INFO, "User: " + username + "is already logged");
-        return new Dashboard();
+            LOGGER.log(Level.INFO, "User: " + username + "is already logged");
+            return new Dashboard();
         }
     }
 }

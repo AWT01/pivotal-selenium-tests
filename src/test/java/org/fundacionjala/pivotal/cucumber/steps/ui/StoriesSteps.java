@@ -1,17 +1,14 @@
 package org.fundacionjala.pivotal.cucumber.steps.ui;
 
+import java.util.Map;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fundacionjala.pivotal.cucumber.steps.CommonSteps;
-import org.fundacionjala.pivotal.pageobjects.story.Story;
+import org.fundacionjala.pivotal.pages.story.Story;
 import org.testng.Assert;
-
-import java.util.Map;
 
 /**
  * Class with the steps to create a story.
- * @author Kevin Sanchez - AWT-[01].
- * @version 0.1
  */
 public class StoriesSteps {
     private Story storyPage;

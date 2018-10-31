@@ -1,9 +1,9 @@
-package org.fundacionjala.pivotal.pageobjects.projects;
+package org.fundacionjala.pivotal.pages.projects;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.core.ui.CommonActions;
-import org.fundacionjala.pivotal.pageobjects.epics.Epics;
+import org.fundacionjala.pivotal.pages.epics.Epics;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

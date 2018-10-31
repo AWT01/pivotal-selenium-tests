@@ -3,16 +3,16 @@ Feature: Manage comment
   Background:
     Given I log in as "user1"
     And I send a post request "/projects" with data:
-    | name              | projectapi |
-    | new_account_name  | test       |
+      | name             | projectapi |
+      | new_account_name | test       |
     And I verify the status code is "200"
     And I store the response as "Project1"
-    And I send a post request "/projects/{Project1.id}/stories/" with data:
-    | name             | storyapi   |
+    And I send a post request "/projects/{Project1.id}/stories" with data:
+      | name | storyapi |
     And I verify the status code is "200"
     And I store the response as "Story1"
     And I send a post request "/projects/{Project1.id}/stories/{Story1.id}/comments" with data:
-      |title|comment Test|
+      | title | comment Test |
     And I verify the status code is "200"
     And I store the response as "Comment1"
 
@@ -23,6 +23,6 @@ Feature: Manage comment
     And I click action menu
     And I click the edit button
     And I set the comment
-    |comment|edit|
+      | comment | edit |
     And I save the comment
     Then I verify if the comment is "Comment1.comment"

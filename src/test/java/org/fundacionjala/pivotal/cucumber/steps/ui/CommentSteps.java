@@ -1,11 +1,11 @@
 package org.fundacionjala.pivotal.cucumber.steps.ui;
 
+import java.util.Map;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import java.util.Map;
-import org.fundacionjala.pivotal.cucumber.steps.CommonSteps;
-import org.fundacionjala.pivotal.pageobjects.comment.Comments;
-import org.fundacionjala.pivotal.pageobjects.story.Story;
+import org.fundacionjala.pivotal.pages.comment.Comments;
+import org.fundacionjala.pivotal.pages.story.Story;
 import org.testng.Assert;
 
 /**

@@ -1,12 +1,13 @@
 package org.fundacionjala.core.util;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.fundacionjala.core.util.exceptions.FileException;
 
 /**
  * Class which reads properties file.
@@ -14,7 +15,7 @@ import java.util.Properties;
  * @version 0.1
  */
 public final class Environment {
-    private static final Logger LOGGER = LogManager.getLogger("Read properties");
+    private static final Logger LOGGER = LogManager.getLogger(Environment.class);
     private static Environment instance = new Environment();
     private Properties properties;
 
@@ -33,10 +34,6 @@ public final class Environment {
         properties = new Properties();
         try (InputStream input = new FileInputStream("gradle.properties")) {
             properties.load(input);
-            if (properties.getProperty("user1").isEmpty() || properties.getProperty("password1").isEmpty()) {
-                LOGGER.error("There aren't the request data");
-                throw new EnvironmentException();
-            }
         } catch (IOException exception) {
             LOGGER.error(exception.getMessage());
             throw new FileException();

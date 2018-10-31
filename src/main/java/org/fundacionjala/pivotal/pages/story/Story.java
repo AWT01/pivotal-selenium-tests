@@ -1,8 +1,8 @@
-package org.fundacionjala.pivotal.pageobjects.story;
+package org.fundacionjala.pivotal.pages.story;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
-import org.fundacionjala.pivotal.pageobjects.comment.Comments;
+import org.fundacionjala.pivotal.pages.comment.Comments;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

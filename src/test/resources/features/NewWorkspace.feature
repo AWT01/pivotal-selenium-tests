@@ -6,7 +6,5 @@ Feature: Create a New Workspace
     When I switch tab to workspaces
     And I click the create button
     And I create a new workspace with fields:
-    |name | test |
+      | name | test |
     Then I verify if the workspace is created
-
-

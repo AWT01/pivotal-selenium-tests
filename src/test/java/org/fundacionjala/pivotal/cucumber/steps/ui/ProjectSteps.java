@@ -1,13 +1,14 @@
 package org.fundacionjala.pivotal.cucumber.steps.ui;
 
+import java.util.Map;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fundacionjala.pivotal.cucumber.steps.CommonSteps;
+import org.fundacionjala.pivotal.cucumber.steps.api.RequestSteps;
+import org.fundacionjala.pivotal.pages.projects.NewProjectForm;
+import org.fundacionjala.pivotal.pages.projects.Projects;
 import org.testng.Assert;
-import java.util.Map;
-import org.fundacionjala.pivotal.pageobjects.dashboard.NewProjectForm;
-import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 
 /**
  * Class for project steps.
@@ -33,7 +34,7 @@ public class ProjectSteps {
      */
     @When("^I create a new project with fields:$")
     public void iCreateANewProjectWithFields(final Map<String, String> values) {
-        values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).executeSteps());
+        values.keySet().forEach(form -> formPage.getStrategyFormMap(values).get(form).run());
         projectName = String.valueOf(System.currentTimeMillis());
         formPage.setProjectNameTextField(projectName);
         projectName = values.get("name") + projectName;
@@ -59,7 +60,7 @@ public class ProjectSteps {
         String[] keys = storyNameKey.split("\\.");
         StringBuilder storyName = new StringBuilder();
         if (keys.length >= 2) {
-            storyName.append(CommonSteps.getResponsesMap().get(keys[0]).jsonPath().get(keys[1]).toString());
+            storyName.append(RequestSteps.getResponsesMap().get(keys[0]).jsonPath().get(keys[1]).toString());
         }
         Projects.openStoryByName(storyName.toString());
     }

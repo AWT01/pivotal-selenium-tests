@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * Parent of Page Objects.
- * @author Kevin Sanchez - AWT-[01].
- * @version 0.1
  */
 public interface AbstractBrowser {
 

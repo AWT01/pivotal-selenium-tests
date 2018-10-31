@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pageobjects.task;
+package org.fundacionjala.pivotal.pages.task;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
