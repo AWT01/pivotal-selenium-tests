@@ -9,8 +9,6 @@ import org.openqa.selenium.support.FindBy;
  * Class to manage epics page on a pivotal's project.
  */
 public class Epics extends AbstractPage {
-    @FindBy (css = "button[data-panel-id*='epics_']")
-    private WebElement epicsToggleButton;
     @FindBy (css = "a[title='Add Epic']")
     private WebElement epicsAddButton;
     @FindBy (css = "textArea[name='epic[name]']")
@@ -19,20 +17,12 @@ public class Epics extends AbstractPage {
     private WebElement epicSaveButton;
     @FindBy (css = ".tracker_markup")
     private WebElement epicNameLocator;
-
     /**
      * set the epic name text field.
      * @param text epic name
      */
     public void setEpicNameTextField(final String text) {
         CommonActions.setText(epicNameTextField, text);
-    }
-
-    /**
-     * click on button show epic tab.
-     */
-    public void clickEpicToggleButton() {
-        CommonActions.click(epicsToggleButton);
     }
 
     /**

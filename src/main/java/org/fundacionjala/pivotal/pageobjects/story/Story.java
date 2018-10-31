@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pageobjects.story;
 
 import org.fundacionjala.core.ui.AbstractPage;
 import org.fundacionjala.core.ui.CommonActions;
+import org.fundacionjala.pivotal.pageobjects.comment.Comments;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,8 +25,8 @@ public class Story extends AbstractPage {
     @FindBy(css = ".story_name")
     private WebElement firstStory;
 
-    @FindBy(css = "button[data-aid='StoryPreviewItem__expander']")
-    private WebElement expandStoryButton;
+    @FindBy(css = "textarea[data-aid='Comment__textarea']")
+    private WebElement textAreaComment;
 
     /**
      * This method is to click on Login Button.
@@ -58,9 +59,11 @@ public class Story extends AbstractPage {
     }
 
     /**
-     * Click expand button story.
+     * scrool view to comment text box.
+     * @return page object Comments;
      */
-    public void clickExpandStoryButton() {
-        CommonActions.click(expandStoryButton);
+    public Comments scrollToCommentTextField() {
+        CommonActions.scrollToElement(textAreaComment);
+        return new Comments();
     }
 }

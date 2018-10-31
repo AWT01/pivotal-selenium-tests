@@ -4,6 +4,7 @@ import cucumber.api.java.After;
 import org.fundacionjala.core.ui.WebDriverManager;
 import org.fundacionjala.pivotal.pageobjects.projects.Projects;
 import org.fundacionjala.pivotal.pageobjects.workspaces.Workspaces;
+import org.fundacionjala.pivotal.restapi.RequestManager;
 
 /**
  * Hooks for cucumber.
@@ -22,21 +23,20 @@ public class Hooks {
      * @param workspaces to w
      */
     public Hooks(final Projects projects, final Workspaces workspaces) {
-
         this.projects = projects;
         this.workspaces = workspaces;
     }
 
 
     /**
-     * Delete Project.
+     * Delete Project using api request.
      */
     @After(value = "@deleteProject")
     public void deleteCreatedProject() {
         if (!WebDriverManager.getInstance().getDriver().getCurrentUrl().contains("settings")) {
             projects.enterProjectSettings();
         }
-        projects.deleteProject();
+        RequestManager.deleteRequest("/projects/" + projects.getProjectIDSettings());
     }
 
     /**
